@@ -11,6 +11,8 @@ namespace AjaxControlToolkit.Reference.Core {
 
     public class Documentation {
         const string AnimationScriptsTypeName = "AnimationScripts";
+        const string AccordionExtenderTypeName = "AccordionExtender";
+        const string AccordionTypeName = "Accordion";
         IDictionary<string, TypeDoc> _types;
 
         public void Add(IEnumerable<RawDoc> rawDocs, ContentType contentType) {
@@ -63,6 +65,9 @@ namespace AjaxControlToolkit.Reference.Core {
         }
 
         TypeDoc GetTypeByName(string typeName, string baseTypeName = null) {
+            if(typeName.Contains(AccordionExtenderTypeName))
+                typeName = typeName.Replace(AccordionExtenderTypeName, AccordionTypeName);
+
             if(!_types.ContainsKey(typeName))
                 _types.Add(typeName, new TypeDoc(typeName, baseTypeName));
 

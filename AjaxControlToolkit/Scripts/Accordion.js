@@ -208,28 +208,24 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     // has content at div 2i+1).
     Sys.Extended.UI.AccordionBehavior.initializeBase(this, [element]);
 
+    // The _selectedIndex variable is used to track the currently visible content
+    // pane.  It is persisted via ClientState so that it can be restored on PostBack.
+    // If 0 <= _selectedIndex < _panes.Length is not true, then no pane is selected
+    // (and they all appear collapsed).  While any index outside the bounds of the
+    // _panes array indicates that no pane is selected, we don't automatically set
+    // the value to a sentinel like -1 (especially on the server) because it's
+    // possible for additional panes to be added at any time.  We abstract this
+    // problem using the getPane() function which returns the selected pane when
+    // it's called with no arguments (and returns null when the current selected
+    // index is invalid).
+
     ///<summary>
-    /// The _selectedIndex variable is used to track the currently visible content
-    /// pane.  It is persisted via ClientState so that it can be restored on PostBack.
-    /// If 0 <= _selectedIndex < _panes.Length is not true, then no pane is selected
-    /// (and they all appear collapsed).  While any index outside the bounds of the
-    /// _panes array indicates that no pane is selected, we don't automatically set
-    /// the value to a sentinel like -1 (especially on the server) because it's
-    /// possible for additional panes to be added at any time.  We abstract this
-    /// problem using the getPane() function which returns the selected pane when
-    /// it's called with no arguments (and returns null when the current selected
-    /// index is invalid).
+    /// The index of a pane selected to display its content.
     ///</summary>
     ///<getter>get_selectedIndex</getter>
     ///<setter>set_selectedIndex</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.selectedIndex" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.selectedIndex" />
     this._selectedIndex = 0;
-
-    ///<summary>
-    /// Panes count.
-    ///</summary>
-    ///<getter>getCount</getter>
-    ///<member name="cM:AjaxControlToolkit.Accordion.count" />
 
     // The _panes array represents the collection of Accordion panes.  Each element of
     // the array is an object of the form {header, content, animation} corresponding
@@ -251,58 +247,58 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     this._panes = [];
 
     ///<summary>
-    /// Whether or not to fade the accordion panes when transitioning
+    /// True - to use the fading transition effect for Accordion panes, false - for standard transitions.
     ///</summary>
     ///<getter>get_fadeTransitions</getter>
     ///<setter>set_fadeTransitions</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.fadeTransitions" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.fadeTransitions" />
     this._fadeTransitions = false;
 
     ///<summary>
-    /// Length of time to transition between Accordion sections in
-    /// milleseconds. The default value is 250ms.
+    /// The number of milliseconds a transition effect takes to complete. 
+    /// The default value is 250ms.
     ///</summary>
     ///<getter>get_transitionDuration</getter>
     ///<setter>set_transitionDuration</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.transitionDuration" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.transitionDuration" />
     this._duration = 0.25;
 
     ///<summary>
-    /// A number of steps per second in transition animations.
+    /// The number of steps per second in transition animations.
     /// The default value is 30 frames per second.
     ///</summary>
     ///<getter>get_framesPerSecond</getter>
     ///<setter>set_framesPerSecond</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.framesPerSecond" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.framesPerSecond" />
     this._framesPerSecond = 30;
 
     ///<summary>
-    /// Determines how to control resizing of the Accordion. 
-    /// If it is set to None, then the Accordion can grow as large or as small as necessary. 
-    /// If it is set to Limit, then the Accordion will always be less than or equal to its available space. 
-    /// If it is set to Fill, then it will always be equal to its available space.
+    /// Controls how the Accordion changes its size to occupy space on a web page.
     ///</summary>
+    ///<remarks>
+    /// If set to None, the Accordion grows/shrinks vertically without restriction when its pane is expanded/collapsed; this can cause other elements on a web page to move up and down with it.
+    /// If set to Limit, the Accordion never grows larger than the value specified by its Height property; this will cause the Accordion content to scroll if it is too large to be displayed.
+    /// If set to Fill, the Accordion always keeps the same size as its Height property. This will cause the content to be expanded or shrunk if it isn't of the right size.
+    ///</remarks>
     ///<getter>get_autoSize</getter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.autoSize" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.autoSize" />
     this._autoSize = Sys.Extended.UI.AutoSize.None;
 
     ///<summary>
-    /// Whether or not clicking the header will close the currently opened pane (which
-    /// leaves all the Accordion's panes closed).
+    /// True - to force the Accordion to always have one pane expanded, false - to enable end-users to close all panes.
     ///</summary>
     ///<getter>get_requireOpenedPane</getter>
     ///<setter>set_requireOpenedPane</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.requireOpenedPane" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.requireOpenedPane" />
     this._requireOpenedPane = true;
 
     ///<summary>
-    /// Whether or not we suppress the client-side click handlers of any elements
-    /// (including server controls like Button or HTML elements like anchor) in the header
-    /// sections of the Accordion.
+    /// A Boolean value specifying whether the Accordion control will not be interrupted by the default click event of the anchor tag specified in the header element's template. 
+    /// If set to true, this property prevents any client event handler that may interrupt the activity of the Accordion control.
     ///</summary>
     ///<getter>get_suppressHeaderPostbacks</getter>
     ///<setter>set_suppressHeaderPostbacks</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.suppressHeaderPostbacks" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.suppressHeaderPostbacks" />
     this._suppressHeaderPostbacks = false;
 
     // Size of all the headers
@@ -313,19 +309,19 @@ Sys.Extended.UI.AccordionBehavior = function(element) {
     this._headerClickHandler = null;
 
     ///<summary>
-    /// The _headerSelectedCssClass is the css class applied to the selected header.
+    /// The name of the CSS class applied to headers.
     ///</summary>
     ///<getter>get_headerCssClass</getter>
     ///<setter>set_headerCssClass</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.headerCssClass" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.headerCssClass" />
     this._headerCssClass = '';
 
     ///<summary>
-    /// The _headerSelectedCssClass is the css class applied to the selected header.
+    /// The name of the CSS class applied to the selected header.
     ///</summary>
     ///<getter>get_headerSelectedCssClass</getter>
     ///<setter>get_headerSelectedCssClass</setter>
-    ///<member name="cP:AjaxControlToolkit.Accordion.headerSelectedCssClass" />
+    ///<member name="cP:AjaxControlToolkit.AccordionExtender.headerSelectedCssClass" />
     this._headerSelectedCssClass = '';
 
     // The _resizeHandler is a reference to the global event handler used to patch
@@ -417,13 +413,12 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     ///<summary>
-    /// Create a new Accordion pane given references to its header and content divs
-    /// and add it to the _panes collection.  We also wrap the content div in a new
-    /// container div, add a click handler to the header div, etc.
+    /// Creates a new Accordion pane and adds it to the Panes collection.
+    /// The method provides references to the created pane's header and content DIVs.
     ///</summary>
     /// <param name="header" type="Object">header element of the new Accordion pane</param>
     /// <param name="content" type="Object">content element of the new Accordion pane</param>
-    /// <member name="cM:AjaxControlToolkit.Accordion.addPane" />
+    /// <member name="cM:AjaxControlToolkit.AccordionExtender.addPane" />
     addPane: function(header, content) {
         // New pane object added to the end of the Accordion's pane collection.  The pane
         // is an object of the form {header, content, animation} corresponding to that
@@ -1105,9 +1100,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     ///<summary>
-    /// Fires when an Accordion pane is clicked, but before Accordion changes the pane.
+    /// Fires after a pane header is clicked but before the Accordion changes the selected pane.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.Accordion.selectedIndexChanging" />
+    ///<member name="cE:AjaxControlToolkit.AccordionExtender.selectedIndexChanging" />
     ///<event add="add_selectedIndexChanging" remove="remove_selectedIndexChanging" raise="raise_selectedIndexChanging" />
     add_selectedIndexChanging: function(handler) {
         this.get_events().addHandler('selectedIndexChanging', handler);
@@ -1127,9 +1122,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     ///<summary>
-    /// Fires when an Accordion pane is clicked, but after Accordion changes the pane.	
+    /// Fires after a pane header is clicked and the Accordion changes the selected pane.
     ///</summary>
-    ///<member name="cE:AjaxControlToolkit.Accordion.selectedIndexChanged" />
+    ///<member name="cE:AjaxControlToolkit.AccordionExtender.selectedIndexChanged" />
     ///<event add="add_selectedIndexChanged" remove="remove_selectedIndexChanged" raise="raise_selectedIndexChanged" />
     add_selectedIndexChanged: function(handler) {
         this.get_events().addHandler('selectedIndexChanged', handler);
@@ -1149,12 +1144,12 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     /// <summary>
-    /// Get a specific Accordion pane given its index. If no index is provided, get the currently selected pane.
+    /// Returns an Accordion pane specified by its index. If no index is provided, the currently selected pane is returned.
     /// </summary>
     /// <param name="index" type="Number">index of the desired Accordion pane.  If the index is not provided, we use
     /// the currently selected index.  In the event the provided index (or the currently
     /// selected index) is outside the bounds of the panes collection, we return null.</param>
-    /// <member name="cM:AjaxControlToolkit.Accordion.getPane" />
+    /// <member name="cM:AjaxControlToolkit.AccordionExtender.getPane" />
     getPane: function(index) {
         if(index === undefined || index === null) {
             index = this._selectedIndex;
@@ -1167,9 +1162,9 @@ Sys.Extended.UI.AccordionBehavior.prototype = {
     },
 
     ///<summary>
-    /// Panes count.
+    /// Returns the total number of panes.
     ///</summary>
-    /// <member name="cM:AjaxControlToolkit.Accordion.getCount" />
+    /// <member name="cM:AjaxControlToolkit.AccordionExtender.getCount" />
     getCount: function() {
         return this._panes ? this._panes.length : 0;
     },
