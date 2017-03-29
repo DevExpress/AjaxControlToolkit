@@ -15,6 +15,7 @@ using AjaxControlToolkit.Reference.Core.Rendering;
 
 namespace AjaxControlToolkit.Reference.Controllers {
     public class ReleaseNotesController : Controller {
+        List<string> ignoreLabels = new List<string>() { "don't include in release notes" };
         public ActionResult Index() {
             var milestones = new string[] { "16.1.1" };
 
@@ -48,7 +49,8 @@ namespace AjaxControlToolkit.Reference.Controllers {
         private IEnumerable<GitHubIssue> GetMilestoneIssues(IEnumerable<GitHubIssue> closedIssues, string milestone) {
             return closedIssues.Where(issue =>
                 IsTargetMilestone(issue, milestone)
-                && issue.Labels.Any(label => IsReleaseNotesLabel(label)));
+                && issue.Labels.Any(label => IsReleaseNotesLabel(label))
+                && !issue.Labels.Any(label => ignoreLabels.Contains(label.Name)));
         }
 
         private static bool IsTargetMilestone(GitHubIssue issue, string milestone) {
