@@ -8,7 +8,7 @@
     <Identifier Id="e79bade7-6755-466f-9788-3d8243bdcc5f">
         <Name>ASP.NET AJAX Control Toolkit</Name>
         <Author>CodePlex Foundation</Author>
-        <Version>15.1.2.0</Version>
+        <Version>100.0.0.0</Version>
         <Description xml:space="preserve">ASP.NET AJAX Control Toolkit Visual Studio integration package</Description>
         <License>LICENSE.txt</License>
         <Locale>1033</Locale>
