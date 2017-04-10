@@ -752,9 +752,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Source)
             return;
 
-        if(this._editableDiv.innerText.length === 1
-            &&
-            this._editableDiv.innerText.charCodeAt(0) === 10)
+        if(/^\s+$/.test(this._editableDiv.innerText))
             this._editableDiv.innerText = "";
 
         $common.setVisible(this._sourceViewDiv, true);
