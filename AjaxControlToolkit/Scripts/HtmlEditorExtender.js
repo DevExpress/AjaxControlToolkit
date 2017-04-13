@@ -752,9 +752,6 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         if(this._lastMode === Sys.Extended.UI.HtmlEditorExtenderMode.Source)
             return;
 
-        if(/^\s+$/.test(this._editableDiv.innerText))
-            this._editableDiv.innerText = "";
-
         $common.setVisible(this._sourceViewDiv, true);
 
         this._copyContentToSource();
@@ -792,10 +789,16 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     _copyContentToSource: function() {
+        var html = this._editableDiv.innerHTML;
+
+        if(/^\s*$/.test(this._editableDiv.innerText)
+            && this._editableDiv.innerHTML === "<br>")
+            html = "";
+
         if(this._sourceViewDiv.textContent != undefined)
-            this._sourceViewDiv.textContent = this.cleanHtml(this._editableDiv.innerHTML);
+            this._sourceViewDiv.textContent = this.cleanHtml(html);
         else
-            this._sourceViewDiv.innerText = this.cleanHtml(this._editableDiv.innerHTML);
+            this._sourceViewDiv.innerText = this.cleanHtml(html);
     },
 
     cleanHtml: function(html) {
