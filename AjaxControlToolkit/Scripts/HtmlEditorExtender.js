@@ -791,7 +791,8 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     _copyContentToSource: function() {
         var html = this._editableDiv.innerHTML;
 
-        if(/^\s*$/.test(this._editableDiv.innerText))
+        if(/^\s*$/.test(this._editableDiv.innerText)
+            && this._editableDiv.innerHTML === "<br>")
             html = "";
 
         if(this._sourceViewDiv.textContent != undefined)
