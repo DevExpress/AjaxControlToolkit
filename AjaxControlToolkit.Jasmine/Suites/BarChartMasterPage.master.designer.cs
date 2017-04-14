@@ -7,18 +7,18 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManagerTests {
+namespace AjaxControlToolkit.Jasmine {
     
     
-    public partial class ReleaseCdn {
+    public partial class BarChartMasterPage {
         
         /// <summary>
-        /// Target control.
+        /// BarChartTestSuite control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Target;
+        protected global::System.Web.UI.WebControls.ContentPlaceHolder BarChartTestSuite;
     }
 }

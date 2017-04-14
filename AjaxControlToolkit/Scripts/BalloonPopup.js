@@ -534,7 +534,8 @@ Sys.Extended.UI.BalloonPopupControlBehavior.prototype = {
             do {
                 _elementLeftPosition += e.offsetLeft;
                 _elementTopPosition += e.offsetTop;
-            } while(e = e.offsetParent);
+                e = e.offsetParent;
+            } while(e);
         }
 
         var _pageTopPosition = this.posTop();

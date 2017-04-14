@@ -1,0 +1,34 @@
+<!-- This file is generated automatically. Do not change its content. -->
+<b>Properties</b>
+<ul>
+	<li><b>CompletionInterval</b> -  Time in milliseconds when the timer will kick in to get suggestions using the web service. The default is 1000 </li>
+	<li><b>CompletionListCssClass</b> -  A CSS class that will be used to style the completion list flyout. </li>
+	<li><b>CompletionListElementID</b> -  ID of an element that will serve as the completion list. </li>
+	<li><b>CompletionListHighlightedItemCssClass</b> -  A CSS class that will be used to style a highlighted item in the autocomplete list. </li>
+	<li><b>CompletionListItemCssClass</b> -  A CSS class that will be used to style an item in the autocomplete list. </li>
+	<li><b>CompletionSetCount</b> -  A number of suggestions to be provided. The default is 10 </li>
+	<li><b>ContextKey</b> -  User/page specific context provided to an optional overload of the web method described by ServiceMethod/ServicePath. If the context key is used, it should have the same signature with an additional parameter named contextKey of a string type. </li>
+	<li><b>DelimiterCharacters</b> -  The character(s) used to separate words for autocomplete </li>
+	<li><b>EnableCaching</b> -  A flag to denote whether client-side caching is enabled. The default is true. </li>
+	<li><b>FirstRowSelected</b> -  Determines if the first row of the Search Results is selected by default. The default is false. </li>
+	<li><b>MinimumPrefixLength</b> -  Minimum length of text before the webservice provides suggestions. The default is 3 </li>
+	<li><b>OnClientHidden</b> -  A handler attached to the client-side hidden event </li>
+	<li><b>OnClientHiding</b> -  A handler attached to the client-side hiding event </li>
+	<li><b>OnClientItemOut</b> -  A handler attached to the client-side itemOut event </li>
+	<li><b>OnClientItemOver</b> -  A handler attached to the client-side itemOver event </li>
+	<li><b>OnClientItemSelected</b> -  A handler attached to the client-side itemSelected event </li>
+	<li><b>OnClientPopulated</b> -  A handler attached to the client-side populated event </li>
+	<li><b>OnClientPopulating</b> -  A handler attached to the client-side populating event </li>
+	<li><b>OnClientShowing</b> -  A handler attached to the client-side showing event </li>
+	<li><b>OnClientShown</b> -  A handler attached to the client-side shown event </li>
+	<li><b>OnHide</b> -  OnHide animation </li>
+	<li><b>OnShow</b> -  OnShow animation </li>
+	<li><b>ServiceMethod</b> -  The web service method to be called </li>
+	<li><b>ServicePath</b> -  The path to the web service that the extender will pull the word/sentence completions from. If this is not provided, the service method should be a page method. </li>
+	<li><b>ShowOnlyCurrentWordInCompletionListItem</b> -  If delimiter characters are specified and ShowOnlyCurrentWordInCompletionListItem is set to true, then the completion list displays suggestions just for the current word, otherwise, it displays the whole string that will show up in the TextBox if that item is selected, which is the current default. The default is false. </li>
+	<li><b>UseContextKey</b> -  Whether or not the ContextKey property should be used. This will be automatically enabled if the ContextKey property is ever set (on either the client or the server). If the context key is used, it should have the same signature with an additional parameter named contextKey of a string type. </li>
+</ul>
+<br /><b>Methods</b>
+<ul>
+	<li><b>CreateAutoCompleteItem(text, value)</b> -  Creates a serialized JSON object representing a text/value pair that can be returned by the webservice </li>
+</ul>

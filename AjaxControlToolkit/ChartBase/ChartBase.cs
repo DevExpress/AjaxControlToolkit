@@ -12,6 +12,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(CommonToolkitScripts))]
     [Designer(typeof(ChartBaseDesigner))]
     public abstract class ChartBase : ScriptControlBase {
+        protected string ContainerID;
 
         public ChartBase()
             : base(true, HtmlTextWriterTag.Div) {
@@ -51,6 +52,7 @@ namespace AjaxControlToolkit {
             root.ID = "_ParentDiv";
             root.Attributes.Add("style", "border-style:solid; border-width:1px;");
             Controls.Add(root);
+            ContainerID = root.ClientID;
         }
     }
 

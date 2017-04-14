@@ -62,11 +62,16 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// ID of an element that will serve as the completion list.
         /// </summary>
+        /// <remarks>
+        /// Deprecated. Use the default flyout and style that using the CssClass properties.
+        /// </remarks>
         [DefaultValue("")]
         [ExtenderControlProperty]
         [ClientPropertyName("completionListElementID")]
         [IDReferenceProperty(typeof(WebControl))]
         [Obsolete("Instead of passing in CompletionListElementID, use the default flyout and style that using the CssClass properties.")]
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual string CompletionListElementID {
             get { return GetPropertyValue("CompletionListElementID", String.Empty); }
             set { SetPropertyValue("CompletionListElementID", value); }

@@ -122,6 +122,29 @@
                     <act:InsertImage AjaxFileUploadHandlerPath="somepath" />
                 </Toolbar>
             </act:HtmlEditorExtender>
+
+            <asp:TextBox runat="server"
+                ID="PreviewTextBox"
+                Width="500"
+                Height="300" />
+
+            <act:HtmlEditorExtender runat="server"
+                TargetControlID="PreviewTextBox"
+                ID="PreviewHtmlEditorExtender"
+                DisplaySourceTab="true"
+                DisplayPreviewTab="true">
+            </act:HtmlEditorExtender>
+
+            <asp:TextBox runat="server"
+                ID="FocusedTextBox"
+                Width="500"
+                Height="300" />
+
+            <act:HtmlEditorExtender runat="server"
+                TargetControlID="FocusedTextBox"
+                ID="FocusedHtmlEditorExtender">
+            </act:HtmlEditorExtender>
+
         </ContentTemplate>
     </asp:UpdatePanel>
 
@@ -131,6 +154,8 @@
             var HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= TargetExtender.ClientID %>",
                 HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID = "<%= TargetExtenderSanitized.ClientID %>",
                 HTML_EDITOR_EXTENDER_WITH_IMAGEBUTTON_CLIENT_ID = "<%= HtmlEditorExtenderWithImageButton.ClientID %>",
+                PREVIEW_HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= PreviewHtmlEditorExtender.ClientID %>",
+                FOCUSED_HTML_EDITOR_EXTENDER_CLIENT_ID = "<%= FocusedHtmlEditorExtender.ClientID %>",
                 SIMPLE_TEXTBOX_CLIENT_ID = "<%= SimpleTextBox.ClientID %>",
                 UPDATE_PANEL_BUTTON_CLIENT_ID = "<%= UpdatePanelButton.ClientID %>";
 
@@ -140,6 +165,8 @@
                 this.extender = $find(HTML_EDITOR_EXTENDER_CLIENT_ID);
                 this.extenderSanitized = $find(HTML_EDITOR_EXTENDER_SANITIZED_CLIENT_ID);
                 this.extenderWithImageButton = $find(HTML_EDITOR_EXTENDER_WITH_IMAGEBUTTON_CLIENT_ID);
+                this.previewExtender = $find(PREVIEW_HTML_EDITOR_EXTENDER_CLIENT_ID);
+                this.focusedExtender = $find(FOCUSED_HTML_EDITOR_EXTENDER_CLIENT_ID);
 
                 this.ua = detect.parse(navigator.userAgent);
             });
@@ -169,7 +196,10 @@
                     wrapper.setContent("a").selectText().pressToolbarButtons(["strike-through"]);
 
                     actualSourceText = wrapper.currentState.editorContent("source");
-                    expect(actualSourceText).toBe("<span style=\"text-decoration: line-through;\">a</span>");
+                    if(userAgent.browser.family === "Chrome")
+                        expect(actualSourceText).toBe("<span style=\"text-decoration-line: line-through;\">a</span>");
+                    else
+                        expect(actualSourceText).toBe("<span style=\"text-decoration: line-through;\">a</span>");
                 });
 
                 it("defines left indent via style", function() {
@@ -302,6 +332,10 @@
                 });
 
                 it("indents text correctly", function() {
+                    // avoid flaky test in Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=1006793
+                    if(userAgent.browser.family === "Firefox")
+                        return;
+
                     var wrapper = new HtmlEditorWrapper(this.extender);
                     wrapper.setContent("a").selectText().pressToolbarButtons(["indent"]);
 
@@ -314,6 +348,10 @@
                 });
 
                 it("outdents text correctly", function() {
+                    // avoid flaky test in Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=1006793
+                    if(userAgent.browser.family === "Firefox")
+                        return;
+
                     var wrapper = new HtmlEditorWrapper(this.extender);
                     wrapper.setContent("a").selectText().pressToolbarButtons(["indent"]).pressToolbarButtons(["outdent"]);;
 
@@ -471,7 +509,12 @@
 
             it("strike through button works properly", function() {
                 var testContentText = "lorem ipsum dolor sit amet";
-                var expectedSourceText = "<span style=\"text-decoration: line-through;\">lorem</span> ipsum dolor sit amet";
+                var expectedSourceText;
+
+                if(this.ua.browser.family === "Chrome")
+                    expectedSourceText = "<span style=\"text-decoration-line: line-through;\">lorem</span> ipsum dolor sit amet";
+                else
+                    expectedSourceText = "<span style=\"text-decoration: line-through;\">lorem</span> ipsum dolor sit amet";
 
                 if(this.ua.browser.family == "IE")
                     expectedSourceText = "<strike>lorem</strike> ipsum dolor sit amet";
@@ -662,6 +705,46 @@
                 $("#SubmitButton").click();
             });
 
+            it("handles ampersand outside an attribute correctly", function(done) {
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent("&");
+
+                var endRequestHandler = function() {
+                    var extender = $find("<%= TargetExtender.ClientID %>"),
+                        wrapper = new HtmlEditorWrapper(extender);
+
+                    expect(wrapper.currentState.editorContent()).toEqual("&");
+
+                    Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
+
+                    done();
+                };
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+
+                $("#SubmitButton").click();
+            });
+
+            it("handles ampersand inside an attribute correctly", function(done) {
+                var wrapper = new HtmlEditorWrapper(this.extender);
+                wrapper.setContent('<a href="http://www.codeplex.com?a=1&amp;b=2">aaa</a>', "source");
+
+                var endRequestHandler = function() {
+                    var extender = $find("<%= TargetExtender.ClientID %>"),
+                        wrapper = new HtmlEditorWrapper(extender);
+
+                    expect(wrapper.currentState.editorContent("source")).toEqual('<a href="http://www.codeplex.com?a=1&amp;b=2">aaa</a>');
+
+                    Sys.WebForms.PageRequestManager.getInstance().remove_endRequest(arguments.callee);
+
+                    done();
+                };
+
+                Sys.WebForms.PageRequestManager.getInstance().add_endRequest(endRequestHandler);
+
+                $("#SubmitButton").click();
+            });
+
             it("removes all link href attribute value with javascript code after postback", function(done) {
                 var wrapper = new HtmlEditorWrapper(this.extenderSanitized);
                 wrapper.switchTab("source").setContent("<a href='javascript:alert(\"hello world\");'>test link</a>");
@@ -782,6 +865,41 @@
             it("sets AjaxFileUpload upload handler path", function () {
                 var ajaxFileUpload = $find(this.extenderWithImageButton.get_id() + "_ajaxFileUpload");
                 expect(ajaxFileUpload.get_uploadHandlerPath()).toBe("somepath");
+            });
+
+            it("switches to preview mode", function () {
+                var wrapper = new HtmlEditorWrapper(this.previewExtender);
+                wrapper.switchTab("preview");
+                expect(wrapper.currentState.tab()).toBe("preview");
+            });
+
+            it("switches to preview, then to source mode", function () {
+                var wrapper = new HtmlEditorWrapper(this.previewExtender);
+                wrapper.switchTab("preview").switchTab("source");
+                expect(wrapper.currentState.tab()).toBe("source");
+            });
+
+            it("switches to preview, source, content mode", function () {
+                var wrapper = new HtmlEditorWrapper(this.previewExtender);
+                wrapper.switchTab("preview").switchTab("source").switchTab("content");
+                expect(wrapper.currentState.tab()).toBe("content");
+            });
+
+            it("switches to preview, then to content mode", function () {
+                var wrapper = new HtmlEditorWrapper(this.previewExtender);
+                wrapper.switchTab("preview").switchTab("content");
+                expect(wrapper.currentState.tab()).toBe("content");
+            });
+
+            it("does not lose focus on load", function() {                
+                expect(this.focusedExtender._editableDiv).toBe(document.activeElement);
+            });
+
+            it("does not lose content on preview mode switch, then content mode switch", function() {
+                var wrapper = new HtmlEditorWrapper(this.previewExtender);
+                wrapper.setContent("a").switchTab("preview").switchTab("content");
+                var actualContentText = wrapper.currentState.editorContent();
+                expect(actualContentText).toBe("a");
             });
         });
     </script>

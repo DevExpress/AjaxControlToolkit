@@ -588,7 +588,7 @@ namespace AjaxControlToolkit {
                 if(this._hiddenFieldID != String.Empty) descriptor.AddElementProperty("hiddenField", this._hiddenFieldID);
                 if(this._innerTBID != String.Empty) descriptor.AddElementProperty("innerTB", this._innerTBID);
                 if(this._inputFile != null) descriptor.AddElementProperty("inputFile", this._inputFile.Name.Replace("$", "_"));
-                descriptor.AddProperty("postBackUrl", this.Page.Request.RawUrl);
+                descriptor.AddProperty("postBackUrl", Page.Response.ApplyAppPathModifier(Page.Request.RawUrl));
                 descriptor.AddProperty("formName", Path.GetFileName(this.Page.Form.Name));
                 if(CompleteBackColor != Color.Empty)
                     descriptor.AddProperty("completeBackColor", ColorTranslator.ToHtml(CompleteBackColor));

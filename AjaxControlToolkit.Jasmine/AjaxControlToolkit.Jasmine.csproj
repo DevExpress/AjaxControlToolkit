@@ -110,6 +110,7 @@
     <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\Localization.Resources.js" />
     <Content Include="Suites\BalloonPopupTests.aspx" />
+    <Content Include="Suites\BarChartTests.aspx" />
     <Content Include="Suites\DropDownTests.aspx" />
     <Content Include="Suites\HtmlEditorExtenderTests\superhero.png" />
     <Content Include="Suites\ModalPopupTests.aspx" />
@@ -133,16 +134,12 @@
     <Content Include="Suites\SlideShowTests\SlideShowTests.aspx" />
     <Content Include="Suites\SliderTests.aspx" />
     <Content Include="Suites\TabsTests.aspx" />
-    <EmbeddedResource Include="Suites\ToolkitResourceManagerTests\Scripts\TestExtender.cdn.debug.js" />
-    <EmbeddedResource Include="Suites\ToolkitResourceManagerTests\Scripts\TestExtender.cdn.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\BaseScripts.js" />
     <Content Include="Scripts\AjaxControlToolkit\Release\TestExtender.js" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\TestExtender.debug.js" />
     <Content Include="Suites\ToolkitResourceManagerTests\BundlingTests.aspx" />
-    <Content Include="Suites\ToolkitResourceManagerTests\DebugCdnTests.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\DebugStaticTests.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\NamedBundlingTests.aspx" />
-    <Content Include="Suites\ToolkitResourceManagerTests\ReleaseCdnTests.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\ReleaseStaticTests.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\DebugEmbeddedTests.aspx" />
     <Content Include="Suites\ToolkitResourceManagerTests\ReleaseEmbeddedTests.aspx" />
@@ -160,6 +157,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Suites\BarChartMasterPage.master.cs">
+      <DependentUpon>BarChartMasterPage.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\BarChartMasterPage.master.designer.cs">
+      <DependentUpon>BarChartMasterPage.master</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,6 +187,13 @@
     </Compile>
     <Compile Include="Suites\BalloonPopupTests.aspx.designer.cs">
       <DependentUpon>BalloonPopupTests.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Suites\BarChartTests.aspx.cs">
+      <DependentUpon>BarChartTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\BarChartTests.aspx.designer.cs">
+      <DependentUpon>BarChartTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\DropDownTests.aspx.cs">
       <DependentUpon>DropDownTests.aspx</DependentUpon>
@@ -350,13 +361,6 @@
     <Compile Include="Suites\ToolkitResourceManagerTests\BundlingTests.aspx.designer.cs">
       <DependentUpon>BundlingTests.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\DebugCdnTests.aspx.cs">
-      <DependentUpon>DebugCdnTests.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\DebugCdnTests.aspx.designer.cs">
-      <DependentUpon>DebugCdnTests.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Suites\ToolkitResourceManagerTests\DebugStaticTests.aspx.cs">
       <DependentUpon>DebugStaticTests.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -370,13 +374,6 @@
     </Compile>
     <Compile Include="Suites\ToolkitResourceManagerTests\NamedBundlingTests.aspx.designer.cs">
       <DependentUpon>NamedBundlingTests.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseCdnTests.aspx.cs">
-      <DependentUpon>ReleaseCdnTests.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseCdnTests.aspx.designer.cs">
-      <DependentUpon>ReleaseCdnTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\ToolkitResourceManagerTests\ReleaseStaticTests.aspx.cs">
       <DependentUpon>ReleaseStaticTests.aspx</DependentUpon>
@@ -416,6 +413,7 @@
     <Content Include="Infrastructure\Styles\TestRunner.css.map">
       <DependentUpon>TestRunner.css</DependentUpon>
     </Content>
+    <Content Include="Suites\BarChartMasterPage.master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

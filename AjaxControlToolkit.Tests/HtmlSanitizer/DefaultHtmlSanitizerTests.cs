@@ -21,7 +21,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<a href=\"&#x26;&#x23;39&#x3B;&#x26;&#x23;39&#x3B;&#x3B;&#x21;&#x2D;&#x2D;\"></a>";
+            string expected = "<a href=\"&#39;&#39;;!--\"></a>";
             Assert.AreEqual(expected, actual);
         }
 
@@ -101,7 +101,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"&#x60;\">";
+            string expected = "<img src=\"`\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -149,7 +149,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"&#x26;amp&#x3B;&#x23;106&#x3B;&#x26;amp&#x3B;&#x23;97&#x3B;&#x26;amp&#x3B;&#x23;118&#x3B;&#x26;amp&#x3B;&#x23;97&#x3B;&#x26;amp&#x3B;&#x23;115&#x3B;&#x26;amp&#x3B;&#x23;99&#x3B;&#x26;amp&#x3B;&#x23;114&#x3B;&#x26;amp&#x3B;&#x23;105&#x3B;&#x26;amp&#x3B;&#x23;112&#x3B;&#x26;amp&#x3B;&#x23;116&#x3B;&#x26;amp&#x3B;&#x23;58&#x3B;&#x26;amp&#x3B;&#x23;97&#x3B;&#x26;amp&#x3B;&#x23;108&#x3B;&#x26;amp&#x3B;&#x23;101&#x3B;&#x26;amp&#x3B;&#x23;114&#x3B;&#x26;amp&#x3B;&#x23;116&#x3B;&#x26;amp&#x3B;&#x23;40&#x3B;&#x26;amp&#x3B;&#x23;39&#x3B;&#x26;amp&#x3B;&#x23;88&#x3B;&#x26;amp&#x3B;&#x23;83&#x3B;&#x26;amp&#x3B;&#x23;83&#x3B;&#x26;amp&#x3B;&#x23;39&#x3B;&#x26;amp&#x3B;&#x23;41&#x3B;\">";
+            string expected = "<img src=\"&amp;#106;&amp;#97;&amp;#118;&amp;#97;&amp;#115;&amp;#99;&amp;#114;&amp;#105;&amp;#112;&amp;#116;&amp;#58;&amp;#97;&amp;#108;&amp;#101;&amp;#114;&amp;#116;&amp;#40;&amp;#39;&amp;#88;&amp;#83;&amp;#83;&amp;#39;&amp;#41;\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -165,7 +165,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"&#x26;amp&#x3B;&#x23;0000106&#x26;amp&#x3B;&#x23;0000097&#x26;amp&#x3B;&#x23;0000118&#x26;amp&#x3B;&#x23;0000097&#x26;amp&#x3B;&#x23;0000115&#x26;amp&#x3B;&#x23;0000099&#x26;amp&#x3B;&#x23;0000114&#x26;amp&#x3B;&#x23;0000105&#x26;amp&#x3B;&#x23;0000112&#x26;amp&#x3B;&#x23;0000116&#x26;amp&#x3B;&#x23;0000058&#x26;amp&#x3B;&#x23;0000097&#x26;amp&#x3B;&#x23;0000108&#x26;amp&#x3B;&#x23;0000101&#x26;amp&#x3B;&#x23;0000114&#x26;amp&#x3B;&#x23;0000116&#x26;amp&#x3B;&#x23;0000040&#x26;amp&#x3B;&#x23;0000039&#x26;amp&#x3B;&#x23;0000088&#x26;amp&#x3B;&#x23;0000083&#x26;amp&#x3B;&#x23;0000083&#x26;amp&#x3B;&#x23;0000039&#x26;amp&#x3B;&#x23;0000041\">";
+            string expected = "<img src=\"&amp;#0000106&amp;#0000097&amp;#0000118&amp;#0000097&amp;#0000115&amp;#0000099&amp;#0000114&amp;#0000105&amp;#0000112&amp;#0000116&amp;#0000058&amp;#0000097&amp;#0000108&amp;#0000101&amp;#0000114&amp;#0000116&amp;#0000040&amp;#0000039&amp;#0000088&amp;#0000083&amp;#0000083&amp;#0000039&amp;#0000041\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -181,7 +181,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"&#x26;amp&#x3B;&#x23;x6A&#x26;amp&#x3B;&#x23;x61&#x26;amp&#x3B;&#x23;x76&#x26;amp&#x3B;&#x23;x61&#x26;amp&#x3B;&#x23;x73&#x26;amp&#x3B;&#x23;x63&#x26;amp&#x3B;&#x23;x72&#x26;amp&#x3B;&#x23;x69&#x26;amp&#x3B;&#x23;x70&#x26;amp&#x3B;&#x23;x74&#x26;amp&#x3B;&#x23;x3A&#x26;amp&#x3B;&#x23;x61&#x26;amp&#x3B;&#x23;x6C&#x26;amp&#x3B;&#x23;x65&#x26;amp&#x3B;&#x23;x72&#x26;amp&#x3B;&#x23;x74&#x26;amp&#x3B;&#x23;x28&#x26;amp&#x3B;&#x23;x27&#x26;amp&#x3B;&#x23;x58&#x26;amp&#x3B;&#x23;x53&#x26;amp&#x3B;&#x23;x53&#x26;amp&#x3B;&#x23;x27&#x26;amp&#x3B;&#x23;x29\">";
+            string expected = "<img src=\"&amp;#x6A&amp;#x61&amp;#x76&amp;#x61&amp;#x73&amp;#x63&amp;#x72&amp;#x69&amp;#x70&amp;#x74&amp;#x3A&amp;#x61&amp;#x6C&amp;#x65&amp;#x72&amp;#x74&amp;#x28&amp;#x27&amp;#x58&amp;#x53&amp;#x53&amp;#x27&amp;#x29\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -213,7 +213,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"jav&#x26;amp&#x3B;&#x23;x09&#x3B;a&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;\">";
+            string expected = "<img src=\"jav&amp;#x09;a:alert(&#39;XSS&#39;);\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -229,7 +229,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"jav&#x26;amp&#x3B;&#x23;x0A&#x3B;a&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;\">";
+            string expected = "<img src=\"jav&amp;#x0A;a:alert(&#39;XSS&#39;);\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -245,7 +245,7 @@ namespace AjaxControlToolkit.Tests.HtmlSanititzer {
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"jav&#x26;amp&#x3B;&#x23;x0D&#x3B;a&#x3A;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;\">";
+            string expected = "<img src=\"jav&amp;#x0D;a:alert(&#39;XSS&#39;);\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -319,7 +319,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<img src=\"&#x0A;a&#x0D;&#x0A;l&#x0D;&#x0A;e&#x0D;&#x0A;r&#x0D;&#x0A;t&#x0D;&#x0A;&#x28;&#x0D;&#x0A;&#x26;&#x23;39&#x3B;&#x0D;&#x0A;X&#x0D;&#x0A;S&#x0D;&#x0A;S&#x0D;&#x0A;&#x26;&#x23;39&#x3B;&#x0D;&#x0A;&#x29;&#x0D;&#x0A;\">\r\n";
+            string expected = "<img src=\"\na\r\nl\r\ne\r\nr\r\nt\r\n(\r\n&#39;\r\nX\r\nS\r\nS\r\n&#39;\r\n)\r\n\">\r\n";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -335,7 +335,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "perl -e 'print \"<img src=\"java&#xfffd;&#x3A;alert&#x28;&#x26;quot&#x3B;XSS&#x26;quot&#x3B;&#x29;\">\";' > out";
+            string expected = "perl -e 'print \"<img src=\"java&#xfffd;:alert(&quot;XSS&quot;)\">\";' > out";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -367,7 +367,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"&#x20;&#x26;amp&#x3B;&#x23;14&#x3B;\">";
+            string expected = "<img src=\" &amp;#14;\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -512,7 +512,7 @@ S
 
             // Assert
             // intentionally keep it failing to get notice when reviewing unit tests so can disucss
-            string expected = "<p STYLE=\"&#x3A;&#x20;url&#x28;www&#x2E;ha&#x2E;ckers&#x2E;org&#x29;&#x3B;\">";
+            string expected = "<p style=\": url(www.ha.ckers.org);\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -528,7 +528,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC='vb&#x3A;msgbox&#x28;&#x26;quot&#x3B;XSS&#x26;quot&#x3B;&#x29;'>";
+            string expected = "<img src='vb:msgbox(&quot;XSS&quot;)'>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -544,7 +544,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"&#x3A;&#x5B;code&#x5D;\">";
+            string expected = "<img src=\":[code]\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -560,7 +560,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"Live&#x3A;&#x5B;code&#x5D;\">";
+            string expected = "<img src=\"Live:[code]\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -640,7 +640,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<DIV STYLE=\"background&#x2D;image&#x3A;&#x20;url&#x28;\"></div>";
+            string expected = "<div style=\"background-image: url(\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -656,7 +656,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<DIV STYLE=\"background&#x2D;image&#x3A;&#xfffd;075&#xfffd;072&#xfffd;06C&#xfffd;028&#x26;&#x23;39&#x3B;&#xfffd;06a&#xfffd;061&#xfffd;076&#xfffd;061&#xfffd;073&#xfffd;063&#xfffd;072&#xfffd;069&#xfffd;070&#xfffd;074&#xfffd;03a&#xfffd;061&#xfffd;06c&#xfffd;065&#xfffd;072&#xfffd;074&#xfffd;028&#x2E;1027&#xfffd;058&#x2E;1053&#xfffd;053&#xfffd;027&#xfffd;029&#x26;&#x23;39&#x3B;&#xfffd;029\"></div>";
+            string expected = "<div style=\"background-image:&#xfffd;075&#xfffd;072&#xfffd;06C&#xfffd;028&#39;&#xfffd;06a&#xfffd;061&#xfffd;076&#xfffd;061&#xfffd;073&#xfffd;063&#xfffd;072&#xfffd;069&#xfffd;070&#xfffd;074&#xfffd;03a&#xfffd;061&#xfffd;06c&#xfffd;065&#xfffd;072&#xfffd;074&#xfffd;028.1027&#xfffd;058.1053&#xfffd;053&#xfffd;027&#xfffd;029&#39;&#xfffd;029\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -672,7 +672,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<DIV STYLE=\"background&#x2D;image&#x3A;&#x20;url&#x28;&#x26;amp&#x3B;&#x23;1&#x3B;\"></Div>";
+            string expected = "<div style=\"background-image: url(&amp;#1;\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -688,7 +688,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<DIV STYLE=\"width&#x3A;&#x28;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x29;&#x3B;\"></Div>";
+            string expected = "<div style=\"width:(alert(&#39;XSS&#39;));\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -864,7 +864,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"http&#x3A;&#x2F;&#x2F;www&#x2E;thesiteyouareon&#x2E;com&#x2F;somecommand&#x2E;php&#x3F;somevariables&#x3D;maliciouscode\">";
+            string expected = "<img src=\"http://www.thesiteyouareon.com/somecommand.php?somevariables=maliciouscode\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -880,7 +880,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<IMG SRC=\"Redirect&#x20;302&#x20;&#x2F;a&#x2E;jpg&#x20;http&#x3A;&#x2F;&#x2F;victimsite&#x2E;com&#x2F;admin&#x2E;asp&#x26;amp&#x3B;deleteuser\">";
+            string expected = "<img src=\"Redirect 302 /a.jpg http://victimsite.com/admin.asp&amp;deleteuser\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -896,7 +896,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;66&#x2E;102&#x2E;7&#x2E;147&#x2F;\">XSS</A>";
+            string expected = "<a href=\"http://66.102.7.147/\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -912,7 +912,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;&#x25;77&#x25;77&#x25;77&#x25;2E&#x25;67&#x25;6F&#x25;6F&#x25;67&#x25;6C&#x25;65&#x25;2E&#x25;63&#x25;6F&#x25;6D\">XSS</A>";
+            string expected = "<a href=\"http://%77%77%77%2E%67%6F%6F%67%6C%65%2E%63%6F%6D\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -928,7 +928,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;1113982867&#x2F;\">XSS</A>";
+            string expected = "<a href=\"http://1113982867/\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -944,7 +944,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;0x42&#x2E;0x0000066&#x2E;0x7&#x2E;0x93&#x2F;\">XSS</A>";
+            string expected = "<a href=\"http://0x42.0x0000066.0x7.0x93/\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -960,7 +960,7 @@ S
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;0102&#x2E;0146&#x2E;0007&#x2E;00000223&#x2F;\">XSS</A>";
+            string expected = "<a href=\"http://0102.0146.0007.00000223/\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -977,7 +977,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"h&#x0D;&#x0A;tt&#x09;p&#x3A;&#x2F;&#x2F;6&#x26;amp&#x3B;&#x23;9&#x3B;6&#x2E;000146&#x2E;0x7&#x2E;147&#x2F;\">XSS</A>";
+            string expected = "<a href=\"h\r\ntt\tp://6&amp;#9;6.000146.0x7.147/\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -993,7 +993,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"&#x2F;&#x2F;www&#x2E;google&#x2E;com&#x2F;\">XSS</A>";
+            string expected = "<a href=\"//www.google.com/\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1009,7 +1009,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"&#x2F;&#x2F;google\">XSS</A>";
+            string expected = "<a href=\"//google\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1025,7 +1025,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x40;google\">XSS</A>";
+            string expected = "<a href=\"http://ha.ckers.org@google\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1041,7 +1041,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;google&#x3A;ha&#x2E;ckers&#x2E;org\">XSS</A>";
+            string expected = "<a href=\"http://google:ha.ckers.org\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1057,7 +1057,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;google&#x2E;com&#x2F;\">XSS</A>";
+            string expected = "<a href=\"http://google.com/\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1073,7 +1073,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;google&#x2E;com&#x2E;&#x2F;\">XSS</A>";
+            string expected = "<a href=\"http://www.google.com./\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1105,7 +1105,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;gohttp&#x3A;&#x2F;&#x2F;www&#x2E;google&#x2E;com&#x2F;ogle&#x2E;com&#x2F;\">XSS</A>";
+            string expected = "<a href=\"http://www.gohttp://www.google.com/ogle.com/\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1121,7 +1121,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x26;gt&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;SRC=http://ha.ckers.org/xss.js&gt;&lt;/&gt;\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1137,7 +1137,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x26;gt&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;SRC=http://ha.ckers.org/xss.js&gt;&lt;/&gt;\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1153,7 +1153,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x26;gt&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;&#x29;\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;SRC=http://ha.ckers.org/xss.js&gt;&lt;/&gt;)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1169,7 +1169,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x2F;XSS&#x20;SRC&#x3D;\">\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;/XSS SRC=\">\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1185,7 +1185,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x2F;XSS&#x20;SRC&#x3D;\">\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;/XSS SRC=\">\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1201,7 +1201,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x2F;XSS&#x20;SRC&#x3D;\">)\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;/XSS SRC=\">)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1217,7 +1217,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x2F;SRC&#x3D;\">\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;/SRC=\">\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1233,7 +1233,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x2F;SRC&#x3D;\">\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;/SRC=\">\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1249,7 +1249,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x2F;SRC&#x3D;\">)\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;/SRC=\">)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1265,7 +1265,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;\"></A>\">XSS";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;&lt;&gt;alert(\"></a>\">XSS";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1281,7 +1281,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;\"></Div>\">";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;&lt;&gt;alert(\"></div>\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1297,7 +1297,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;\"></div>)\">";
+            string expected = "<div style=\"background-color:(&lt;&lt;&gt;alert(\"></div>)\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1313,7 +1313,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x3F;&#x26;lt&#x3B;B&#x26;gt&#x3B;\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;SRC=http://ha.ckers.org/xss.js?&lt;B&gt;\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1329,7 +1329,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x3F;&#x26;lt&#x3B;B&#x26;gt&#x3B;\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;SRC=http://ha.ckers.org/xss.js?&lt;B&gt;\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1345,7 +1345,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;SRC&#x3D;http&#x3A;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;xss&#x2E;js&#x3F;&#x26;lt&#x3B;B&#x26;gt&#x3B;&#x29;\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;SRC=http://ha.ckers.org/xss.js?&lt;B&gt;)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1361,7 +1361,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;&#x2E;j&#x26;gt&#x3B;\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;SRC=//ha.ckers.org/.j&gt;\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1377,7 +1377,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;SRC&#x3D;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;&#x2E;j&#x26;gt&#x3B;\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;SRC=//ha.ckers.org/.j&gt;\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1393,7 +1393,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;SRC&#x3D;&#x2F;&#x2F;ha&#x2E;ckers&#x2E;org&#x2F;&#x2E;j&#x26;gt&#x3B;&#x29;\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;SRC=//ha.ckers.org/.j&gt;)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1409,7 +1409,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;gt&#x3B;a&#x3D;&#x2F;XSS&#x2F;alert&#x28;a&#x2E;source&#x29;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;&gt;a=/XSS/alert(a.source)&lt;/&gt;\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1425,7 +1425,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;gt&#x3B;a&#x3D;&#x2F;XSS&#x2F;alert&#x28;a&#x2E;source&#x29;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;&gt;a=/XSS/alert(a.source)&lt;/&gt;\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1441,7 +1441,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x26;gt&#x3B;a&#x3D;&#x2F;XSS&#x2F;alert&#x28;a&#x2E;source&#x29;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;&#x29;\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;&gt;a=/XSS/alert(a.source)&lt;/&gt;)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1457,7 +1457,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;&#x23;188&#x3B;&#x26;&#x23;190&#x3B;alert&#x28;&#x26;&#x23;162&#x3B;XSS&#x26;&#x23;162&#x3B;&#x29;&#x26;&#x23;188&#x3B;&#x2F;&#x26;&#x23;190&#x3B;\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&#188;&#190;alert(&#162;XSS&#162;)&#188;/&#190;\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1473,7 +1473,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;&#x23;188&#x3B;&#x26;&#x23;190&#x3B;alert&#x28;&#x26;&#x23;162&#x3B;XSS&#x26;&#x23;162&#x3B;&#x29;&#x26;&#x23;188&#x3B;&#x2F;&#x26;&#x23;190&#x3B;\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&#188;&#190;alert(&#162;XSS&#162;)&#188;/&#190;\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1489,7 +1489,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;&#x23;188&#x3B;&#x26;&#x23;190&#x3B;alert&#x28;&#x26;&#x23;162&#x3B;XSS&#x26;&#x23;162&#x3B;&#x29;&#x26;&#x23;188&#x3B;&#x2F;&#x26;&#x23;190&#x3B;&#x29;\"></Div>";
+            string expected = "<div style=\"background-color:(&#188;&#190;alert(&#162;XSS&#162;)&#188;/&#190;)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1505,7 +1505,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x21;&#x2D;&#x2D;&#x5B;if&#x20;gte&#x20;IE&#x20;4&#x5D;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x21;&#x5B;endif&#x5D;&#x2D;&#x2D;&#x26;gt&#x3B;\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;!--[if gte IE 4]&gt;&lt;&gt;alert(&#39;XSS&#39;);&lt;/&gt;&lt;![endif]--&gt;\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1521,7 +1521,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x21;&#x2D;&#x2D;&#x5B;if&#x20;gte&#x20;IE&#x20;4&#x5D;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x21;&#x5B;endif&#x5D;&#x2D;&#x2D;&#x26;gt&#x3B;\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;!--[if gte IE 4]&gt;&lt;&gt;alert(&#39;XSS&#39;);&lt;/&gt;&lt;![endif]--&gt;\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1537,7 +1537,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x21;&#x2D;&#x2D;&#x5B;if&#x20;gte&#x20;IE&#x20;4&#x5D;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x26;gt&#x3B;alert&#x28;&#x26;&#x23;39&#x3B;XSS&#x26;&#x23;39&#x3B;&#x29;&#x3B;&#x26;lt&#x3B;&#x2F;&#x26;gt&#x3B;&#x26;lt&#x3B;&#x21;&#x5B;endif&#x5D;&#x2D;&#x2D;&#x26;gt&#x3B;&#x29;\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;!--[if gte IE 4]&gt;&lt;&gt;alert(&#39;XSS&#39;);&lt;/&gt;&lt;![endif]--&gt;)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1553,7 +1553,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;a=\">\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1569,7 +1569,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;a=\">\" SRC=\"http://ha.ckers.org/xss.js\">\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1585,7 +1585,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;a&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;a=\">\" SRC=\"http://ha.ckers.org/xss.js\">)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1601,7 +1601,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;=\">\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1617,7 +1617,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;=\">\" SRC=\"http://ha.ckers.org/xss.js\">\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1633,7 +1633,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x3D;\">\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;=\">\" SRC=\"http://ha.ckers.org/xss.js\">)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1649,7 +1649,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\">\" '' SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;a=\">\" '' SRC=\"http://ha.ckers.org/xss.js\">\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1665,7 +1665,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\"> \" '' SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;a=\"> \" '' SRC=\"http://ha.ckers.org/xss.js\">\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1681,7 +1681,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;a&#x3D;\"> \" '' SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;a=\"> \" '' SRC=\"http://ha.ckers.org/xss.js\">)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1697,7 +1697,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;\">\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;\">\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1713,7 +1713,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;\">\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;\">\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1729,7 +1729,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;\">)\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;\">)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1745,7 +1745,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;&#x60;&#x26;gt&#x3B;&#x60;&#x20;SRC&#x3D;\">\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;a=`&gt;` SRC=\">\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1761,7 +1761,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;&#x60;&#x26;gt&#x3B;&#x60;&#x20;SRC&#x3D;\">\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;a=`&gt;` SRC=\">\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1777,7 +1777,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;a&#x3D;&#x60;&#x26;gt&#x3B;&#x60;&#x20;SRC&#x3D;\">)\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;a=`&gt;` SRC=\">)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1793,7 +1793,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\">'>\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</A>";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\">\">XSS</a>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1809,7 +1809,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;a&#x3D;\">'>\" SRC=\"http://ha.ckers.org/xss.js\">\"></Div>";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\">\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1825,7 +1825,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;a&#x3D;\">'>\" SRC=\"http://ha.ckers.org/xss.js\">)\"></Div>";
+            string expected = "<div style=\"background-color:(&lt;a=\">'>\" SRC=\"http://ha.ckers.org/xss.js\">)\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1841,7 +1841,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<A HREF=\"http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;gt&#x3B;document&#x2E;write&#x28;\"></a>PT SRC=\"http://ha.ckers.org/xss.js\">\">XSS";
+            string expected = "<a href=\"http://www.codeplex.com?url=&lt;&gt;document.write(\"></a>PT SRC=\"http://ha.ckers.org/xss.js\">\">XSS";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1857,7 +1857,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x20;http&#x3A;&#x2F;&#x2F;www&#x2E;codeplex&#x2E;com&#x3F;url&#x3D;&#x26;lt&#x3B;&#x26;gt&#x3B;document&#x2E;write&#x28;\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">\">";
+            string expected = "<div style=\"background-color: http://www.codeplex.com?url=&lt;&gt;document.write(\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1873,7 +1873,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x26;gt&#x3B;document&#x2E;write&#x28;\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">)\">";
+            string expected = "<div style=\"background-color:(&lt;&gt;document.write(\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">)\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1887,7 +1887,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<div style=\"background&#x2D;color&#x3A;&#x20;test\"></div>";
+            string expected = "<div style=\"background-color: test\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1903,7 +1903,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<Div style=\"background&#x2D;color&#x3A;&#x28;&#x26;lt&#x3B;&#x26;gt&#x3B;document&#x2E;write&#x28;\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">)\">";
+            string expected = "<div style=\"background-color:(&lt;&gt;document.write(\"></div>PT SRC=\"http://ha.ckers.org/xss.js\">)\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1935,7 +1935,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<div STYLE=\"background&#x2D;color&#x3A;&#x28;alert&#x28;window&#x2E;location&#x29;&#x29;\"></div>";
+            string expected = "<div style=\"background-color:(alert(window.location))\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1951,7 +1951,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<div style=\"color&#x3A;&#x20;red&#x3B;&#x20;binding&#x3A;&#x20;url&#x28;https&#x3A;&#x2F;&#x2F;bugzilla&#x2E;mozilla&#x2E;org&#x2F;attachment&#x2E;cgi&#x3F;id&#x3D;209238&#x23;exploit&#x29;&#x3B;&#x20;\">  This is a paragraph with inline exploit CSS. </div>";
+            string expected = "<div style=\"color: red; binding: url(https://bugzilla.mozilla.org/attachment.cgi?id=209238#exploit); \">  This is a paragraph with inline exploit CSS. </div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1967,7 +1967,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<link rel=\"stylesheet\" media=\"screen&#x20;and&#x20;minpixel&#x2D;ratio&#x3A;&#x20;0\" href=\"webkit&#x2E;css\">";
+            string expected = "<link rel=\"stylesheet\" media=\"screen and minpixel-ratio: 0\" href=\"webkit.css\">";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -1983,7 +1983,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<div style=\"transform&#x3A;&#x20;rotate&#x28;45deg&#x29;&#x3B;\"></div>";
+            string expected = "<div style=\"transform: rotate(45deg);\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -2000,7 +2000,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<div style=\"writing&#x2D;mode&#x3A;&#x20;tb&#x2D;rl\"></div>";
+            string expected = "<div style=\"writing-mode: tb-rl\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -2016,7 +2016,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<div style=\"opacity&#x3A;&#x20;0&#x2E;5&#x3B;\"></div>";
+            string expected = "<div style=\"opacity: 0.5;\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -2032,7 +2032,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<div style=\"text&#x2D;overflow&#x3A;&#x20;clip&#x3B;\"></div>";
+            string expected = "<div style=\"text-overflow: clip;\"></div>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 
@@ -2048,7 +2048,7 @@ tt	p://6&#9;6.000146.0x7.147/"">XSS</A>";
             string actual = target.GetSafeHtmlFragment(htmlFragment, elementWhiteList);
 
             // Assert
-            string expected = "<p style=\"display&#x3A;&#x20;marquee&#x3B;&#x20;marquee&#x2D;dir&#x3A;&#x20;ltr\">Hello, welcome to our WCSS Tutorial.</p>";
+            string expected = "<p style=\"display: marquee; marquee-dir: ltr\">Hello, welcome to our WCSS Tutorial.</p>";
             StringAssert.AreEqualIgnoringCase(expected, actual);
         }
 

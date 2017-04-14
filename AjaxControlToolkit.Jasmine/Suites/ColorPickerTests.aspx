@@ -15,10 +15,21 @@
         TargetControlID="TestTextBox"
         ID="TargetExtender" />
 
+    <asp:TextBox runat="server"
+        ID="TestTextBox2"
+        MaxLength="6"
+        AutoCompleteType="None"/>
+
+    <act:ColorPickerExtender runat="server"
+        TargetControlID="TestTextBox2"
+        ID="TargetExtenderRgb"
+        PaletteStyle="Continuous" />
+
     <script>
         describe("ColorPicker", function() {
 
             var COLOR_PICKER_EXTENDER_CLIENT_ID = "<%= TargetExtender.ClientID %>";
+            var COLOR_PICKER_RGB_EXTENDER_CLIENT_ID = "<%= TargetExtenderRgb.ClientID %>";
 
             var COLOR_PICKER_CONTAINER_CLASS_NAME = "ajax__colorPicker_container",
                 COLOR_PICKER_ROW_COUNT = 12,
@@ -28,10 +39,12 @@
                
                 beforeEach(function() {
                     this.extender = $find(COLOR_PICKER_EXTENDER_CLIENT_ID);
+                    this.rgbExtender = $find(COLOR_PICKER_RGB_EXTENDER_CLIENT_ID);
 
                     this.extender.show();
 
                     this.$container = $(this.extender._container);
+                    this.$rgbContainer = $(this.rgbExtender._container);
                 });
 
                 it("container contains popup div", function() {
@@ -91,6 +104,31 @@
                     expect($colorPickerTable.css("border-right-width")).toBe("1px");
                     expect($colorPickerTable.css("border-bottom-width")).toBe("1px");
                     expect($colorPickerTable.css("border-left-width")).toBe("1px");
+                });
+
+                it("uses continuous rgb palette", function () {
+                    var $rgbColorPickerTable = this.$rgbContainer.find("table");
+                    var rowCount = $rgbColorPickerTable.find("tr").length;
+                    var columnCount = $rgbColorPickerTable.find("td").length / rowCount;
+                    var tableBody = $rgbColorPickerTable.find("tbody")[0];
+
+                    for(var columnIndex = 0; columnIndex < columnCount; columnIndex++) {
+                        var lastColor = undefined;
+
+                        for(var rowIndex = 0; rowIndex < rowCount; rowIndex++) {
+                            var cell = tableBody.rows[rowIndex].cells[columnIndex];
+                            var hexColor = $(cell).find("div").attr("title").replace("#", "0x");
+                            var colorValue = parseInt(hexColor);
+                            var isNotDecreases = !lastColor ? true : colorValue >= lastColor;
+
+                            if(!isNotDecreases)
+                                fail();
+
+                            lastColor = colorValue;
+                        }
+                    }
+
+                    expect(1).toBe(1);
                 });
             });
         });

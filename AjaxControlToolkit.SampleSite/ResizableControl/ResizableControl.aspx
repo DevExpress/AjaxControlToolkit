@@ -84,52 +84,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ResizableControl Description</Header>
         <Content>
-            <p>
-                ResizableControl is an extender that attaches to any element on a web page and allows the user to
-                resize that control with a handle that attaches to lower-right corner of the control. The resize handle
-                lets the user resize the element as if it were a window. The appearance of the resize handle can be
-                specified by the page designer with a CSS style. The content within the element can use CSS styles to
-                automatically resize to fit the new dimensions. Alternatively, ResizableControl exposes two events
-                (onresizing and onresize) that the page designer can attach custom script to in order to enable more
-                complex layout logic. Element dimensions are preserved across postbacks to the server and "size"
-                properties accessible on both the client and server can be used to enable custom resize behaviors.
-                ResizableControl can optionally limit the maximum and minimum width and height of the target control
-                so that resizing can be constrained by the page author (for example, to limit scrolling to only the
-                horizontal dimension).
-            </p>
+            <div runat="server" data-control-type="ResizableControlExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>ResizableControl Properties</Header>
         <Content>
-             <p>
-                The controls above are initialized with code like this. The <em>italic</em> properties are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:ResizableControlExtender ID="RCE" runat="server"
-    TargetControlID="PanelImage"
-    HandleCssClass="handleImage"
-    <em>ResizableCssClass</em>="resizingImage"
-    <em>MinimumWidth</em>="50"
-    <em>MinimumHeight</em>="20"
-    <em>MaximumWidth</em>="260"
-    <em>MaximumHeight</em>="130"
-    <em>OnClientResize</em>="OnClientResizeImage"
-    <em>HandleOffsetX</em>="3"
-    <em>HandleOffsetY</em>="3" /&gt;
-            </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the element that becomes resizable</li>
-                <li><strong>HandleCssClass</strong> - The name of the CSS class to apply to the resize handle</li>
-                <li><strong>ResizableCssClass</strong> - The name of the CSS class to apply to the element when resizing</li>
-                <li><strong>MinimumWidth/MinimumHeight</strong> - Minimum dimensions of the resizable element</li>
-                <li><strong>MaximumWidth/MaximumHeight</strong> - Maximum dimensions of the resizable element</li>
-                <li><strong>OnClientResizeBegin</strong> - Event fired when the element starts being resized</li>
-                <li><strong>OnClientResizing</strong> - Event fired as the element is being resized</li>
-                <li><strong>OnClientResize</strong> - Event fired when the element has been resized</li>
-                <li><strong>HandleOffsetX/HandleOffsetY</strong> - Offsets to apply to the location of the resize handle</li>
-            </ul>
+             <div runat="server" data-control-type="ResizableControlExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

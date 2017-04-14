@@ -368,6 +368,8 @@ namespace AjaxControlToolkit {
         [Obsolete("This property has been deprecated. Please use the StrengthStyles property instead.")]
         [ExtenderControlProperty()]
         [DefaultValue("")]
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public string TextStrengthDescriptionStyles {
             get { return StrengthStyles; }
             set { StrengthStyles = value; }

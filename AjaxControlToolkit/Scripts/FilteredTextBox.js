@@ -118,13 +118,10 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
                (evt.ctrlKey /* Control keys */))
             return;
 
-        if(evt.rawEvent.keyIdentifier) {
+        if("keyIdentifier" in evt.rawEvent) {
             // Safari
             // Note (Garbin): used the underlying rawEvent insted of the DomEvent instance.
             if(evt.rawEvent.ctrlKey || evt.rawEvent.altKey || evt.rawEvent.metaKey)
-                return;
-
-            if(evt.rawEvent.keyIdentifier.substring(0, 2) != "U+")
                 return;
 
             scanCode = evt.rawEvent.charCode;
@@ -179,7 +176,7 @@ Sys.Extended.UI.FilteredTextBoxBehavior.prototype = {
 
         // Else if it was decided that it shouldn't be allowed,
         // raise the Filtered event and return false to filter the key
-        this.raiseFiltered(new Sys.Extended.UI.FilteredTextBoxEventArgs(key));
+        this.raise_filtered(new Sys.Extended.UI.FilteredTextBoxEventArgs(key));
 
         return false;
     },

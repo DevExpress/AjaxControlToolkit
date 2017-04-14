@@ -191,94 +191,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>MultiHandleSlider Description</Header>
         <Content>
-            <p>
-                The MultiHandleSlider extender provides a feature-rich extension to a regular asp:Textbox control. It allows
-                you to choose a single value, or multiple values in a range, through a graphical slider interface. It supports
-                one handle, dual handles, or any number of handles bound to the values of asp:TextBox or asp:Label controls.
-            
-                It also provides options for read-only access, custom graphic styling, hover and drag handle styles, as well
-                as mouse and keyboard support for accessibility.
-                <br />
-                <br />
-                Much of the MultiHandleSlider's design is based on the original
-                <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Slider/Slider.aspx" Text="Slider" />,
-                so you may want to review
-                the advice and design suggestions offered by the demonstration page of that extender. For example,
-                the MultiHandleSlider retains the same ToolTip functionality as the original Slider.
-                <br />
-                <br />
-                By declaring the extended TextBox as a trigger for an UpdatePanel, the MultiHandleSlider can raise the update 
-                event whenever the handle is released. By setting the RaiseChangeOnlyOnMouseUp property to false, the update
-                is raised as soon as the MultiHandleSlider's value changes.
-                <br />
-                <br />
-            </p>
+            <div runat="server" data-control-type="MultiHandleSliderExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server" Collapsed="true">
         <Header>MultiHandleSlider Properties</Header>
         <Content>
-            <p>
-                The first example above is initialized with this code. The <em>italic</em> properties are optional:
-            </p>
-            <pre>&lt;ajaxToolkit:MultiHandleSlider ID="multiHandleSliderExtenderOne"
-    runat="server"
-    TargetControlID="sliderOne"
-    BehaviorID="multiHandleSliderOne"
-    <em>BoundControlID</em>="lblSliderOne"
-    <em>Minimum</em>="-100"
-    <em>Maximum</em>="100"
-    <em>Steps</em>="5"
-    <em>Length</em>="100"
-    <em>ToolTipText</em>="{0}"/&gt;                                                        
-</pre>
-            <ul>
-                <li><strong>Minimum</strong> - Minimum value allowed.</li>
-                <li><strong>Maximum</strong> - Maximum value allowed.</li>
-                <li><strong>Length</strong> - The length of the graphical slider, in pixels.</li>
-                <li><strong>Decimals</strong> - Number of decimal digits for the value.</li>
-                <li><strong>Steps</strong> - Number of discrete values inside the slider's range.</li>
-                <li><strong>Orientation</strong> - Determines if the slider's orientation is horizontal or vertical.</li>
-                <li><strong>CssClass</strong> - The master style to apply to slider graphical elements.</li>
-                <li><strong>EnableHandleAnimation</strong> - If true, clicking on the rail to move a handle will animate the handle's movements. </li>
-                <li><strong>EnableRailClick</strong> - Whether clicking on the rail will move the closest handle to the click location.</li>
-                <li><strong>EnableInnerRangeDrag</strong> - For sliders with multiple handles; determines whether clicking an dragging the rail between two handles moves both handles simultaneously.</li>
-                <li><strong>EnableKeyboard</strong> - Whether slider values can be changed using the keyboard.</li>
-                <li><strong>EnableMouseWheel</strong> - Whether slider values can be changed using the mouse wheel.</li>
-                <li><strong>ShowInnerRail</strong> - For sliders with multiple handles; determines whether to display an inner range style between handles.</li>
-                <li><strong>ShowHandleHoverStyle</strong> - Whether to display an alternate CSS style when the user is hovering over a handle.</li>
-                <li><strong>ShowHandleDragStyle</strong> - Whether to display an alternate CSS style when the user is dragging a handle.</li>
-                <li><strong>InnerRailStyle</strong> - For sliders with multiple handles and custom styles; determines how to render the InnerRailCss, as it is described, or using the sliding doors image approach.</li>
-                <li><strong>ReadOnly</strong> - Whether the user can change the rail's values.</li>
-                <li><strong>Increment</strong> - For sliders using keyboard or mouse wheel support; determines the number of points to increment or decrement the slider values.</li>
-                <li><strong>HandleAnimationDuration</strong> - Duration of the handle animation, in seconds.</li>
-                <li><strong>BoundControlID</strong> - For backwards compatibility, allows using classic Slider properties for a single handle.</li>
-                <li><strong>HandleCssClass</strong> - For backwards compatibility, specifies the style of the single handle.</li>
-                <li><strong>RaiseChangeOnlyOnMouseUp</strong> - If true, fires the change event on the
-                extended TextBox only when the left mouse button is released.</li>
-                <li><strong>TooltipText</strong> - Text to display in a tooltip when the handle is hovered. The
-            {0} placeholder in the text is replaced with the current value of the slider.</li>
-                <li><strong>Events</strong>
-                    <ul>
-                        <li><strong>OnClientLoad</strong> - The event raised when the slider is initialized.</li>
-                        <li><strong>OnClientDragStart</strong> - The event raised when the user starts dragging a handle.</li>
-                        <li><strong>OnClientDrag</strong> - The event raised when the user drags the handle.</li>
-                        <li><strong>OnClientDragEnd</strong> - The event raised when the user stops dragging the handle.</li>
-                        <li><strong>OnClientValueChanged</strong> - The event raised when a handle value changes.</li>
-                    </ul>
-                </li>
-                <li><strong>MultiHandleSliderTargets</strong> - An inner property describing each handle on the slider.
-                <ul>
-                    <li><strong>ControlID</strong> - The TextBox or Label whose value is bound to this handle.</li>
-                    <li><strong>HandleCssClass</strong> - For sliders with custom styling; the CSS class used to style the handle.</li>
-                    <li><strong>HandleHoverCssClass</strong> - For sliders with custom styling and hover effects; the CSS class used when the user is hovering over the handle.</li>
-                    <li><strong>HandleDragCssClass</strong> - For sliders with custom styling and drag effects; the CSS class used when the user is dragging the handle.</li>
-                    <li><strong>DecimalPlaces</strong> - The number of decimal places to format the bound control's value.</li>
-                    <li><strong>Offset</strong> - For sliders with custom styling and inner rails; sets the pixel offset where the inner rail begins, for handles that use transparency.</li>
-                </ul>
-                </li>
-            </ul>
+            <div runat="server" data-control-type="MultiHandleSliderExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

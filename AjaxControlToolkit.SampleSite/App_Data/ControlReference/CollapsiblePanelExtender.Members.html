@@ -1,0 +1,20 @@
+<!-- This file is generated automatically. Do not change its content. -->
+<b>Properties</b>
+<ul>
+	<li><b>AutoCollapse</b> -  If true, and the panel is in its 'expanded' state, the panel will automatically collapse when the mouse pointer moves off of the panel. The default is false </li>
+	<li><b>AutoExpand</b> -  If true, and the panel is in its 'collapsed' state, the panel will automatically expand when the mouse pointer moves into the panel. The default is false </li>
+	<li><b>CollapseControlID</b> -  The server ID of the control to initiate the collapse of the target panel. The panel will collapse when this control fires its client side "onclick" event </li>
+	<li><b>Collapsed</b> -  Signals the initial collapsed state of the control. Note this will not cause an expanded control to collapse at initialization, but rather tells the extender what the initial state of the Panel control is. The default is false </li>
+	<li><b>CollapsedImage</b> -  Image to be displayed when the Panel is collapsed and the ImageControlID is set </li>
+	<li><b>CollapsedSize</b> -  The size of the panel when it is in it's collapsed state. To avoid flicker when your page initializes, set the initial height (or width) of your Panel control to match this value, and set the Collapsed property to 'true' </li>
+	<li><b>CollapsedText</b> -  The text to display in the collapsed state. When the panel is collapsed, the internal contents (anything between the start and ending tags) of the control referenced by the TextLabelID property will be replaced with this text. This collapsed text is also used as the alternate text of the image if ImageControlID is set </li>
+	<li><b>ExpandControlID</b> -  The server ID of the control to initiate the expansion of the target panel. The panel will opening when this control fires its client side "onclick" event </li>
+	<li><b>ExpandDirection</b> -  The dimension to use for collapsing and expanding - vertical or horizontal </li>
+	<li><b>ExpandedImage</b> -  Image to be displayed when the Panel is expanded and the ImageControlID is set </li>
+	<li><b>ExpandedSize</b> -  The size of the panel when it is in it's opened state. To avoid flicker when your page initializes, set the initial width of your Panel control to match this value, and set the Collapsed property to 'false' </li>
+	<li><b>ExpandedText</b> -  The text to display in the expanded state. When the panel is expanded, the internal contents (anything between the start and ending tags) of the control referenced by the TextLabelID property will be replaced with this text. This expanded text is also used as the alternate text of the image if ImageControlID is set </li>
+	<li><b>ImageControlID</b> -  The ID of an image control to display the current state of the Panel. When the collapsed state of the panel changes, the image source will be changed from the ExpandedImage to the CollapsedImage. We also use the ExpandedText and CollapsedText as the image's alternate text if they are provided </li>
+	<li><b>ScrollContents</b> -  Determines whether the contents of the panel should be scrolled or clipped if they do not fit into the expanded size. The default is false </li>
+	<li><b>SuppressPostBack</b> -  Determines whether the CollapsiblePanelBehavior should suppress the click operations of the controls referenced in CollapseControlID and/or ExpandControlID. </li>
+	<li><b>TextLabelID</b> -  The ID of a label control to display the current state of the Panel. When the collapsed state of the panel changes, the entire HTML contents (anything between the start and ending tags of the label) will be replaced with the status text </li>
+</ul>

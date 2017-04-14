@@ -1,0 +1,32 @@
+<!-- This file is generated automatically. Do not change its content. -->
+<b>Properties</b>
+<ul>
+	<li><b>AutoSize</b> -  Determines how to controll resizing of the Accordion. If it is set to None, then the Accordion can grow as large or as small as necessary. If it is set to Limit, then the Accordion will always be less than or equal to its Height. If it is set to Fill then it will always be equal to its height. The default is None. </li>
+	<li><b>ContentCssClass</b> -  The default Content CSS class </li>
+	<li><b>ContentTemplate</b> -  A template for the content of databound panes </li>
+	<li><b>Controls</b> -  Prevent the Controls property from appearing in the editor (so that people will use the Panes collection instead) </li>
+	<li><b>DataMember</b> -  A member in the DataSource to bind to </li>
+	<li><b>DataSource</b> -  The data source that provides data for populating the list of AccordionPanes </li>
+	<li><b>DataSourceID</b> -  The ID of the DataControl that this control should use to retrieve its data source. When the control is bound to a DataControl, it can retrieve a data source instance on demand, and thereby attempt to work in auto-DataBind mode. </li>
+	<li><b>FadeTransitions</b> -  Whether or not to use a fade effect when transitioning between selected Accordion Panes. The default is false </li>
+	<li><b>FramesPerSecond</b> -  The number of frames per second used in animation effects' transition. This is used to tune performance when using FadeTransition, a large number of Accordion Panes, etc. The default is 30. </li>
+	<li><b>HeaderCssClass</b> -  The default Header CSS class </li>
+	<li><b>HeaderSelectedCssClass</b> -  The default selected Header CSS Class </li>
+	<li><b>HeaderTemplate</b> -  A template for the Header of databound panes </li>
+	<li><b>Panes</b> -  A collection of child panes in the Accordion </li>
+	<li><b>RequireOpenedPane</b> -  Whether or not clicking the header will close the currently opened pane (leaving all the Accordion's panes closed). The default is true </li>
+	<li><b>SelectedIndex</b> -  Index of the AccordionPane to be displayed (this property must be set before OnPreRender). The default is 0 </li>
+	<li><b>SuppressHeaderPostbacks</b> -  Whether or not we suppress the client-side click handlers of any elements (including server controls like Button or HTML elements like anchor) in the header sections of the Accordion. The default is false </li>
+	<li><b>TransitionDuration</b> -  Length of the transition animation in milliseconds. The default is 500 </li>
+</ul>
+<br /><b>Methods</b>
+<ul>
+	<li><b>DataBind()</b> -  Bind the Accordion to its DataSource </li>
+	<li><b>FindControl(id)</b> -  Override FindControl to look first at this control, then check each of its child AccordionPanes for the control </li>
+</ul>
+<br /><b>Events</b>
+<ul>
+	<li><b>ItemCommand</b> -  An event to raise when a command is fired </li>
+	<li><b>ItemCreated</b> -  An event to raise when an item (i.e. Pane's Header or Content) is created during data binding </li>
+	<li><b>ItemDataBound</b> -  An event to raise when an item (i.e. Pane's Header or Content) is data bound </li>
+</ul>

@@ -7,18 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AjaxControlToolkit.Jasmine.Suites.ToolkitResourceManagerTests {
+namespace AjaxControlToolkit.Jasmine.Suites {
     
     
-    public partial class DebugCdn {
+    public partial class BarChartTests {
         
         /// <summary>
-        /// Target control.
+        /// TargetControlWithPredictableID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Target;
+        protected global::AjaxControlToolkit.BarChart TargetControlWithPredictableID;
+        
+        /// <summary>
+        /// TargetControlWithAutoID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.BarChart TargetControlWithAutoID;
     }
 }

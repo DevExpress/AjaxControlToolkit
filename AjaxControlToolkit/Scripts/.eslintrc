@@ -1,0 +1,8 @@
+{
+	"rules":{
+		"no-cond-assign": 2,
+		"valid-typeof": 2,
+		"no-unreachable": 2,
+		"no-dupe-keys": 2
+	}
+}

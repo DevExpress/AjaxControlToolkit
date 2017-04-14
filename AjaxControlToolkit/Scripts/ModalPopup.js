@@ -198,43 +198,19 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         this._foregroundElement.style.zIndex = parseInt($common.getCurrentStyle(this._backgroundElement, 'zIndex', this._backgroundElement.style.zIndex)) + 1;
     },
 
-    _getAllElementsWithAttribute: function(attribute) {
-        var matchingElements = [];
-        var allElements = document.getElementsByTagName('*');
-        for(var i = 0, n = allElements.length; i < n; i++) {
-            if(allElements[i].getAttribute(attribute) !== null) {
-                matchingElements.push(allElements[i]);
-            }
-        }
-        return matchingElements;
+    _findTopModalPopupBackgroundZIndex: function () {
+        var lastPopup = this._getLastPopup();
+        return lastPopup ? lastPopup._backgroundElement.style.zIndex : undefined;
     },
 
-    _findTopModalPopupBackgroundZIndex: function() {
-        var actElements = this._getAllElementsWithAttribute("data-act-control-type");
-        var backgrounds = [];
-
-        for(var i = 0; i < actElements.length; i++) {
-        	if (actElements[i].getAttribute('data-act-control-type') == 'modalPopupBackground')
-                backgrounds.push(actElements[i]);
-        }
-
-        var backgroundsZindex = {};
-
-        var topZIndex = undefined;
-
-        for(var i = 0; i < backgrounds.length; i++) {
-            if(topZIndex == undefined)
-                topZIndex = backgrounds[i].style.zIndex;
-
-            if(backgrounds[i].style.zIndex > topZIndex) {
-                topZIndex = backgrounds[i].style.zIndex;
-            }
-        }
-
-        return topZIndex;
+    _getLastPopup: function () {
+        var popups = Sys.Extended.UI.ModalPopupBehavior.popups;
+        return popups.length ? popups[popups.length - 1] : undefined;
     },
 
     _attachPopup: function() {
+        Sys.Extended.UI.ModalPopupBehavior.popups.push(this);
+
         if(this._dropShadow && !this._dropShadowBehavior)
             this._dropShadowBehavior = $create(Sys.Extended.UI.DropShadowBehavior, {}, null, null, this._popupElement);
 
@@ -267,6 +243,9 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
             this._dropShadowBehavior.dispose();
             this._dropShadowBehavior = null;
         }
+        
+        if(this._getLastPopup() == this)
+            Sys.Extended.UI.ModalPopupBehavior.popups.pop();
     },
 
     _onShow: function(e) {
@@ -521,14 +500,20 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         var xCoord = 0;
         var yCoord = 0;
         if(this._xCoordinate < 0) {
-            var foregroundelementwidth = this._foregroundElement.offsetWidth ? this._foregroundElement.offsetWidth : this._foregroundElement.scrollWidth;
+            var foregroundelementwidth = this._getForegroundElementWidth();
             xCoord = ((clientWidth - foregroundelementwidth) / 2);
 
             // workaround for drag behavior which calls setlocation which in turn
             // changes the position of the panel to be absolute and requiring us
             // to add the scrollLeft so that it is positioned correctly.
-            if(this._foregroundElement.style.position == 'absolute')
-                xCoord += scrollLeft;
+            if(this._foregroundElement.style.position == 'absolute') {
+                var parentPopup = this._getParentPopup();
+
+                if(parentPopup)
+                    xCoord = (parentPopup._getForegroundElementWidth() - foregroundelementwidth) / 2;
+                else
+                    xCoord += scrollLeft;
+            }
 
             this._foregroundElement.style.left = xCoord + 'px';
         } else {
@@ -542,14 +527,20 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         }
 
         if(this._yCoordinate < 0) {
-            var foregroundelementheight = this._foregroundElement.offsetHeight ? this._foregroundElement.offsetHeight : this._foregroundElement.scrollHeight;
+            var foregroundelementheight = this._getForegroundElementHeight();
             yCoord = ((clientHeight - foregroundelementheight) / 2);
 
             // workaround for drag behavior which calls setlocation which in turn
             // changes the position of the panel to be absolute and requiring us
             // to add the scrollLeft so that it is positioned correctly.
-            if(this._foregroundElement.style.position == 'absolute')
-                yCoord += scrollTop;
+            if(this._foregroundElement.style.position == 'absolute') {
+                var parentPopup = this._getParentPopup();
+
+                if(parentPopup)
+                    yCoord = (parentPopup._getForegroundElementHeight() - foregroundelementheight) / 2;
+                else
+                    yCoord += scrollTop;
+            }
 
             this._foregroundElement.style.top = yCoord + 'px';
         } else {
@@ -574,6 +565,41 @@ Sys.Extended.UI.ModalPopupBehavior.prototype = {
         // in case things moved around when laying out the foreground element
         this._layoutBackgroundElement();
     },
+
+    _getForegroundElementWidth: function (){
+        return this._foregroundElement.offsetWidth ? this._foregroundElement.offsetWidth : this._foregroundElement.scrollWidth;
+    },
+
+    _getForegroundElementHeight: function() {
+        return this._foregroundElement.offsetHeight ? this._foregroundElement.offsetHeight : this._foregroundElement.scrollHeight;
+    },
+
+    _getParentPopup: function () {
+        var el = this._foregroundElement;
+        var otherForegrounds = this._getOtherForegrounds();
+
+        while(el.parentNode) {
+            el = el.parentNode;
+
+            var index = Array.indexOf(otherForegrounds, el)
+
+            if(index !== -1)
+                return Sys.Extended.UI.ModalPopupBehavior.popups[index];
+        }
+
+        return null;
+    },
+
+    _getOtherForegrounds: function () {
+        var foregrounds = [];
+        var popups = Sys.Extended.UI.ModalPopupBehavior.popups;
+
+        for(var i = 0; i < popups.length; i++)
+            foregrounds.push(popups[i]._foregroundElement);
+
+        return foregrounds;
+    },
+
 
     _layoutForegroundElement: function(xCoord, yCoord) {
         // Set the correct location of the foreground element to ensure that it is absolutely 
@@ -1176,3 +1202,5 @@ Sys.Extended.UI.ModalPopupBehavior.invokeViaServer = function(behaviorID, show) 
             behavior.hide();
     }
 };
+
+Sys.Extended.UI.ModalPopupBehavior.popups = [];

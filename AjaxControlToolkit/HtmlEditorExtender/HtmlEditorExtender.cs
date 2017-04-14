@@ -109,6 +109,17 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue("DisplaySourceTab", value); }
         }
 
+        ///<summary>
+        /// Determines whether or not to display a preview tab/button providing access to HtmlEditorExtender’s preview
+        /// </summary>
+        [ExtenderControlProperty]
+        [DefaultValue(false)]
+        [ClientPropertyName("displayPreviewTab")]
+        public bool DisplayPreviewTab {
+            get { return GetPropertyValue("DisplayPreviewTab", false); }
+            set { SetPropertyValue("DisplayPreviewTab", value); }
+        }
+
         /// <summary>
         /// The name of a JavaScript function to attach to the client-side Change event
         /// </summary>
@@ -164,7 +175,7 @@ namespace AjaxControlToolkit {
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "[^<]<[^>]*expression[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "[^<]<[^>]*data\\:[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            result = Regex.Replace(result, "[^<]<[^>]*script[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+            result = Regex.Replace(result, "[^<]<[^>]*script(?!\\w)[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "[^<]<[^>]*filter[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "[^<]<[^>]*behavior[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "[^<]<[^>]*javascript\\:[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);

@@ -101,5 +101,41 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.HtmlEditorExtender HtmlEditorExtenderWithImageButton;
+        
+        /// <summary>
+        /// PreviewTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox PreviewTextBox;
+        
+        /// <summary>
+        /// PreviewHtmlEditorExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.HtmlEditorExtender PreviewHtmlEditorExtender;
+        
+        /// <summary>
+        /// FocusedTextBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox FocusedTextBox;
+        
+        /// <summary>
+        /// FocusedHtmlEditorExtender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.HtmlEditorExtender FocusedHtmlEditorExtender;
     }
 }

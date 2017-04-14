@@ -6,7 +6,7 @@
 
 <asp:Content ContentPlaceHolderID="TestSuite" runat="server">
 
-    <asp:UpdatePanel ID="TestUpdatePanel" runat="server">
+    <asp:UpdatePanel ID="TestUpdatePanel" runat="server" ChildrenAsTriggers="false" UpdateMode="Conditional">
         <ContentTemplate>
             <asp:Label ID="lblUpdate" runat="server" Text="1" />
         </ContentTemplate>
@@ -27,14 +27,14 @@
     <act:UpdatePanelAnimationExtender ID="TargetExtender" runat="server" TargetControlID="TestUpdatePanel" AlwaysFinishOnUpdatingAnimation="true" BehaviorID="animation">
         <Animations>
             <OnUpdating>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdating();" />
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdating();" />
                 </Parallel>
             </OnUpdating>
             <OnUpdated>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdated();" />
-            </Parallel>
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdated();" />
+                </Parallel>
             </OnUpdated>
         </Animations>
     </act:UpdatePanelAnimationExtender>
@@ -64,18 +64,70 @@
         ID="UpdatePanelWithButtonExtender"
         runat="server"
         TargetControlID="UpdatePanelWithButton"
-        AlwaysFinishOnUpdatingAnimation="true"
-        BehaviorID="animation2">
+        AlwaysFinishOnUpdatingAnimation="true">
         <Animations>
             <OnUpdating>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdating();" />
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdating();" />
                 </Parallel>
             </OnUpdating>
             <OnUpdated>
-            <Parallel duration="0">
-                <ScriptAction Script="onUpdated();" />
-            </Parallel>
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdated();" />
+                </Parallel>
+            </OnUpdated>
+        </Animations>
+    </act:UpdatePanelAnimationExtender>
+
+    <asp:UpdatePanel ID="UpdatePanelWithChildrenAsTriggers" runat="server" ChildrenAsTriggers="true">
+        <ContentTemplate>
+            <asp:Button runat="server" Text="Button" ID="btnChildTrigger" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+    <act:UpdatePanelAnimationExtender
+        ID="UpdatePanelExtenderChildrenAsTriggers"
+        runat="server"
+        TargetControlID="UpdatePanelWithChildrenAsTriggers"
+        AlwaysFinishOnUpdatingAnimation="true"
+        BehaviorID="animationForChildrenTriggers">
+        <Animations>
+            <OnUpdating>
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdating();" />
+                </Parallel>
+            </OnUpdating>
+            <OnUpdated>
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdated();" />
+                </Parallel>
+            </OnUpdated>
+        </Animations>
+    </act:UpdatePanelAnimationExtender>
+
+    <asp:UpdatePanel ID="UpdatePanelWithChildrenAsTriggers2" runat="server" ChildrenAsTriggers="true">
+        <ContentTemplate>
+            <asp:Button runat="server" Text="Button" ID="btnChildTrigger2" />
+        </ContentTemplate>
+    </asp:UpdatePanel>
+
+    <act:UpdatePanelAnimationExtender
+        ID="UpdatePanelExtenderChildrenAsTriggers2"
+        runat="server"
+        TargetControlID="UpdatePanelWithChildrenAsTriggers2"
+        AlwaysFinishOnUpdatingAnimation="true"
+        ChildrenAsTriggers="true"
+        BehaviorID="animationForChildrenTriggers2">
+        <Animations>
+            <OnUpdating>
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdating();" />
+                </Parallel>
+            </OnUpdating>
+            <OnUpdated>
+                <Parallel duration="0">
+                    <ScriptAction Script="onUpdated();" />
+                </Parallel>
             </OnUpdated>
         </Animations>
     </act:UpdatePanelAnimationExtender>
@@ -92,12 +144,17 @@
             var BUTTON_TRIGGER_CLIENT_ID = "<%= btnTrigger.ClientID %>";
             var BUTTON_NON_TRIGGER_CLIENT_ID = "<%= btnNonTrigger.ClientID %>";
             var DROPDOWNLIST_CLIENT_ID = "<%= TestDropDownList.ClientID %>";
+            var BUTTON_CHILD_TRIGGER_CLIENT_ID = "<%= btnChildTrigger.ClientID %>";
+            var BUTTON_CHILD_TRIGGER2_CLIENT_ID = "<%= btnChildTrigger2.ClientID %>";
             var playSpy;
+            var playSpyChildrenAsTriggers;
 
             describe("Postback", function() {
 
                 beforeEach(function() {
                     this.extender = $find("animation");
+                    this.extenderForChildrenTriggers = $find("animationForChildrenTriggers");
+                    this.extenderForChildrenTriggers2 = $find("animationForChildrenTriggers2");
                     playSpy = spyOn(this.extender._onUpdating.__proto__, 'play');
                     spyOn(window, 'onUpdating');
                     spyOn(window, 'onUpdated');
@@ -123,6 +180,20 @@
                         .val("2")
                         .trigger('change');
                     
+                    waitFor(
+                        function () {
+                            return playSpy.calls.any();
+                        }, done);
+                });
+
+                it("is not updated by child trigger", function () {
+                    $("#" + BUTTON_CHILD_TRIGGER_CLIENT_ID).click();
+                    expect(this.extenderForChildrenTriggers._onUpdated.__proto__.play).not.toHaveBeenCalled();
+                });
+
+                it("reacts to child trigger", function (done) {
+                    $("#" + BUTTON_CHILD_TRIGGER2_CLIENT_ID).click();
+
                     waitFor(
                         function () {
                             return playSpy.calls.any();

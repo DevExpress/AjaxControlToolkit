@@ -102,83 +102,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Accordion Description</Header>
         <Content>
-            <p>
-                The Accordion is a web control that allows you to provide multiple panes and display them one at a time. It is like having several
-                <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/CollapsiblePanel/CollapsiblePanel.aspx" Text="CollapsiblePanels" />
-                where only one can be expanded at a time.  The Accordion is implemented as a web control that contains
-                AccordionPane web controls. Each AccordionPane control has a template for its Header and its Content.
-                We keep track of the selected pane so it stays visible across postbacks.
-            </p>
-            <br />
-            It also supports three AutoSize modes so it can fit in a variety of layouts.
-                <ul>
-                    <li><b>None</b> - The Accordion grows/shrinks without restriction.  This can cause other elements on your page to move up and down with it.</li>
-                    <li><b>Limit</b> - The Accordion never grows larger than the value specified by its Height property. This will cause the content to scroll if it is too large to be displayed.</li>
-                    <li><b>Fill</b> - The Accordion always stays the exact same size as its Height property.  This will cause the content to be expanded or shrunk if it isn't the right size.</li>
-                </ul>
-            <p>
-                The Accordion is written using an extender like most of the other extenders in the AJAX Control Toolkit.  The 
-                extender expects its input in a very specific hierarchy of container elements (like divs), so the Accordion
-                and AccordionPane web controls are used to generate the expected input for the extender.  The extender can also be
-                used on its own if you provide it appropriate input.
-            </p>
-            <br />
-            <p>
-                The Accordion can also be databound.  Simply specify a data source through the <b>DataSource</b> or <b>DataSourceID</b> properties and then set your data items in the HeaderTemplate and ContentTemplate properties.
-            </p>
+            <div runat="server" data-control-type="Accordion" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
-        <Header>Accordion Properties</Header>
+        <Header>Accordion Members</Header>
         <Content>
-            <p>The control above is initialized with this code. The <em>italic</em> properties are optional:</p>
-            <pre>&lt;ajaxToolkit:Accordion
-                <em>ID</em>="MyAccordion"
-                runat="Server"
-                <em>SelectedIndex</em>="0"
-                <em>HeaderCssClass</em>="accordionHeader"
-                <em>HeaderSelectedCssClass</em>="accordionHeaderSelected"
-                <em>ContentCssClass</em>="accordionContent"
-                <em>AutoSize</em>="None"
-                <em>FadeTransitions</em>="true"
-                <em>TransitionDuration</em>="250"
-                <em>FramesPerSecond</em>="40"
-                <em>RequireOpenedPane</em>="false"
-                <em>SuppressHeaderPostbacks</em>="true"&gt;
-                <strong><em>&lt;Panes&gt;</em></strong>
-                    &lt;ajaxToolkit:AccordionPane
-                        <em>HeaderCssClass</em>="accordionHeader"
-                        <em>HeaderSelectedCssClass</em>="accordionHeaderSelected"
-                        <em>ContentCssClass</em>="accordionContent"&gt;
-                        &lt;Header&gt; . . . &lt;/Header&gt;
-                        &lt;Content&gt; . . . &lt;/Content&gt;
-                    &lt;/ajaxToolkit:AccordionPane&gt;
-                    .
-                    .
-                    .
-                <strong><em>&lt;/Panes&gt;</em></strong>
-                <em>&lt;HeaderTemplate&gt;...&lt;/HeaderTemplate&gt;</em>
-                <em>&lt;ContentTemplate&gt;...&lt;/ContentTemplate&gt;</em>
-                &lt;/ajaxToolkit:Accordion&gt;</pre>
-                    <ul>
-                        <li><strong>SelectedIndex</strong> - The AccordionPane to be initially visible</li>
-                        <li><strong>HeaderCssClass</strong> - Name of the CSS class to use for the headers.  This can be either applied to the Accordion as a default for all AccordionPanes, or an individual AccordionPane.</li>
-                        <li><strong>HeaderSelectedCssClass</strong> - Name of the CSS class to use for the selected header.  This can be either applied to the Accordion as a default for all AccordionPanes, or an individual AccordionPane.</li>
-                        <li><strong>ContentCssClass</strong> - Name of the CSS class to use for the content.  This can be either applied to the Accordion as a default for all AccordionPanes, or an individual AccordionPane.</li>
-                        <li><strong>FadeTransitions</strong> - True to use the fading transition effect, false for standard transitions.</li>
-                        <li><strong>TransitionDuration</strong> - Number of milliseconds to animate the transitions</li>
-                        <li><strong>FramesPerSecond</strong> - Number of frames per second used in the transition animations</li>
-                        <li><strong>AutoSize</strong> - Restrict the growth of the Accordion.  The values of the AutoSize enumeration are described above.</li>
-                        <li><strong>RequireOpenedPane</strong> - Prevent closing the currently opened pane when its header is clicked (which ensures one pane is always open).  The default value is true.</li>
-                        <li><strong>SuppressHeaderPostbacks</strong> - Prevent the client-side click handlers of elements inside a header from firing (this is especially useful when you want to include hyperlinks in your headers for accessibility)</li>
-                        <li><strong>Panes</strong> - Collection of AccordionPane controls</li>
-                        <li><strong>HeaderTemplate</strong> - The Header template contains the markup that should be used for an pane's header when databinding</li>
-                        <li><strong>ContentTemplate</strong> - The Content template contains the markup that should be used for a pane's content when databinding</li>
-                        <li><strong>DataSource</strong> - The data source to use.  DataBind() must be called.</li>
-                        <li><strong>DataSourceID</strong> - The ID of the data source to use.</li>
-                        <li><strong>DataMember</strong> - The member to bind to when using a DataSourceID</li>
-                    </ul>
+            <div runat="server" data-control-type="Accordion" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 

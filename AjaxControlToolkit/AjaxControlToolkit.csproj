@@ -63,6 +63,7 @@
     <Compile Include="Accordion\AccordionPaneCollection.cs" />
     <Compile Include="Accordion\AutoSize.cs" />
     <Compile Include="AjaxControlToolkitConfigSection.cs" />
+    <Compile Include="ColorPicker\ColorPickerPaletteStyle.cs" />
     <Compile Include="CustomControlElement.cs" />
     <Compile Include="CustomControlsCollection.cs" />
     <Compile Include="EmbeddedScript.cs" />

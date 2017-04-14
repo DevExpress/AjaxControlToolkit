@@ -42,30 +42,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>DragPanel Description</Header>
         <Content>
-            <p>
-                The DragPanel extender allows users to easily add "draggability" to their controls.  The
-                DragPanel targets any ASP.NET Panel and takes an additional parameter that signifies the
-                control to use as the "drag handle".  Once initialized, the user can freely drag the panel
-                around the web page using the drag handle.
-            </p>
+            <div runat="server" data-control-type="DragPanelExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>DragPanel Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code:<br />
-            </p>
-            <pre>
-&lt;ajaxToolkit:DragPanelExtender ID="DPE1" runat="server"
-    TargetControlID="Panel3"
-    DragHandleID="Panel4" /&gt;
-            </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of a Panel to make draggable.</li>
-                <li><strong>DragHandleID</strong> - The ID of a control that will serve as the "drag handle" for the panel.  When the user clicks and drags this control, the panel will move.</li>
-            </ul>
+            <div runat="server" data-control-type="DragPanelExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

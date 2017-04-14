@@ -22,7 +22,8 @@ namespace AjaxControlToolkit.Reference.Core.Parsing {
                 var memberName = member.Attribute("name").Value;
                 if(memberName.Substring(3).StartsWith(typeFullName))
                     yield return new RawDoc(memberName) {
-                        Elements = element.Elements()
+                        Elements = element.Elements(),
+                        BaseTypeName = member.Attribute("base")?.Value
                     };
             }
         }

@@ -57,8 +57,11 @@ namespace AjaxControlToolkit {
         /// This can be used to avoid execution of unnecessary code during a partial postback. 
         /// The default is false.
         /// </summary>
+        /// <remarks>Deprecated. Always false.</remarks>
         [Browsable(false)]
         [DefaultValue(false)]
+        [Obsolete("Always false.")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsInFileUploadPostBack { get; set; }
 
         /// <summary>
@@ -118,10 +121,15 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Whether or not to use absolute path for AjaxFileUploadHandler
         /// </summary>
+        /// <remarks>
+        /// Deprecated. Use UploadHandlerPath instead.
+        /// </remarks>
         [Obsolete("Use UploadHandlerPath instead.")]
         [ExtenderControlProperty]
         [DefaultValue(true)]
         [ClientPropertyName("useAbsoluteHandlerPath")]
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool UseAbsoluteHandlerPath {
             get { return bool.Parse((string)ViewState["UseAbsoluteHandlerPath"] ?? "true"); }
             set { ViewState["UseAbsoluteHandlerPath"] = value.ToString(); }
@@ -130,11 +138,9 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Upload handler path
         /// </summary>
-        [ExtenderControlProperty]
-        [DefaultValue("/AjaxFileUploadHandler.axd")]
-        [ClientPropertyName("uploadHandlerPath")]
+        [DefaultValue("")]
         public string UploadHandlerPath {
-            get { return (string)ViewState["UploadHandlerPath"] ?? "/AjaxFileUploadHandler.axd"; }
+            get { return (string)ViewState["UploadHandlerPath"] ?? ""; }
             set { ViewState["UploadHandlerPath"] = value; }
         }
 
@@ -245,8 +251,6 @@ namespace AjaxControlToolkit {
             if(IsDesignMode || !AreFileUploadParamsPresent()) 
                 return;
                 
-            IsInFileUploadPostBack = true;
-
             var processor = new UploadRequestProcessor {
                 Context = Context,               
                 UploadStart = UploadStart,
@@ -482,8 +486,23 @@ namespace AjaxControlToolkit {
                 if(control != null)
                     descriptor.AddElementProperty("throbber", control.ClientID);
             }
+
+            descriptor.AddProperty("uploadHandlerPath", ResolveUploadHandlerPath(UploadHandlerPath));
         }
 
+        string ResolveUploadHandlerPath(string uploadHandlerPath) {
+            if(String.IsNullOrWhiteSpace(uploadHandlerPath))
+                return CombineUrl(Page.Request.ApplicationPath, "AjaxFileUploadHandler.axd");
+
+            return uploadHandlerPath;
+        }
+
+        static string CombineUrl(string part1, string part2) {
+            if(!part1.EndsWith("/"))
+                part1 += "/";
+
+            return part1 + part2;
+        }
 
         class UploadRequestProcessor {
             public HttpContext Context;

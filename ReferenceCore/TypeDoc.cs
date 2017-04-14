@@ -6,6 +6,7 @@ using AjaxControlToolkit.ReferenceCore.Parsing;
 namespace AjaxControlToolkit.Reference.Core {
 
     public class TypeDoc : DocBase {
+        string _baseTypeName;
         IList<MethodDoc> _methods;
         IList<EventDoc> _events;
         IList<PropertyDoc> _properties;
@@ -13,14 +14,19 @@ namespace AjaxControlToolkit.Reference.Core {
         IList<ClientPropertyDoc> _clientProperties;
         IList<ClientEventDoc> _clientEvents;
 
-        public TypeDoc(string fullName)
+        public TypeDoc(string fullName, string baseTypeName)
             : base(fullName) {
+            _baseTypeName = baseTypeName;
             _methods = new List<MethodDoc>();
             _events = new List<EventDoc>();
             _properties = new List<PropertyDoc>();
             _clientMethods = new List<MethodDoc>();
             _clientProperties = new List<ClientPropertyDoc>();
             _clientEvents = new List<ClientEventDoc>();
+        }
+
+        public string BaseTypeName {
+            get { return _baseTypeName; }
         }
 
         public IEnumerable<MethodDoc> Methods {

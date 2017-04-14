@@ -1345,54 +1345,7 @@ Sys.Extended.UI.Seadragon.Viewer.prototype = {
     _onContainerEnter: function(tracker, position, buttonDownElmt, buttonDownAny) {
         this._mouseInside = true;
         this._abortControlsAutoHide();
-    },
-    _updateOnce: function() {
-        if(!this.source)
-            return;
-
-        this.profiler.beginUpdate();
-
-        var containerSize = Seadragon.Utils.getElementSize(this._container);
-
-        if(!containerSize.equals(this._prevContainerSize)) {
-            this.viewport.resize(containerSize, true); // maintain image position
-            this._prevContainerSize = containerSize;
-            this._raiseEvent("resize", this);
-        }
-
-        var animated = this.viewport.update();
-
-        if(!this._animating && animated) {
-            // we weren't animating, and now we did ==> animation start
-            this._raiseEvent("animationstart", self);
-            this._abortControlsAutoHide();
-        }
-
-        if(animated) {
-            // viewport moved
-            this.drawer.update();
-            this._raiseEvent("animation", self);
-        } else if(this._forceRedraw || this.drawer.needsUpdate()) {
-            // need to load or blend images, etc.
-            this.drawer.update();
-            this._forceRedraw = false;
-        } else {
-            // no changes, so preload images, etc.
-            this.drawer.idle();
-        }
-
-        if(this._animating && !animated) {
-            // we were animating, and now we're not anymore ==> animation finish
-            this._raiseEvent("animationfinish", this);
-
-            // if the mouse has left the container, begin fading controls
-            if(!this._mouseInside)
-                this._beginControlsAutoHide();
-        }
-
-        this._animating = animated;
-        this.profiler.endUpdate();
-    },
+    },    
     _onClose: function() {
         // TODO need destroy() methods to prevent leaks? check for null if so.
 
@@ -3003,20 +2956,7 @@ Sys.Extended.UI.Seadragon.Drawer.prototype = {
         this._container.style.textAlign = "left";    // explicit left-align
         this._container.appendChild(this._canvas);
     },
-    _compareTiles: function(prevBest, tile) {
-        // figure out if this tile is better than the previous best tile...
-        // note that if there is no prevBest, this is automatically better.
-        if(!prevBest)
-            return tile;
-
-        if(tile.visibility > prevBest.visibility)
-            return tile;
-        else if(tile.visibility == prevBest.visibility)
-            if(tile.distance < prevBest.distance)
-                return tile;
-
-        return prevBest;
-    },
+    
     _getNumTiles: function(level) {
         if(!this._cacheNumTiles[level])
             this._cacheNumTiles[level] = this._source.getNumTiles(level);

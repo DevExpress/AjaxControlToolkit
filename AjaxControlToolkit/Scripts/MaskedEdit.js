@@ -957,7 +957,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                     arr_num[0] = arr_num[0].substring(0, arr_num[0].length - 1);
                     ClearText = arr_num[0];
 
-                    if(arr_num.length = 2)
+                    if(arr_num.length == 2)
                         ClearText += this.get_cultureDecimalPlaceholder() + arr_num[1];
                 } else {
                     ClearText = ClearText.substring(0, ClearText.length - 1);
@@ -2815,7 +2815,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 }
             }
 
-            if(arr_num.length = 2) {
+            if(arr_num.length == 2) {
                 masktext += this.get_cultureDecimalPlaceholder() + arr_num[1];
                 this._LogicTextMask += this.get_cultureDecimalPlaceholder() + arr_log[1];
             }

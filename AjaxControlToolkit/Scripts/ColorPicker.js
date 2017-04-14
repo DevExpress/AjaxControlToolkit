@@ -9,6 +9,7 @@ Sys.Extended.UI.ColorPickerBehavior = function(element) {
     this._sample = null;
     this._cssClass = "ajax__colorPicker";
     this._popupPosition = Sys.Extended.UI.PositioningMode.BottomLeft;
+    this._paletteStyle = Sys.Extended.UI.ColorPickerPaletteStyle.Default;
     this._selectedColor = null;
 
     this._enabled = true;
@@ -224,6 +225,23 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     },
 
     /// <summary>
+    /// The Sys.Extended.UI.PaletteStyle object that represents which color palette is used.
+    /// The default is Default.
+    /// </summary>
+    /// <getter>get_paletteStyle</getter>
+    /// <setter>set_paletteStyle</setter>
+    /// <member name="cP:AjaxControlToolkit.ColorPickerExtender.paletteStyle" />
+    get_paletteStyle: function () {
+        return this._paletteStyle;
+    },
+    set_paletteStyle: function (value) {
+        if (this._paletteStyle !== value) {
+            this._paletteStyle = value;
+            this.raisePropertyChanged('paletteStyle');
+        }
+    },
+
+    /// <summary>
     /// Fires when color selection is changed.
     /// </summary>
     /// <event add="add_colorSelectionChanged" remove="remove_colorSelectionChanged" raise="raise_colorSelectionChanged" />
@@ -434,33 +452,75 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
             properties: { id: id + "_colorsBody" }
         }, this._colorsTable);
 
-        var rgb = ['00', '99', '33', '66', 'FF', 'CC'], color, cssColor;
-        var l = rgb.length;
+        switch (this._paletteStyle) {
+            case Sys.Extended.UI.ColorPickerPaletteStyle.Default:
+                var rgb = ['00', '99', '33', '66', 'FF', 'CC'], color, cssColor;
+                var l = rgb.length;
 
-        for (var r = 0; r < l; r++) {
-            var colorsRow = $common.createElementFromTemplate({ nodeName: "tr" }, this._colorsBody);
-            for (var g = 0; g < l; g++) {
-                if (g === 3) {
-                    colorsRow = $common.createElementFromTemplate({ nodeName: "tr" }, this._colorsBody);
+                for (var r = 0; r < l; r++) {
+                    var colorsRow = $common.createElementFromTemplate({ nodeName: "tr" }, this._colorsBody);
+                    for (var g = 0; g < l; g++) {
+                        if (g === 3) {
+                            colorsRow = $common.createElementFromTemplate({ nodeName: "tr" }, this._colorsBody);
+                        }
+                        for (var b = 0; b < l; b++) {
+                            color = rgb[r] + rgb[g] + rgb[b];
+                            this._createColorCell(color, colorsRow);
+                        }
+                    }
                 }
-                for (var b = 0; b < l; b++) {
-                    color = rgb[r] + rgb[g] + rgb[b];
-                    cssColor = '#' + color;
-                    var colorCell = $common.createElementFromTemplate({ nodeName: "td" }, colorsRow);
-                    var colorDiv = $common.createElementFromTemplate({
-                        nodeName: "div",
-                        properties: {
-                            id: id + "_color_" + color,
-                            color: color,
-                            title: cssColor,
-                            style: { backgroundColor: cssColor },
-                            innerHTML: "&nbsp;"
-                        },
-                        events: this._cell$delegates
-                    }, colorCell);
-                }
-            }
+                break;
+            case Sys.Extended.UI.ColorPickerPaletteStyle.Continuous:
+                var step = 100 / 12;
+                for(var l = 0; l <= 100; l = l + step) {
+                    var colorsRow = $common.createElementFromTemplate({ nodeName: "tr" }, this._colorsBody);
+                    for (var h = 0; h < 360; h = h + 20) {
+                        rgb = this._hslToRgb(h / 360, 1, l / 100);
+                        color = this._rgbToHex(rgb[0], rgb[1], rgb[2]);
+                        this._createColorCell(color, colorsRow);
+                    }
+                }                
+                break;
         }
+    },
+    _rgbToHex: function(r, g, b){
+        function padHex(n){
+            var nHex = n.toString(16);
+            return (n < 16) ? ("0" + nHex) : nHex;
+        }
+
+        return padHex(r) + padHex(g) + padHex(b);
+    },
+    _hslToRgb: function(h, s, l){
+        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        var p = 2 * l - q;
+        var r = this._hue2rgb(p, q, h + 1 / 3);
+        var g = this._hue2rgb(p, q, h);
+        var b = this._hue2rgb(p, q, h - 1 / 3);
+
+        return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+    },
+    _hue2rgb: function(p, q, t){
+        if (t < 0) t += 1;
+        if (t > 1) t -= 1;
+        if (t < 1 / 6) return p + (q - p) * 6 * t;
+        if (t < 1 / 2) return q;
+        if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6;
+        return p;
+    },
+    _createColorCell: function (color, colorsRow) {
+        var cssColor = '#' + color;
+        var colorCell = $common.createElementFromTemplate({ nodeName: "td" }, colorsRow);
+        $common.createElementFromTemplate({
+            nodeName: "div",
+            properties: {
+                color: color,
+                title: cssColor,
+                style: { backgroundColor: cssColor },
+                innerHTML: "&nbsp;"
+            },
+            events: this._cell$delegates
+        }, colorCell);
     },
     _ensureColorPicker: function() {
 
@@ -615,3 +675,8 @@ Sys.Extended.UI.ColorPickerBehavior.prototype = {
     }
 }
 Sys.Extended.UI.ColorPickerBehavior.registerClass('Sys.Extended.UI.ColorPickerBehavior', Sys.Extended.UI.BehaviorBase);
+
+Sys.Extended.UI.ColorPickerPaletteStyle = {
+    Default: 0,
+    Continuous: 1
+}

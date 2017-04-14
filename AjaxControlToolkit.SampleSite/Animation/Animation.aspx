@@ -211,46 +211,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>Animation Description</Header>
         <Content>
-            <p>
-                The <span class="codeReference">AnimationExtender</span> is a simple extender that allows you to
-                utilize the powerful animation framework with existing pages in an easy, declarative fashion.  It
-                plays animations whenever a specific event like <span class="codeReference">OnLoad</span>,
-                <span class="codeReference">OnClick</span>, <span class="codeReference">OnMouseOver</span>, or
-                <span class="codeReference">OnMouseOut</span> is raised by the target control.
-            </p>
-            <br />
-            <p>
-                The framework provides a lot of useful animations to handle movement, resizing, fading,
-                etc. All the animations and their properties are described in the <a href="https://github.com/DevExpress/AjaxControlToolkit/wiki/Animation">Animation Reference</a>.
-            </p>
+            <div runat="server" data-control-type="AnimationExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>Animation Properties</Header>
         <Content>
-            The animation behavior can be applied with the following extender (the <em>italic</em> properties
-            are optional, and the ellipses represent a generic animation description):
-            <br /><br />
-            <pre>&lt;ajaxToolkit:AnimationExtender ID="ae"
-              runat="server" TargetControlID="ctrl"&gt;
-                <em>&lt;Animations&gt;
-                    &lt;OnLoad&gt; ... &lt;/OnLoad&gt;
-                    &lt;OnClick&gt; ... &lt;/OnClick&gt;
-                    &lt;OnMouseOver&gt; ... &lt;/OnMouseOver&gt;
-                    &lt;OnMouseOut&gt; ... &lt;/OnMouseOut&gt;
-                    &lt;OnHoverOver&gt; ... &lt;/OnHoverOver&gt;
-                    &lt;OnHoverOut&gt; ... &lt;/OnHoverOut&gt;
-                &lt;/Animations&gt;</em>
-            &lt;/ajaxToolkit:AnimationExtender&gt;</pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - ID of the target control whose events are used to animate (this is also the default target of the animations)</li>
-                <li><strong>OnLoad</strong> - Generic animation played as soon as the page is loaded</li>
-                <li><strong>OnClick</strong> - Generic animation played when the target control is clicked</li>
-                <li><strong>OnMouseOver</strong> - Generic animation played when the mouse moves over the target control</li>
-                <li><strong>OnMouseOut</strong> - Generic animation played when the mouse moves out of the target control</li>
-                <li><strong>OnHoverOver</strong> - Generic animation similar to OnMouseOver except it will stop the OnHoverOut animation before it plays</li>
-                <li><strong>OnHoverOut</strong> - Generic animation similar to OnMouseOut except it will stop the OnHoverOver animation before it plays</li>
-            </ul>
+            <div runat="server" data-control-type="AnimationExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

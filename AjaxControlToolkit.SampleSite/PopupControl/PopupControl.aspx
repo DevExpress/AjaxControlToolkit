@@ -75,15 +75,7 @@
             PopupControl Description
         </Header>
         <Content>
-            <p>
-                PopupControl is an ASP.NET AJAX extender that can be attached to any control in order to open
-                a popup window that displays additional content.  This popup window will probably be interactive
-                and will probably be within an ASP.NET AJAX UpdatePanel, so it will be able to perform complex
-                server-based processing (including postbacks) without affecting the rest of the page.  The popup
-                window can contain any content, including ASP.NET server controls, HTML elements, etc.  Once the
-                work of the popup window is done, a simple server-side call dismisses it and triggers any relevant
-                script on the client to run and update the page dynamically.
-            </p>
+            <div runat="server" data-control-type="PopupControlExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
@@ -91,32 +83,7 @@
             PopupControl Properties
         </Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The <em>italic</em> properties are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:PopupControlExtender ID="PopEx" runat="server"
-    TargetControlID="DateTextBox"
-    PopupControlID="Panel1"
-    <em>Position</em>="Bottom" /&gt;
-            </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the control to attach to</li>
-                <li><strong>PopupControlID</strong> - The ID of the control to display</li>
-                <li><strong>Position</strong> - Optional setting specifying where the popup should be positioned relative to the target control. (Left, Right, Top, Bottom, Center)</li>
-                <li><strong>CommitProperty</strong> - Optional setting specifying the property on the control being extended that should be set with the result of the popup</li>
-                <li><strong>CommitScript</strong> - Optional setting specifying additional script to run after setting the result of the popup</li>
-                <li><strong>OffsetX/OffsetY</strong> - The number of pixels to offset the Popup from its default position, as specified by Position.</li>
-                <li><strong>Animations</strong> - Generic animations for the PopupControlExtender.  See the <a href="https://github.com/DevExpress/AjaxControlToolkit/wiki/Animation">Animation Reference</a> for more details.
-                    <ul>
-                        <li><strong>OnShow</strong> - The OnShow animation will be played each time the popup is displayed.
-                            The popup will be positioned correctly but hidden.  The animation can use
-                            <span class="codeReference">&lt;HideAction Visible="true" /&gt;</span>
-                            to display the popup along with any other visual effects.</li>
-                        <li><strong>OnHide</strong> - The OnHide animation will be played each time the popup is hidden.</li>
-                    </ul>
-                </li>
-            </ul>
+            <div runat="server" data-control-type="PopupControlExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

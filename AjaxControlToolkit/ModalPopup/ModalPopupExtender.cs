@@ -29,6 +29,7 @@ namespace AjaxControlToolkit {
     [RequiredScript(typeof(AnimationExtender))]
     [TargetControlType(typeof(WebControl))]
     [TargetControlType(typeof(HtmlControl))]
+    [TargetControlType(typeof(HiddenField))]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.ModalPopup + Constants.IconPostfix)]
     public class ModalPopupExtender : DynamicPopulateExtenderControlBase {
         // Desired visibility state: true, false or none
@@ -147,6 +148,8 @@ namespace AjaxControlToolkit {
         [DefaultValue(false)]
         [Obsolete("The drag feature on modal popup will be automatically turned on if you specify the PopupDragHandleControlID property. Setting the Drag property is a noop")]
         [ClientPropertyName("drag")]
+        [Browsable(false)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Drag {
             get { return GetPropertyValue("stringDrag", false); }
             set { SetPropertyValue("stringDrag", value); }

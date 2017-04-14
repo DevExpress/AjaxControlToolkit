@@ -83,34 +83,14 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>DropShadow Description</Header>
         <Content>
-            <p>
-                DropShadow is an extender which applies a "Drop Shadow" to a Panel.  It allows you to specify
-                how wide the shadow is as well as how opaque it is, or if you would like rounded corners.
-                For pages that allow the user to move or resize the panel, the DropShadow has a mode that
-                will resize/reposition it to match that of the target panel at run time.
-            </p>
+            <div runat="server" data-control-type="DropShadowExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
 
     <samples:InfoBlock runat="server">
         <Header>DropShadow Properties</Header>
         <Content>
-            <p>
-                The control above is initialized with this code. The properties in <em>italic</em> are optional.
-            </p>
-            <pre>
-&lt;ajaxToolkit:DropShadowExtender ID="dse" runat="server"
-    TargetControlID="Panel1" 
-    <em>Opacity=".8" 
-    Rounded="true"
-    TrackPosition="true"</em> /&gt;
-            </pre>
-            <ul>
-                <li><strong>TargetControlID</strong> - The ID of the button or link for this extender to operate on</li>
-                <li><strong>Width - </strong>The width, in pixels of the drop shadow. Default value is 5.</li><li><strong>Opacity </strong> - The opacity of the drop shadow, from 0 (fully transparent) to 1.0 (fully opaque). The default value is .5.</li>
-                <li><strong>TrackPosition</strong> - Whether the drop shadow should track the position of the panel it is attached to. Use this if the panel is absolutely positioned or will otherwise move.</li>
-                <li><strong>Rounded</strong> - Set to true to set rounded corners on the target and the shadow. Default is false.</li>
-            </ul>
+            <div runat="server" data-control-type="DropShadowExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>

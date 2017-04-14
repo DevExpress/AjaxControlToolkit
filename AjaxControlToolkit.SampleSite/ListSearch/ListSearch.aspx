@@ -33,48 +33,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>ListSearchExtender Description</Header>
         <Content>
-            <p>
-                The ListSearchExtender lets you search for items in a ListBox or DropDownList
-                by typing. The extender performs an incremental search within the ListBox
-                based on what has been typed so far. The prompt message that gets displayed
-                when you click the list can be customized along with its CSS class and position.
-            </p>
+            <div runat="server" data-control-type="ListSearchExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>ListSearchExtender Properties</Header>
         <Content>
-            <p>
-                The controls above are initialized with code like this. The <em>italic</em>
-                properties are optional:
-            </p>
-            <pre>
-&lt;ajaxToolkit:ListSearchExtender id="LSE" runat="server"
-    TargetControlID="ListBox1"
-<em>    PromptText="Type to search"</em>
-<em>    PromptCssClass="ListSearchExtenderPrompt"</em>
-<em>    PromptPosition="Top"</em>
-<em>    AutoResetTimeout="0"</em>
-<em>    IsSorted="true"</em>/&gt;
-            </pre>
-            <ul>
-                <li><strong>PromptText</strong> - Message to display when the ListBox or DropDownList is given focus. Default is 'Type to search'. The PromptText is replaced by the search text typed by the user.</li>
-                <li><strong>PromptCssClass</strong> - The name of the CSS class to apply to the prompt message.</li>
-                <li><strong>PromptPosition</strong> - Indicates whether the message should appear at the Top or Bottom of the ListBox. The default is Top. </li>
-                <li><strong>QueryPattern</strong> - Indicates how the typed characters should be used in the search query. The default pattern queries for results that start with the typed word. </li>
-                <li><strong>IsSorted</strong> - Indicates if items added to the List are expected to be sorted. The default is false. If set to true it allows the code to perform a faster search instead of having to determine the same before performing the search.</li>
-                <li><strong>QueryTimeout</strong> - Indicates whether the search query should be reset after the timeout if no match is found. The default is 0, meaning no auto reset behavior. </li>
-                <li><strong>Animations</strong> - Generic animations for the ListSearch extender.  See the <a href="https://github.com/DevExpress/AjaxControlToolkit/wiki/Animation">Animation Reference</a> for more details.
-                    <ul>
-                        <li><strong>OnShow</strong> - The OnShow animation will be played each time the extender's
-                            prompt is displayed.  The prompt will be positioned correctly but hidden.
-                            The animation can use <span class="codeReference">&lt;HideAction Visible="true" /&gt;</span>
-                            to display the prompt along with any other visual effects.</li>
-                        <li><strong>OnHide</strong> - The OnHide animation will be played each time the extender's
-                            prompt is hidden.</li>
-                    </ul>
-                </li>
-            </ul>
+            <div runat="server" data-control-type="ListSearchExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server" Collapsed="false">
