@@ -218,7 +218,7 @@ namespace AjaxControlToolkit {
                     continue;
 
                 var resolvedUrl = link.ResolveClientUrl(href);
-                ScriptManager.RegisterClientScriptBlock(control, control.GetType(), "RegisterCssReferences" + Guid.NewGuid(),
+                ScriptManager.RegisterClientScriptBlock(control, control.GetType(), "RegisterCssReferences" + resolvedUrl,
                     "if (window.__ExtendedControlCssLoaded == null || typeof window.__ExtendedControlCssLoaded == 'undefined') {" +
                     "    window.__ExtendedControlCssLoaded = new Array();" +
                     "}" +
