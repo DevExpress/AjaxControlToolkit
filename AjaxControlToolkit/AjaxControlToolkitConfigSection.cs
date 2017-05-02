@@ -31,6 +31,12 @@ namespace AjaxControlToolkit {
             set { base["tempFolder"] = value; }
         }
 
+        [ConfigurationProperty("additionalUploadFileExtensions", IsRequired = false)]
+        public string AdditionalUploadFileExtensions {
+            get { return (string)base["additionalUploadFileExtensions"]; }
+            set { base["additionalUploadFileExtensions"] = value; }
+        }
+
         [ConfigurationProperty("customControls", IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(CustomControlsCollection))]
         public CustomControlsCollection CustomControls {

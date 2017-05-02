@@ -11,6 +11,40 @@ namespace AjaxControlToolkit {
         const int ChunkSize = 1024 * 1024 * 4;
         const int ChunkSizeForPolling = 64 * 1024;
 
+        static readonly string[] DefaultAllowedExtensions = {
+            "7z",
+            "aac",
+            "avi",
+            "bz2",
+            "csv",
+            "doc",
+            "docx",
+            "gif",
+            "gz",
+            "htm",
+            "html",
+            "jpeg",
+            "jpg",
+            "md",
+            "mp3",
+            "mp4",
+            "ods",
+            "odt",
+            "ogg",
+            "pdf",
+            "png",
+            "ppt",
+            "pptx",
+            "svg",
+            "tar",
+            "tgz",
+            "txt",
+            "xls",
+            "xlsx",
+            "xml",
+            "zip"
+        };
+
         public static void Abort(HttpContext context, string fileId) {
             (new AjaxFileUploadStates(context, fileId)).Abort = true;
         }
@@ -19,6 +53,12 @@ namespace AjaxControlToolkit {
             var request = context.Request;
             var fileId = request.QueryString["fileId"];
             var fileName = request.QueryString["fileName"];
+            var extension = Path.GetExtension(fileName).Replace(".", "");
+            var allowedExtensions = DefaultAllowedExtensions.Union(ToolkitConfig.AdditionalUploadFileExtensions.Split(','));
+
+            if(!allowedExtensions.Any(ext => String.Compare(ext, extension, StringComparison.InvariantCultureIgnoreCase) == 0))
+                throw new Exception("File extension is not allowed.");
+
             var chunked = bool.Parse(request.QueryString["chunked"] ?? "false");
             var firstChunk = bool.Parse(request.QueryString["firstChunk"] ?? "false");
             var usePoll = bool.Parse(request.QueryString["usePoll"] ?? "false");
