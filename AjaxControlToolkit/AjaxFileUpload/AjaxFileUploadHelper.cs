@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,6 +10,40 @@ namespace AjaxControlToolkit {
         const int ChunkSize = 1024 * 1024 * 4;
         const int ChunkSizeForPolling = 64 * 1024;
 
+        static readonly string[] DefaultAllowedExtensions = {
+            "7z",
+            "aac",
+            "avi",
+            "bz2",
+            "csv",
+            "doc",
+            "docx",
+            "gif",
+            "gz",
+            "htm",
+            "html",
+            "jpeg",
+            "jpg",
+            "md",
+            "mp3",
+            "mp4",
+            "ods",
+            "odt",
+            "ogg",
+            "pdf",
+            "png",
+            "ppt",
+            "pptx",
+            "svg",
+            "tar",
+            "tgz",
+            "txt",
+            "xls",
+            "xlsx",
+            "xml",
+            "zip"
+        };
+
         public static void Abort(HttpContext context, string fileId) {
             (new AjaxFileUploadStates(context, fileId)).Abort = true;
         }
@@ -19,6 +52,12 @@ namespace AjaxControlToolkit {
             var request = context.Request;
             var fileId = request.QueryString["fileId"];
             var fileName = request.QueryString["fileName"];
+            var extension = Path.GetExtension(fileName).Substring(1);
+            var allowedExtensions = DefaultAllowedExtensions.Union(ToolkitConfig.AdditionalUploadFileExtensions.Split(','));
+
+            if(!allowedExtensions.Any(ext => String.Compare(ext, extension, StringComparison.InvariantCultureIgnoreCase) == 0))
+                throw new Exception("File extension is not allowed.");
+
             var chunked = bool.Parse(request.QueryString["chunked"] ?? "false");
             var firstChunk = bool.Parse(request.QueryString["firstChunk"] ?? "false");
             var usePoll = bool.Parse(request.QueryString["usePoll"] ?? "false");
@@ -104,15 +143,9 @@ namespace AjaxControlToolkit {
                                 var firstChunk = new byte[lengthToWrite];
                                 Buffer.BlockCopy(firstBytes, headerInfo.StartIndex, firstChunk, 0, lengthToWrite);
 
-                                // Prepare temporary folder, we use file id as a folder name.
-                                var tempFolder = AjaxFileUpload.BuildTempFolder(fileId);
-                                if(!Directory.Exists(tempFolder)) Directory.CreateDirectory(tempFolder);
-
-                                // Build temporary file path.
-                                var tmpFilePath = Path.Combine(tempFolder, fileName);
-
-                                if(!IsSubDirectory(AjaxFileUpload.BuildRootTempFolder(), Path.GetDirectoryName(tmpFilePath)))
-                                    throw new Exception("Insecure operation prevented");
+                                var tmpFilePath = GetTempFilePath(fileId, fileName);
+                                AjaxFileUpload.CheckTempFilePath(tmpFilePath);
+                                CreateTempFilePathFolder(tmpFilePath);
 
                                 if(!chunked || isFirstChunk)
                                     // Create new file, if this is a first chunk or file is not chunked.
@@ -135,6 +168,8 @@ namespace AjaxControlToolkit {
 
                             destination.Write(chunk, 0, length);
                         }
+                    } else {
+                        break;
                     }
 
                     // There is no byte to read anymore, upload is finished.
@@ -149,16 +184,15 @@ namespace AjaxControlToolkit {
             }
             return true;
         }
+        
+        static void CreateTempFilePathFolder(string tmpFilePath) {
+            var tempFolder = Path.GetDirectoryName(tmpFilePath);
+            if(!Directory.Exists(tempFolder)) Directory.CreateDirectory(tempFolder);
+        }
 
-        static bool IsSubDirectory(string parentDirectory, string childDirectory) {
-            var directoryInfo = new DirectoryInfo(childDirectory).Parent;
-            while(directoryInfo != null) {
-                if(directoryInfo.FullName == parentDirectory)
-                    return true;
-                directoryInfo = directoryInfo.Parent;
-            }
-
-            return false;
+        private static string GetTempFilePath(string fileId, string fileName) {
+            var tempFolder = AjaxFileUpload.GetTempFolder(fileId);
+            return Path.Combine(tempFolder, fileName) + Constants.UploadTempFileExtension;
         }
     }
 

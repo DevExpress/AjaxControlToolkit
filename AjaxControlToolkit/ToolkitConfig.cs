@@ -39,6 +39,10 @@ namespace AjaxControlToolkit {
             get { return ConfigSection.TempFolder; }
         }
 
+        public static string AdditionalUploadFileExtensions {
+            get { return ConfigSection.AdditionalUploadFileExtensions; }
+        }
+
         public static IEnumerable<Type> CustomControls {
             get {
                 foreach(var control in ConfigSection.CustomControls)

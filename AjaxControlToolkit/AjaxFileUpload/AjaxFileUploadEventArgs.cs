@@ -63,12 +63,14 @@ namespace AjaxControlToolkit {
         }
 
         public Stream GetStreamContents() {
-            var dir = AjaxFileUpload.BuildTempFolder(this._fileId);
-            return File.OpenRead(Path.Combine(dir, this._fileName));
+            var dir = AjaxFileUpload.GetTempFolder(this._fileId);
+            var filePath = Path.Combine(dir, this._fileName) + Constants.UploadTempFileExtension;
+            AjaxFileUpload.CheckTempFilePath(filePath);
+            return File.OpenRead(filePath);
         }
 
         public void DeleteTemporaryData() {
-            var dirInfo = new DirectoryInfo(AjaxFileUpload.BuildTempFolder(this._fileId));
+            var dirInfo = new DirectoryInfo(AjaxFileUpload.GetTempFolder(this._fileId));
             if(dirInfo.Exists)
                 dirInfo.Delete(true);
         }

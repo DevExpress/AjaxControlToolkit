@@ -38,7 +38,7 @@
 
         function createFileInfo(e) {
             var holder = document.createElement('div');
-            holder.appendChild(document.createTextNode(e.get_fileName() + ' with size ' + e.get_fileSize() + ' bytes'));
+            holder.appendChild(document.createTextNode(e.get_fileName() + ' with size ' + (e.get_fileSize() / 1024).toFixed(2) + ' KB'));
 
             return holder;
         }

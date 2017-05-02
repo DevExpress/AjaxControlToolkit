@@ -10,6 +10,7 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Drawing;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace AjaxControlToolkit {
 
@@ -301,34 +302,23 @@ namespace AjaxControlToolkit {
         }
 
         public static void CleanAllTemporaryData() {
-            var dirInfo = new DirectoryInfo(BuildRootTempFolder());
+            var dirInfo = new DirectoryInfo(GetRootTempFolder());
             foreach(var dir in dirInfo.GetDirectories()) {
                 dir.Delete(true);
             }
         }
 
-        public static string BuildTempFolder(string fileId) {
-            return Path.Combine(BuildRootTempFolder(), fileId);
+        public static string GetTempFolder(string fileId) {
+            return Path.Combine(GetRootTempFolder(), fileId);
         }
 
-        public static string BuildRootTempFolder() {
+        public static string GetRootTempFolder() {
             var userPath = ToolkitConfig.TempFolder;
 
-            if(!String.IsNullOrWhiteSpace(userPath)) {
-                var physicalPath = GetPhysicalPath(userPath);
-
-                if(!Directory.Exists(physicalPath))
-                    throw new IOException(String.Format("Temp directory '{0}' does not exist.", physicalPath));
-
-                return physicalPath;
-            }
-
-            var defaultPath = Path.Combine(Path.GetTempPath(), DefaultTempSubDir);
-
-            if(!Directory.Exists(defaultPath))
-                Directory.CreateDirectory(defaultPath);
-
-            return defaultPath;
+            if(!String.IsNullOrWhiteSpace(userPath))
+                return GetPhysicalPath(userPath);
+                
+            return Path.Combine(Path.GetTempPath(), DefaultTempSubDir);
         }
 
         static string GetPhysicalPath(string path) {
@@ -504,6 +494,33 @@ namespace AjaxControlToolkit {
             return part1 + part2;
         }
 
+        public static void CheckTempFilePath(string tmpFilePath) {
+            if(!IsValidExtension(tmpFilePath)
+                || !IsValidLastFolderName(tmpFilePath)
+                || !IsImmediateFolder(tmpFilePath))
+                throw new Exception("Insecure operation prevented");
+        }
+
+        static bool IsImmediateFolder(string tmpFilePath) {
+            var rootTempFolderFromParam = Path.GetFullPath(GetGrandParentDirectoryName(tmpFilePath));
+            var rootTempFolder = Path.GetFullPath(GetRootTempFolder());
+
+            return String.Compare(rootTempFolder, rootTempFolderFromParam, true) == 0;
+        }
+        
+        static bool IsValidLastFolderName(string tmpFilePath) {
+            var directory = Path.GetFullPath(Path.GetDirectoryName(tmpFilePath));
+            return Regex.IsMatch(directory, @"[\w-]{36}$", RegexOptions.IgnoreCase);
+        }
+
+        static bool IsValidExtension(string tmpFilePath) {
+            return String.Compare(Path.GetExtension(tmpFilePath), Constants.UploadTempFileExtension, true) == 0;
+        }
+
+        static string GetGrandParentDirectoryName(string tmpFilePath) {
+            return Path.GetDirectoryName(Path.GetDirectoryName(tmpFilePath));
+        }
+
         class UploadRequestProcessor {
             public HttpContext Context;
 
@@ -619,7 +636,7 @@ namespace AjaxControlToolkit {
             void XhrDone(string fileId) {
                 AjaxFileUploadEventArgs args;
 
-                var tempFolder = BuildTempFolder(fileId);
+                var tempFolder = GetTempFolder(fileId);
                 if(!Directory.Exists(tempFolder))
                     return;
 
@@ -628,16 +645,22 @@ namespace AjaxControlToolkit {
                     return;
 
                 var fileInfo = new FileInfo(files[0]);
-                SetUploadedFilePath(fileInfo.FullName);
 
+                CheckTempFilePath(fileInfo.FullName);
+                SetUploadedFilePath(fileInfo.FullName);
+                var originalFilename = StripTempFileExtension(fileInfo.Name);
                 args = new AjaxFileUploadEventArgs(
-                    fileId, AjaxFileUploadState.Success, "Success", fileInfo.Name, (int)fileInfo.Length,
-                    fileInfo.Extension);
+                    fileId, AjaxFileUploadState.Success, "Success", originalFilename, (int)fileInfo.Length,
+                    Path.GetExtension(originalFilename));
 
                 if(UploadComplete != null)
                     UploadComplete(this, args);
 
                 Response.Write(new JavaScriptSerializer().Serialize(args));
+            }
+
+            static string StripTempFileExtension(string fileName) {
+                return fileName.Substring(0, fileName.Length - Constants.UploadTempFileExtension.Length);
             }
 
             void XhrCancel(string fileId) {
