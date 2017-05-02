@@ -53,7 +53,7 @@ namespace AjaxControlToolkit {
             var request = context.Request;
             var fileId = request.QueryString["fileId"];
             var fileName = request.QueryString["fileName"];
-            var extension = Path.GetExtension(fileName).Replace(".", "");
+            var extension = Path.GetExtension(fileName).Substring(1);
             var allowedExtensions = DefaultAllowedExtensions.Union(ToolkitConfig.AdditionalUploadFileExtensions.Split(','));
 
             if(!allowedExtensions.Any(ext => String.Compare(ext, extension, StringComparison.InvariantCultureIgnoreCase) == 0))
