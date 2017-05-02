@@ -81,6 +81,7 @@
     <Folder Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AjaxFileUploadTests.cs" />
     <Compile Include="BaseValidatorTests.cs" />
     <Compile Include="BundleResolverTests.cs" />
     <Compile Include="JasmineTests.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="LocalizationTests.cs" />
     <Compile Include="HtmlSanitizer\DefaultHtmlSanitizerTests.cs" />
     <Compile Include="MultipartFormDataParserTests.cs" />
+    <Compile Include="WorkerRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AjaxControlToolkit.HtmlEditor.Sanitizer\AjaxControlToolkit.HtmlEditor.Sanitizer.csproj">
