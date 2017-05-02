@@ -8,16 +8,16 @@ using System.Web.UI.WebControls;
 namespace AjaxControlToolkit.Jasmine.Suites {
     public partial class CalendarTests : System.Web.UI.Page {
         protected void Page_Load(object sender, EventArgs e) {
-            var selectedDate = new DateTime(2015, 1, 1);
+            var selectedDate = new DateTime(2015, 2, 1);
 
-            StartDateCalendarExtender.StartDate = new DateTime(2015, 1, 1);
+            StartDateCalendarExtender.StartDate = new DateTime(2015, 2, 1);
             StartDateCalendarExtender.SelectedDate = selectedDate;
 
-            EndDateCalendarExtender.EndDate = new DateTime(2015, 1, 1);
+            EndDateCalendarExtender.EndDate = new DateTime(2015, 2, 1);
             EndDateCalendarExtender.SelectedDate = selectedDate;
 
-            BothDatesCalendarExtender.StartDate = new DateTime(2015, 1, 1);
-            BothDatesCalendarExtender.EndDate = new DateTime(2015, 2, 2);
+            BothDatesCalendarExtender.StartDate = new DateTime(2015, 2, 1);
+            BothDatesCalendarExtender.EndDate = new DateTime(2015, 3, 2);
             BothDatesCalendarExtender.SelectedDate = selectedDate;
 
             RangeExceedsDecadeTextBoxCalendarExtender.StartDate = new DateTime(2000, 1, 1);
