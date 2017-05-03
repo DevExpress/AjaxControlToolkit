@@ -35,8 +35,12 @@ namespace AjaxControlToolkit.Tests {
             AjaxFileUploadHelper.Process(context);
             Assert.True(File.Exists(Path.Combine(_tempFolder, "testtemp", "aaa.jpg")));
         }
+
+        [Test, Timeout(5000)]
+        public void EmptyBodyDoesNotHangHandler() {
+            var request = new WorkerRequest("", "filename=aaa.jpg", "");
             var context = new HttpContext(request);
-            AjaxFileUploadHelper.Process(context);
+            AjaxFileUploadHelper.Process(context);            
         }
     }
 }

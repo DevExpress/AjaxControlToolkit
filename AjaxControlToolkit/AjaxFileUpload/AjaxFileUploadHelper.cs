@@ -175,6 +175,8 @@ namespace AjaxControlToolkit {
 
                             destination.Write(chunk, 0, length);
                         }
+                    } else {
+                        break;
                     }
 
                     // There is no byte to read anymore, upload is finished.
