@@ -252,7 +252,7 @@ namespace AjaxControlToolkit {
                 return;
                 
             var processor = new UploadRequestProcessor {
-                Context = Context,               
+                Control = this,
                 UploadStart = UploadStart,
                 UploadComplete = UploadComplete,
                 UploadCompleteAll = UploadCompleteAll,
@@ -505,7 +505,7 @@ namespace AjaxControlToolkit {
         }
 
         class UploadRequestProcessor {
-            public HttpContext Context;
+            public AjaxFileUpload Control;
 
             public EventHandler<AjaxFileUploadStartEventArgs> UploadStart;
             public EventHandler<AjaxFileUploadEventArgs> UploadComplete;
@@ -513,11 +513,11 @@ namespace AjaxControlToolkit {
             public Action<string> SetUploadedFilePath;
 
             HttpRequest Request {
-                get { return Context.Request; } 
+                get { return Control.Context.Request; } 
             }
 
             HttpResponse Response {
-                get { return Context.Response; }
+                get { return Control.Context.Response; }
             }
 
             public void ProcessRequest() {
@@ -586,7 +586,7 @@ namespace AjaxControlToolkit {
                 var filesInQueue = int.Parse(Request.QueryString["queue"] ?? "0");
                 var args = new AjaxFileUploadStartEventArgs(filesInQueue);
                 if(UploadStart != null)
-                    UploadStart(this, args);
+                    UploadStart(Control, args);
                 Response.Write(new JavaScriptSerializer().Serialize(args));
             }
 
@@ -612,7 +612,7 @@ namespace AjaxControlToolkit {
 
                 var args = new AjaxFileUploadCompleteAllEventArgs(filesInQueue, filesUploaded, completeReason);
                 if(UploadCompleteAll != null)
-                    UploadCompleteAll(this, args);
+                    UploadCompleteAll(Control, args);
                 Response.Write(new JavaScriptSerializer().Serialize(args));
             }
 
@@ -635,17 +635,17 @@ namespace AjaxControlToolkit {
                     fileInfo.Extension);
 
                 if(UploadComplete != null)
-                    UploadComplete(this, args);
+                    UploadComplete(Control, args);
 
                 Response.Write(new JavaScriptSerializer().Serialize(args));
             }
 
             void XhrCancel(string fileId) {
-                AjaxFileUploadHelper.Abort(Context, fileId);
+                AjaxFileUploadHelper.Abort(Control.Context, fileId);
             }
 
             void XhrPoll(string fileId) {
-                Response.Write((new AjaxFileUploadStates(Context, fileId)).Percent.ToString());
+                Response.Write((new AjaxFileUploadStates(Control.Context, fileId)).Percent.ToString());
             }
         
         }
