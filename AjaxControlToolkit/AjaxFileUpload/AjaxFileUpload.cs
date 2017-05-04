@@ -588,7 +588,7 @@ namespace AjaxControlToolkit {
                 var filesInQueue = int.Parse(Request.QueryString["queue"] ?? "0");
                 var args = new AjaxFileUploadStartEventArgs(filesInQueue);
                 if(UploadStart != null)
-                    UploadStart(this, args);
+                    UploadStart(Control, args);
                 Response.Write(new JavaScriptSerializer().Serialize(args));
             }
 
@@ -614,7 +614,7 @@ namespace AjaxControlToolkit {
 
                 var args = new AjaxFileUploadCompleteAllEventArgs(filesInQueue, filesUploaded, completeReason);
                 if(UploadCompleteAll != null)
-                    UploadCompleteAll(this, args);
+                    UploadCompleteAll(Control, args);
                 Response.Write(new JavaScriptSerializer().Serialize(args));
             }
 
@@ -637,7 +637,7 @@ namespace AjaxControlToolkit {
                     fileInfo.Extension);
 
                 if(UploadComplete != null)
-                    UploadComplete(this, args);
+                    UploadComplete(Control, args);
 
                 Response.Write(new JavaScriptSerializer().Serialize(args));
             }
