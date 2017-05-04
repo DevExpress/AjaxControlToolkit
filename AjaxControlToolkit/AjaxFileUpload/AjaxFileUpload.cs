@@ -252,6 +252,7 @@ namespace AjaxControlToolkit {
                 return;
                 
             var processor = new UploadRequestProcessor {
+                Control = this,
                 Context = Context,               
                 UploadStart = UploadStart,
                 UploadComplete = UploadComplete,
@@ -505,6 +506,7 @@ namespace AjaxControlToolkit {
         }
 
         class UploadRequestProcessor {
+            public AjaxFileUpload Control;
             public HttpContext Context;
 
             public EventHandler<AjaxFileUploadStartEventArgs> UploadStart;
