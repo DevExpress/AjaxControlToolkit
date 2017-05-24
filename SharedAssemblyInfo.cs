@@ -7,8 +7,8 @@ using System.Resources;
 [assembly: AssemblyCopyright("Copyright © CodePlex Foundation 2012-2017")]
 [assembly: AssemblyCompany("CodePlex Foundation")]
 
-[assembly: AssemblyVersion("17.1.1.0")]
-[assembly: AssemblyFileVersion("17.1.1.0")]
+[assembly: AssemblyVersion("17.1.2.0")]
+[assembly: AssemblyFileVersion("17.1.2.0")]
 
 [assembly: NeutralResourcesLanguage("en-US")]
 

@@ -472,6 +472,12 @@
 
                     expect(date.getFullYear()).toBe(expectedYear);
                 });
+
+                it("does not parse invalid date", function() {
+                    var date = this.extender._parseTextValue("99/99/99");                    
+
+                    expect(date).toBe(null);
+                });
             });
         });
     </script>
