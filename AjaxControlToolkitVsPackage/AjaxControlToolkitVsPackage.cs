@@ -37,7 +37,7 @@ namespace AjaxControlToolkitVsPackage {
             var version = assembly.GetName().Version.ToString(2);
 
             var service = (IToolboxService)GetService(typeof(IToolboxService));
-            foreach(var item in EnumerateToolboxItems(assembly))
+            foreach(var item in EnumerateToolboxItems(assembly).OrderBy(i => i.DisplayName))
                 service.AddToolboxItem(item, "AJAX Control Toolkit v" + version);
         }
 
