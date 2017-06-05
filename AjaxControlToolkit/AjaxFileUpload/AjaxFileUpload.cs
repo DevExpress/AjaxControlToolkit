@@ -656,6 +656,8 @@ namespace AjaxControlToolkit {
                 if(UploadComplete != null)
                     UploadComplete(Control, args);
 
+                args.DeleteTemporaryData();
+
                 Response.Write(new JavaScriptSerializer().Serialize(args));
             }
 

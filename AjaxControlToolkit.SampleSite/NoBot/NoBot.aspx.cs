@@ -28,7 +28,7 @@ public partial class NoBot_NoBot : Page {
         foreach(var kvp in NoBot.GetCopyOfUserAddressCache())
             sb.AppendFormat("{0}: {1}<br />", kvp.Key.ToString("u"), kvp.Value);
 
-        Label2.Text = sb.ToString();
+        Label2.Text = HttpUtility.HtmlEncode(sb.ToString());
     }
 
     protected void CustomChallengeResponse(object sender, NoBotEventArgs e) {

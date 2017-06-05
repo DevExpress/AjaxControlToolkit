@@ -11,10 +11,10 @@ public partial class NumericUpDown_NumericUpDown : System.Web.UI.Page {
     }
 
     protected void Button1_Click(object sender, EventArgs e) {
-        Label1.Text =
+        Label1.Text = HttpUtility.HtmlEncode(
             "Value: <b>" + TextBox1.Text + "</b><br>" +
             "Month: <b>" + TextBox2.Text + "</b><br>" +
             "Random Value: <b>" + TextBox3.Text + "</b><br>" +
-            "Value: <b>" + TextBox4.Text + "</b>";
+            "Value: <b>" + TextBox4.Text + "</b>");
     }
 }

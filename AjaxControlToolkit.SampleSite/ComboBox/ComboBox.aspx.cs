@@ -97,7 +97,7 @@ public partial class ComboBox_ComboBox : Page {
 
     protected void ComboBox1_ItemInserted(object sender, AjaxControlToolkit.ComboBoxItemInsertEventArgs e) {
         // user has inserted a new item into the demo combobox
-        FeedbackItemInsertedLabel.Text = String.Format(FeedbackItemInsertedLabel.Text, ComboBox1.SelectedItem.Text);
+        FeedbackItemInsertedLabel.Text = HttpUtility.HtmlEncode(String.Format(FeedbackItemInsertedLabel.Text, ComboBox1.SelectedItem.Text));
         FeedbackPanel.Visible = true;
         FeedbackItemInsertedLabel.Visible = true;
     }

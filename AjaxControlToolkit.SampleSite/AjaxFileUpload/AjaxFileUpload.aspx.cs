@@ -45,13 +45,10 @@ public partial class AjaxFileUpload_AjaxFileUpload : System.Web.UI.Page {
             } else {
                 file.PostedUrl = "fileTooBig.gif";
             }
-
-            // Since we never call the SaveAs method(), we need to delete the temporary fileß
-            file.DeleteTemporaryData();
         }
 
         // In a real app, you would call SaveAs() to save the uploaded file somewhere
-        // AjaxFileUpload1.SaveAs(MapPath("~/App_Data/" + file.FileName), true);
+        // AjaxFileUpload1.SaveAs(MapPath("~/App_Data/" + file.FileName));
 
     }
 

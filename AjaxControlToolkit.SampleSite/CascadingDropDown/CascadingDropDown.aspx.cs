@@ -26,7 +26,7 @@ public partial class CascadingDropDown_CascadingDropDown : System.Web.UI.Page {
             Label1.Text = "Please select a color.";
         }
         else {
-            Label1.Text = String.Format("You have chosen a {0} {1} {2}. Nice car!", color, make, model);
+            Label1.Text = HttpUtility.HtmlEncode(String.Format("You have chosen a {0} {1} {2}. Nice car!", color, make, model));
         }
     }
 
