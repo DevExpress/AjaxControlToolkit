@@ -18,11 +18,11 @@ public partial class NoBot_NoBot : Page {
         // Display results view
         MultiView1.SetActiveView(View2);
         NoBotState state;
-        Label1.Text = String.Format(
+        Label1.Text = HttpUtility.HtmlEncode(String.Format(
             (NoBot1.IsValid(out state)
                 ? "Congratulations, \"{1} {2}\", you do not appear to be a bot. (Details: {0})"
                 : "Rejected; user appears to be a bot. (Details: {0})"),
-            state.ToString(), TextBox1.Text, TextBox2.Text);
+            state.ToString(), TextBox1.Text, TextBox2.Text));
 
         var sb = new StringBuilder();
         foreach(var kvp in NoBot.GetCopyOfUserAddressCache())
