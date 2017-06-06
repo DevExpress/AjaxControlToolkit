@@ -401,3 +401,13 @@ Sys.Extended.UI.ControlBase.prototype = {
 
 }
 Sys.Extended.UI.ControlBase.registerClass("Sys.Extended.UI.ControlBase", Sys.UI.Control);
+
+var isUnminified = /param/.test(function(param) { });
+
+Sys.Extended.Deprecated = function(oldMethodName, properMethodName) {
+    if(isUnminified && window.console && console.warn)
+        if(arguments.length == 1)
+            console.warn(oldMethodName + " is deprecated.");
+        else
+            console.warn(oldMethodName + " is deprecated. Use " + properMethodName + " instead.");
+}

@@ -1231,16 +1231,6 @@ Sys.Extended.UI.ScrollBars.prototype = {
 }
 Sys.Extended.UI.ScrollBars.registerEnum("Sys.Extended.UI.ScrollBars", false);
 
-var isUnminified = /param/.test(function(param) {});
-
-Sys.Extended.Deprecated = function (oldMethodName, properMethodName) {
-    if (isUnminified && window.console && console.warn)
-        if(arguments.length == 1)
-            console.warn(oldMethodName + " is deprecated.");
-        else
-            console.warn(oldMethodName + " is deprecated. Use " + properMethodName + " instead.");
-    }
-
 Sys.Extended.UI.zIndex = function() {};
 Sys.Extended.UI.zIndex.BubbleChartTooltip = 10000;
 Sys.Extended.UI.zIndex.ComboBoxList = 10000;
