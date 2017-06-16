@@ -912,12 +912,14 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox,
             isWebKit = Sys.Browser.agent == Sys.Browser.Safari,
             isIE = (Sys.Browser.agent == Sys.Browser.InternetExplorer || Sys.Browser.agent == null),
-            isOldIE = Sys.Browser.agent == Sys.Browser.InternetExplorer,
             delcolorPicker_onchange = Function.createDelegate(this, this._colorPicker_onchange);
 
+        var styleWithCssCmdName = 'styleWithCSS';
+        var isStyleWithCssCommandAvailable = document.queryCommandSupported(styleWithCssCmdName);
+
         if(!this.isSimpleTextDecoration(command.target.name)
-            && !isOldIE)
-            document.execCommand('styleWithCSS', false, true);
+            && isStyleWithCssCommandAvailable)
+            document.execCommand(styleWithCssCmdName, false, true);
 
         var map = {
             JustifyRight: 1,
