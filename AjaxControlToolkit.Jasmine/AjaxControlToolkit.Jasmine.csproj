@@ -105,6 +105,7 @@
     <Content Include="Scripts\MicrosoftAjax.debug.js" />
     <Content Include="Scripts\MicrosoftAjaxWebForms.js" />
     <Content Include="Scripts\MicrosoftAjaxWebForms.debug.js" />
+    <Content Include="Suites\RatingTests.aspx" />
     <Content Include="Suites\AccordionTests.aspx" />
     <Content Include="Suites\AjaxFileUploadTests.aspx" />
     <Content Include="Scripts\AjaxControlToolkit\Debug\Localization.Resources.debug.js" />
@@ -157,6 +158,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Suites\RatingTests.aspx.cs">
+      <DependentUpon>RatingTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\RatingTests.aspx.designer.cs">
+      <DependentUpon>RatingTests.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Suites\BarChartMasterPage.master.cs">
       <DependentUpon>BarChartMasterPage.master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
