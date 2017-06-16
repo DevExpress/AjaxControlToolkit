@@ -912,9 +912,11 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         var isFireFox = Sys.Browser.agent == Sys.Browser.Firefox,
             isWebKit = Sys.Browser.agent == Sys.Browser.Safari,
             isIE = (Sys.Browser.agent == Sys.Browser.InternetExplorer || Sys.Browser.agent == null),
+            isOldIE = Sys.Browser.agent == Sys.Browser.InternetExplorer,
             delcolorPicker_onchange = Function.createDelegate(this, this._colorPicker_onchange);
 
-        if(!this.isSimpleTextDecoration(command.target.name))
+        if(!this.isSimpleTextDecoration(command.target.name)
+            && !isOldIE)
             document.execCommand('styleWithCSS', false, true);
 
         var map = {
