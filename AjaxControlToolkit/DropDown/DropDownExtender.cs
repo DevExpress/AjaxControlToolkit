@@ -13,7 +13,8 @@ namespace AjaxControlToolkit {
     /// </summary>
     [TargetControlType(typeof(WebControl))]
     [TargetControlType(typeof(HtmlControl))]
-    [RequiredScript(typeof(CommonToolkitScripts))]
+    [TargetControlType(typeof(ScriptUserControl))]
+	[RequiredScript(typeof(CommonToolkitScripts))]
     [RequiredScript(typeof(PopupExtender))]
     [RequiredScript(typeof(HoverExtender))]
     [RequiredScript(typeof(AnimationExtender))]
