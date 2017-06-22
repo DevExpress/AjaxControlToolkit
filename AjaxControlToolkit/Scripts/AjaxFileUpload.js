@@ -758,14 +758,14 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         xhrReq.addEventListener("load", xhrDelegate(this.onUploadCompleteHandler), false);
         xhrReq.addEventListener("error", xhrDelegate(this.onUploadFailedHandler), false);
         xhrReq.addEventListener("abort", xhrDelegate(this.onUploadCanceledHandler), false);
-        xhrReq.open("POST",
+        xhrReq.open("POST", encodeURIComponent(
             control.get_uploadHandlerPath()
             + '?contextKey=' + control.get_contextKey()
             + '&controlID=' + control.get_id()
             + '&fileId=' + id
             + '&fileName=' + fileName
             + '&chunked=' + (chunked ? "true" : "false")
-            + '&firstChunk=' + firstChunk, true);
+            + '&firstChunk=' + firstChunk, true));
 
         form.append("act-file-data", blob);
         xhrReq.send(form);
