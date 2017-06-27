@@ -99,6 +99,7 @@ Sys.Extended.UI.AutoCompleteBehavior = function(element) {
     this._focusHandler = null;
     this._blurHandler = null;
     this._bodyClickHandler = null;
+    this._clickHandler = null;
     this._completionListBlurHandler = null;
     this._keyDownHandler = null;
     this._mouseDownHandler = null;
@@ -188,6 +189,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         this._mouseOverHandler = Function.createDelegate(this, this._onListMouseOver);
         this._completionListBlurHandler = Function.createDelegate(this, this._onCompletionListBlur);
         this._bodyClickHandler = Function.createDelegate(this, this._onCompletionListBlur);
+        this._clickHandler = Function.createDelegate(this, this._onInputClick);
 
 
         this._timer = new Sys.Timer();
@@ -244,6 +246,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
             $removeHandler(element, "focus", this._focusHandler);
             $removeHandler(element, "blur", this._blurHandler);
             $removeHandler(element, "keydown", this._keyDownHandler);
+            $removeHandler(element, "click", this._clickHandler);
             $removeHandler(this._completionListElement, 'blur', this._completionListBlurHandler);
             $removeHandler(this._completionListElement, 'mousedown', this._mouseDownHandler);
             $removeHandler(this._completionListElement, 'mouseup', this._mouseUpHandler);
@@ -258,6 +261,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         this._tickHandler = null;
         this._focusHandler = null;
         this._blurHandler = null;
+        this._clickHandler = null;
         this._keyDownHandler = null;
         this._completionListBlurHandler = null;
         this._mouseDownHandler = null;
@@ -277,6 +281,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         $addHandler(element, "focus", this._focusHandler);
         $addHandler(element, "blur", this._blurHandler);
         $addHandler(element, "keydown", this._keyDownHandler);
+        $addHandler(element, "click", this._clickHandler);
     },
 
     initializeCompletionList: function(element) {
@@ -305,6 +310,16 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         $addHandler(element, "mouseover", this._mouseOverHandler);
         $addHandler(element, "blur", this._completionListBlurHandler);
         $addHandler(document.body, 'click', this._bodyClickHandler);
+    },
+
+    _onInputClick: function(e) {
+        if(!e)
+            e = window.event;
+
+        if(e.stopPropagation)
+            e.stopPropagation();
+        else 
+            e.cancelBubble = true;
     },
 
     _currentCompletionWord: function() {
