@@ -12,14 +12,13 @@ namespace AjaxControlToolkit.Jasmine.Suites.AutoComplete {
     public class TestWebService : System.Web.Services.WebService {
         [WebMethod]
         public List<string> GetSampleData(string prefixText, int count) {
-            var returnList = new List<string>();
-            returnList.Add("AB");
-            returnList.Add("ABC");
-            returnList.Add("ABCD");
-            returnList.Add("ABCDE");
-            returnList.Add("ABCDEF");
-
-            return returnList;
+            return new List<string> {
+                "AB",
+                "ABC",
+                "ABCD",
+                "ABCDE",
+                "ABCDEF"
+            };
         }
     }
 }
