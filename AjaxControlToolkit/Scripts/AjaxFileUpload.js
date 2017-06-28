@@ -763,7 +763,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
             + '?contextKey=' + control.get_contextKey()
             + '&controlID=' + control.get_id()
             + '&fileId=' + id
-            + '&fileName=' + fileName
+            + '&fileName=' + encodeURIComponent(fileName)
             + '&chunked=' + (chunked ? "true" : "false")
             + '&firstChunk=' + firstChunk, true);
 
