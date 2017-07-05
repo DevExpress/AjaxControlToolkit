@@ -13,7 +13,7 @@ namespace AjaxControlToolkit {
     // of the AccordionControl.
     [ToolboxData("<{0}:AccordionPane runat=\"server\"></{0}:AccordionPane>")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AccordionName + Constants.IconPostfix)]
-    public class AccordionPane : WebControl {
+    public class AccordionPane : WebControl, INamingContainer {
          AccordionContentPanel _header;
          ITemplate _headerTemplate;
          AccordionContentPanel _content;

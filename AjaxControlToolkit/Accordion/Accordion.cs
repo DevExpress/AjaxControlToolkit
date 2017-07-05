@@ -24,7 +24,8 @@ namespace AjaxControlToolkit {
     [Designer(typeof(AccordionDesigner))]
     [ToolboxData("<{0}:Accordion runat=server></{0}:Accordion>")]
     [ToolboxBitmap(typeof(ToolboxIcons.Accessor), Constants.AccordionName + Constants.IconPostfix)]
-    public class Accordion : WebControl {
+    public class Accordion : WebControl, INamingContainer
+    {
         // ViewState key for tracking the number of panes in the Accordion
         internal const string ItemCountViewStateKey = "_!ItemCount";
 
