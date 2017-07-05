@@ -40,7 +40,7 @@ namespace AjaxControlToolkit {
                 .ToArray();
         }
 
-        internal static IEnumerable<ScriptReference> GetControlScriptReferences(Type type) {
+        public static IEnumerable<ScriptReference> GetControlScriptReferences(Type type) {
             return new Localization().GetLocalizationScriptReferences().Concat(
                 GetScriptEntries(type).Select(entry => new ScriptReference {
                     Assembly = entry.AssemblyName,

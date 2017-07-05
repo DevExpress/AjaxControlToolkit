@@ -5,7 +5,7 @@ using System.Text;
 using System.Web.UI;
 
 namespace AjaxControlToolkit {
-    class ScriptComponentDescriptorWrapper : IScriptComponentDescriptor {
+    public class ScriptComponentDescriptorWrapper : IScriptComponentDescriptor {
         ScriptComponentDescriptor _descriptor;
 
         public ScriptComponentDescriptorWrapper(ScriptComponentDescriptor descriptor) {
