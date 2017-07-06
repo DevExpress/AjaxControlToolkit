@@ -41,6 +41,8 @@
                 var parts = LINKBUTTON_UNIQUE_ID.split("$");
 
                 expect(parts[1]).toBe("TestSuite");
+                expect(parts[2]).toBe("TestAccordion");
+                expect(parts[3]).toBe("TestAccordionPane");
                 expect(parts[5]).toBe("TestLinkButton");
             });
 
