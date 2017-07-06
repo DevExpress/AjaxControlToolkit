@@ -41,7 +41,7 @@
                 var parts = LINKBUTTON_UNIQUE_ID.split("$");
 
                 expect(parts[1]).toBe("TestSuite");
-                expect(parts[3]).toBe("TestLinkButton");
+                expect(parts[5]).toBe("TestLinkButton");
             });
 
             it("renders correct pane header class", function () {
