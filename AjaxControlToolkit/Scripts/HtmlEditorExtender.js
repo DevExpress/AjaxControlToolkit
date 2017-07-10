@@ -601,13 +601,21 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     },
 
     setFontFamily: function(fontFamilyName) {
-        document.execCommand("styleWithCSS", false, true);
+        this._executeStyleWithCssCommand();
         document.execCommand("fontname", false, fontFamilyName);
     },
 
     setFontSize: function(fontSize) {
-        document.execCommand("styleWithCSS", false, true);
+        this._executeStyleWithCssCommand();
         document.execCommand("fontsize", false, fontSize);
+    },
+
+    _executeStyleWithCssCommand: function(){
+        var styleWithCssCmdName = 'styleWithCSS';
+        var isStyleWithCssCommandAvailable = document.queryCommandSupported(styleWithCssCmdName);
+
+        if(isStyleWithCssCommandAvailable)
+            document.execCommand(styleWithCssCmdName, false, true);
     },
 
     _createEditableDiv: function() {
@@ -914,12 +922,8 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
             isIE = (Sys.Browser.agent == Sys.Browser.InternetExplorer || Sys.Browser.agent == null),
             delcolorPicker_onchange = Function.createDelegate(this, this._colorPicker_onchange);
 
-        var styleWithCssCmdName = 'styleWithCSS';
-        var isStyleWithCssCommandAvailable = document.queryCommandSupported(styleWithCssCmdName);
-
-        if(!this.isSimpleTextDecoration(command.target.name)
-            && isStyleWithCssCommandAvailable)
-            document.execCommand(styleWithCssCmdName, false, true);
+        if(!this.isSimpleTextDecoration(command.target.name))
+            this._executeStyleWithCssCommand();
 
         var map = {
             JustifyRight: 1,
