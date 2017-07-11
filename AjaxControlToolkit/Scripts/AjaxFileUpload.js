@@ -736,7 +736,6 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
 
         // preparing upload data
         var blob = fileItem.get_inputElementValue(),
-            fileName = fileItem._fileName,
             chunked = fileItem._slices && (fileItem._slices > 0),
             firstChunk = fileItem._sliceIndex == 0;
 
@@ -762,7 +761,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
             + '?contextKey=' + control.get_contextKey()
             + '&controlID=' + control.get_id()
             + '&fileId=' + id
-            + '&fileName=' + encodeURIComponent(fileName)
+            + '&fileName=' + encodeURIComponent(fileItem._fileName)
             + '&chunked=' + (chunked ? "true" : "false")
             + '&firstChunk=' + firstChunk, true);
 
