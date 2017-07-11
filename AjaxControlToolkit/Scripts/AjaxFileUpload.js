@@ -41,7 +41,7 @@ Sys.Extended.UI.AjaxFileUpload.Utils = function() {
             }
         }
 
-        return encodeURIComponent(result);
+        return result;
     };
 
     this.getFileType = function(file) {
@@ -155,7 +155,7 @@ Sys.Extended.UI.AjaxFileUpload.Item.prototype = {
             });
 
         this._fileName = utils.getFileName(file);
-        var fileNameToDisplay = decodeURIComponent(this._fileName);
+        var fileNameToDisplay = this._fileName;
 
         if(isHtml5Support) {
             this._fileSize = file.size;
@@ -385,7 +385,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
             + '?contextKey=' + control.get_contextKey()
             + '&controlID=' + control.get_id()
             + '&fileId=' + control._currentFileId
-            + '&fileName=' + fileItem._fileName
+            + '&fileName=' + encodeURIComponent(fileItem._fileName)
             + '&usePoll=' + (control.get_serverPollingSupport() ? "true" : "false"));
 
         // upload it now
