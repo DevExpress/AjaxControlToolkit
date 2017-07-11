@@ -41,7 +41,7 @@ Sys.Extended.UI.AjaxFileUpload.Utils = function() {
             }
         }
 
-        return encodeURIComponent(result);
+        return result;
     };
 
     this.getFileType = function(file) {
@@ -155,18 +155,17 @@ Sys.Extended.UI.AjaxFileUpload.Item.prototype = {
             });
 
         this._fileName = utils.getFileName(file);
-        var fileNameToDisplay = decodeURIComponent(this._fileName);
 
         if(isHtml5Support) {
             this._fileSize = file.size;
             var fType = file.type ? '<span class="filetype">(' + file.type + ')</span>' : '';
-            fileInfoText.innerHTML = '<span class="filename">' + fileNameToDisplay + '</span> '
+            fileInfoText.innerHTML = '<span class="filename">' + this._fileName + '</span> '
                 + fType
                 + ' - <span class="filesize">' + utils.sizeToString(file.size) + '</span> ';
             this._fileType = file.type;
         } else {
 
-            fileInfoText.innerHTML = '<span class="filename">' + fileNameToDisplay + '</span>';
+            fileInfoText.innerHTML = '<span class="filename">' + this._fileName + '</span>';
             this._fileType = utils.getFileType(file);
         }
 
@@ -385,7 +384,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
             + '?contextKey=' + control.get_contextKey()
             + '&controlID=' + control.get_id()
             + '&fileId=' + control._currentFileId
-            + '&fileName=' + fileItem._fileName
+            + '&fileName=' + encodeURIComponent(fileItem._fileName)
             + '&usePoll=' + (control.get_serverPollingSupport() ? "true" : "false"));
 
         // upload it now
@@ -737,7 +736,6 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
 
         // preparing upload data
         var blob = fileItem.get_inputElementValue(),
-            fileName = fileItem._fileName,
             chunked = fileItem._slices && (fileItem._slices > 0),
             firstChunk = fileItem._sliceIndex == 0;
 
@@ -763,7 +761,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
             + '?contextKey=' + control.get_contextKey()
             + '&controlID=' + control.get_id()
             + '&fileId=' + id
-            + '&fileName=' + encodeURIComponent(fileName)
+            + '&fileName=' + encodeURIComponent(fileItem._fileName)
             + '&chunked=' + (chunked ? "true" : "false")
             + '&firstChunk=' + firstChunk, true);
 
