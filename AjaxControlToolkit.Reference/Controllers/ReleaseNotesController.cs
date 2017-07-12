@@ -49,8 +49,7 @@ namespace AjaxControlToolkit.Reference.Controllers {
         private IEnumerable<GitHubIssue> GetMilestoneIssues(IEnumerable<GitHubIssue> closedIssues, string milestone) {
             return closedIssues.Where(issue =>
                 IsTargetMilestone(issue, milestone)
-                && issue.Labels.Any(label => IsReleaseNotesLabel(label))
-                && !issue.Labels.Any(label => ignoreLabels.Contains(label.Name)));
+                && IsIncludedInReleaseNotes(issue));
         }
 
         private static bool IsTargetMilestone(GitHubIssue issue, string milestone) {
@@ -58,9 +57,14 @@ namespace AjaxControlToolkit.Reference.Controllers {
         }
 
         private IEnumerable<GitHubIssue> ValidateLabeledIssuesWithoutMilestone(IEnumerable<GitHubIssue> closedIssues) {
-            return closedIssues.Where(issue => !issue.IsPullRequest() 
-                && issue.Milestone == null 
-                && issue.Labels.Any(label => IsReleaseNotesLabel(label)));
+            return closedIssues.Where(issue => !issue.IsPullRequest()
+                && issue.Milestone == null
+                && IsIncludedInReleaseNotes(issue));
+        }
+
+        private bool IsIncludedInReleaseNotes(GitHubIssue issue) {
+            return issue.Labels.Any(label => IsReleaseNotesLabel(label))
+                && !issue.Labels.Any(label => ignoreLabels.Contains(label.Name));
         }
 
         private static bool IsReleaseNotesLabel(GitHubLabel label) {
