@@ -661,6 +661,7 @@ namespace AjaxControlToolkit {
             var itemArgs = new AccordionItemEventArgs(container, itemType);
             OnItemCreated(itemArgs);
 
+            container.ID = (itemType == AccordionItemType.Header ? "h" : "c") + index;
             container.SetDataItemProperties(dataItem, index, itemType);
             template.InstantiateIn(container);
 
