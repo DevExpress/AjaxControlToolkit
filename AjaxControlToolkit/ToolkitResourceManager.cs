@@ -20,6 +20,18 @@ namespace AjaxControlToolkit {
             _scriptsCache = new Dictionary<Type, List<ResourceEntry>>(),
             _cssCache = new Dictionary<Type, List<ResourceEntry>>();
 
+        static readonly Type[] _controlTypesWithBackground = new Type[] {
+            typeof(BalloonPopupExtender),
+            typeof(CalendarExtender),
+            typeof(ComboBox),
+            typeof(DropDownExtender),
+            typeof(HtmlEditor.Editor),
+            typeof(HtmlEditorExtender),
+            typeof(MultiHandleSliderExtender),
+            typeof(SliderExtender),
+            typeof(TabContainer)
+        };
+
         static ToolkitResourceManager() {
         }
 
@@ -33,6 +45,11 @@ namespace AjaxControlToolkit {
         }
 
         // Scripts
+        public static ScriptReference GetBaseScriptReference() {
+            return new ScriptReference(
+                Constants.BaseScriptName + Constants.JsPostfix,
+                typeof(ToolkitResourceManager).Assembly.FullName);
+        }
 
         public static string[] GetScriptPaths(params string[] toolkitBundles) {
             return GetEmbeddedScripts(toolkitBundles)
@@ -163,7 +180,12 @@ namespace AjaxControlToolkit {
                     yield return entry;
             }
 
-            yield return new ResourceEntry(Constants.BackgroundStylesName, typeof(ExtenderControlBase), 0);
+            if(controlTypes.Any(IsControlWithBackground))
+                yield return new ResourceEntry(Constants.BackgroundStylesName, typeof(ExtenderControlBase), 0);
+        }
+
+        static bool IsControlWithBackground(Type typeToCheck) {
+            return _controlTypesWithBackground.Any(t => t.IsAssignableFrom(typeToCheck));
         }
 
         static string FormatStyleVirtualPath(string name, bool minified) {
