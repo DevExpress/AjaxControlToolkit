@@ -45,7 +45,7 @@ namespace AjaxControlToolkit {
         }
 
         // Scripts
-        public static ScriptReference GetBaseScriptsReference() {
+        public static ScriptReference GetBaseScriptReference() {
             return new ScriptReference(
                 Constants.BaseScriptName + Constants.JsPostfix,
                 typeof(ToolkitResourceManager).Assembly.FullName);
