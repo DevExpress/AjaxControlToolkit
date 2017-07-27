@@ -372,6 +372,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         // "evt" - set by the browser when called as an event handler (unused here)
         // "inInit" - whether this is being called from the initialize method
 
+        this.set_selectedValue('', '');
         var e = this.get_element();
 
         // Create the known category/value pairs string for sending to the helper web service
