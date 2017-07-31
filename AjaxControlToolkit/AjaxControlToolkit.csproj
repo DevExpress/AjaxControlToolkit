@@ -69,6 +69,9 @@
     <Compile Include="EmbeddedScript.cs" />
     <Compile Include="ExtenderBase\IScriptComponentDescriptor.cs" />
     <Compile Include="ExtenderBase\ScriptComponentDescriptorWrapper.cs" />
+    <Compile Include="ExtenderBase\ScriptUserControl.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="MultiHandleSlider\MultiHandleSliderTargetsEditor.cs" />
     <Compile Include="Tabs\TabCssTheme.cs" />
     <Compile Include="ToolkitConfig.cs" />
