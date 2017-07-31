@@ -201,6 +201,17 @@ namespace AjaxControlToolkit {
             set { SetPropertyValue<bool>("EnableAtLoading", value); }
         }
 
+        /// <summary>
+        /// Always clear selected item when parent value changes.
+        /// </summary>
+        [ExtenderControlProperty]
+        [ClientPropertyName("clearSelectedItemOnParentChange")]
+        [DefaultValue(false)]
+        public bool ClearSelectedItemOnParentChange {
+            get { return GetPropertyValue<bool>("ClearSelectedItemOnParentChange", false); }
+            set { SetPropertyValue<bool>("ClearSelectedItemOnParentChange", value); }
+        }
+
         // Populate DropDownLists with their SelectedValues
         void CascadingDropDown_ClientStateValuesLoaded(object sender, EventArgs e) {
             var dropDownList = (ListControl)TargetControl;

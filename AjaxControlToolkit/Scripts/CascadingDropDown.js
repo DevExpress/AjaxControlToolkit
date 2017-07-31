@@ -129,6 +129,14 @@ Sys.Extended.UI.CascadingDropDownBehavior = function(e) {
     /// <member name="cP:AjaxControlToolkit.CascadingDropDown.enableAtLoading" />
     this._enableAtLoading = false;
 
+    /// <summary>
+    /// Always clear selected item when parent value changes.
+    /// </summary>
+    /// <getter>get_clearSelectedItemOnParentChange</getter>
+    /// <setter>set_clearSelectedItemOnParentChange</setter>
+    /// <member name="cP:AjaxControlToolkit.CascadingDropDown.clearSelectedItemOnParentChange" />
+    this._clearSelectedItemOnParentChange = false;
+
     // Variables
     this._parentElement = null;
     this._changeHandler = null;
@@ -371,6 +379,9 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         // Handler for the parent drop down's change event
         // "evt" - set by the browser when called as an event handler (unused here)
         // "inInit" - whether this is being called from the initialize method
+
+        if(this.get_clearSelectedItemOnParentChange())
+            this.set_selectedValue('', '');
 
         var e = this.get_element();
 
@@ -712,6 +723,16 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
         if(this._enableAtLoading != value) {
             this._enableAtLoading = value;
             this.raisePropertyChanged('enableAtLoading');
+        }
+    },
+
+    get_clearSelectedItemOnParentChange: function() {
+        return this._clearSelectedItemOnParentChange;
+    },
+    set_clearSelectedItemOnParentChange: function(value) {
+        if(this._clearSelectedItemOnParentChange != value) {
+            this._clearSelectedItemOnParentChange = value;
+            this.raisePropertyChanged('clearSelectedItemOnParentChange');
         }
     },
 
