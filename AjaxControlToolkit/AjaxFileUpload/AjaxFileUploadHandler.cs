@@ -29,6 +29,7 @@ namespace AjaxControlToolkit {
 
             context.Response.ContentEncoding = Encoding.UTF8;
             context.Response.Cache.SetCacheability(HttpCacheability.NoCache);
+            context.Response.ContentType = "text/plain";
             context.Response.End();
         }
     }
