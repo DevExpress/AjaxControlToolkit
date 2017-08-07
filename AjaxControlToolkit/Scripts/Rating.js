@@ -538,8 +538,6 @@ Sys.Extended.UI.RatingBehavior.prototype = {
 
                 this.raisePropertyChanged('rating');
                 this.raise_rated(this._currentRating);
-
-                this.doCallback();
             }
         }
     },
