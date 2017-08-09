@@ -381,15 +381,7 @@ namespace AjaxControlToolkit {
         /// </summary>
         /// <param name="eventArgument" type="String">Event argument</param>
         public void RaiseCallbackEvent(string eventArgument) {
-            var args = new RatingEventArgs(eventArgument);
-
-            OnClick(args);
-
-            var value = Convert.ToInt32(args.Value.Replace(";", ""));
-            if(value != this.CurrentRating)
-                OnChanged(args);
-
-            _returnFromEvent = args.CallbackResult;
+            _returnFromEvent = HandleEvent(eventArgument).CallbackResult;
         }
 
         #endregion
@@ -401,13 +393,32 @@ namespace AjaxControlToolkit {
         /// </summary>
         /// <param name="eventArgument" type="String">Event argument</param>
         public void RaisePostBackEvent(string eventArgument) {
-            var args = new RatingEventArgs(eventArgument);
+            HandleEvent(eventArgument);
+        }
 
-            OnClick(args);
+        RatingEventArgs HandleEvent(string eventArgument) {
+            var eventData = ParseEventData(eventArgument);
+            var fromUI = Convert.ToInt32(eventData[0]) > 0;
 
-            var value = Convert.ToInt32(args.Value.Replace(";", ""));
-            if(value != this.CurrentRating)
+            var args = new RatingEventArgs(eventData[1], eventData[2]);
+
+            if(fromUI)
+                OnClick(args);
+
+            var value = Convert.ToInt32(args.Value);
+            if(value != CurrentRating)
                 OnChanged(args);
+
+            return args;
+        }
+
+        string[] ParseEventData(string eventArgument) {
+            if(eventArgument != null) {
+                var items = eventArgument.Split(';');
+                if(items.Length == 3)
+                    return items;
+            }
+            throw new ArgumentException("Unexpected event argument");
         }
 
         #endregion
@@ -420,6 +431,7 @@ namespace AjaxControlToolkit {
         string _tag;
         string _callbackResult;
 
+        [Obsolete]
         public RatingEventArgs(string args) {
             if(args == null)
                 throw new ArgumentNullException("args");
@@ -429,6 +441,11 @@ namespace AjaxControlToolkit {
                 _value = tabArgs[0];
                 _tag = tabArgs[1];
             }
+        }
+
+        public RatingEventArgs(string value, string tag) {
+            _value = value;
+            _tag = tag;
         }
 
         public string Value {
