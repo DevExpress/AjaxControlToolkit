@@ -309,9 +309,9 @@ namespace AjaxControlToolkit {
                         writer.AddAttribute("class", StarCssClass + " " + EmptyStarCssClass);
                 else
                     if(i <= maxRating - currentRating)
-                        writer.AddAttribute("class", StarCssClass + " " + EmptyStarCssClass);
-                    else
-                        writer.AddAttribute("class", StarCssClass + " " + FilledStarCssClass);
+                    writer.AddAttribute("class", StarCssClass + " " + EmptyStarCssClass);
+                else
+                    writer.AddAttribute("class", StarCssClass + " " + FilledStarCssClass);
 
                 writer.RenderBeginTag(HtmlTextWriterTag.Span);
                 writer.Write("&nbsp;");
@@ -381,13 +381,7 @@ namespace AjaxControlToolkit {
         /// </summary>
         /// <param name="eventArgument" type="String">Event argument</param>
         public void RaiseCallbackEvent(string eventArgument) {
-            var args = new RatingEventArgs(eventArgument);
-
-            OnClick(args);
-
-            var value = Convert.ToInt32(args.Value.Replace(";", ""));
-            if(value != this.CurrentRating)
-                OnChanged(args);
+            var args = HandleEvent(eventArgument);
 
             _returnFromEvent = args.CallbackResult;
         }
@@ -401,13 +395,25 @@ namespace AjaxControlToolkit {
         /// </summary>
         /// <param name="eventArgument" type="String">Event argument</param>
         public void RaisePostBackEvent(string eventArgument) {
-            var args = new RatingEventArgs(eventArgument);
+            HandleEvent(eventArgument);
+        }
 
-            OnClick(args);
+        private RatingEventArgs HandleEvent(string eventArgument) {
+            var eventArgumentParts = eventArgument.Split(';');
+            var eventName = eventArgumentParts[0];
 
-            var value = Convert.ToInt32(args.Value.Replace(";", ""));
-            if(value != this.CurrentRating)
-                OnChanged(args);
+            var args = new RatingEventArgs(eventArgumentParts[1] + ";" + eventArgumentParts[2]);
+
+            if(eventName == "click")
+                OnClick(args);
+
+            if(eventName == "rating") {
+                var value = Convert.ToInt32(args.Value.Replace(";", ""));
+                if(value != this.CurrentRating)
+                    OnChanged(args);
+            }
+
+            return args;
         }
 
         #endregion
