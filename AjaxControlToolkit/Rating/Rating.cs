@@ -400,18 +400,16 @@ namespace AjaxControlToolkit {
 
         private RatingEventArgs HandleEvent(string eventArgument) {
             var eventArgumentParts = eventArgument.Split(';');
-            var eventName = eventArgumentParts[0];
+            var source = eventArgumentParts[0];
 
             var args = new RatingEventArgs(eventArgumentParts[1] + ";" + eventArgumentParts[2]);
 
-            if(eventName == "click")
+            if(source == "fromUI")
                 OnClick(args);
 
-            if(eventName == "rating") {
-                var value = Convert.ToInt32(args.Value.Replace(";", ""));
-                if(value != this.CurrentRating)
-                    OnChanged(args);
-            }
+            var value = Convert.ToInt32(args.Value);
+            if(value != this.CurrentRating)
+                OnChanged(args);
 
             return args;
         }
