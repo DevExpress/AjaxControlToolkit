@@ -41,7 +41,7 @@
                     return arg;
                 });
                 ratingExtender._onStarClick();
-                expect(ratingExtender.doCallback).toHaveBeenCalledWith("fromUI");
+                expect(ratingExtender.doCallback).toHaveBeenCalledWith(true);
             });
 
             it("calls doCallback() from UI only once with changed value", function() {
