@@ -309,9 +309,9 @@ namespace AjaxControlToolkit {
                         writer.AddAttribute("class", StarCssClass + " " + EmptyStarCssClass);
                 else
                     if(i <= maxRating - currentRating)
-                    writer.AddAttribute("class", StarCssClass + " " + EmptyStarCssClass);
-                else
-                    writer.AddAttribute("class", StarCssClass + " " + FilledStarCssClass);
+                        writer.AddAttribute("class", StarCssClass + " " + EmptyStarCssClass);
+                    else
+                        writer.AddAttribute("class", StarCssClass + " " + FilledStarCssClass);
 
                 writer.RenderBeginTag(HtmlTextWriterTag.Span);
                 writer.Write("&nbsp;");
