@@ -381,9 +381,7 @@ namespace AjaxControlToolkit {
         /// </summary>
         /// <param name="eventArgument" type="String">Event argument</param>
         public void RaiseCallbackEvent(string eventArgument) {
-            var args = HandleEvent(eventArgument);
-
-            _returnFromEvent = args.CallbackResult;
+            _returnFromEvent = HandleEvent(eventArgument).CallbackResult;
         }
 
         #endregion
@@ -398,20 +396,29 @@ namespace AjaxControlToolkit {
             HandleEvent(eventArgument);
         }
 
-        private RatingEventArgs HandleEvent(string eventArgument) {
-            var eventArgumentParts = eventArgument.Split(';');
-            var source = eventArgumentParts[0];
+        RatingEventArgs HandleEvent(string eventArgument) {
+            var eventData = ParseEventData(eventArgument);
+            var fromUI = Convert.ToInt32(eventData[0]) > 0;
 
-            var args = new RatingEventArgs(eventArgumentParts[1] + ";" + eventArgumentParts[2]);
+            var args = new RatingEventArgs(eventData[1], eventData[2]);
 
-            if(source == "fromUI")
+            if(fromUI)
                 OnClick(args);
 
             var value = Convert.ToInt32(args.Value);
-            if(value != this.CurrentRating)
+            if(value != CurrentRating)
                 OnChanged(args);
 
             return args;
+        }
+
+        string[] ParseEventData(string eventArgument) {
+            if(eventArgument != null) {
+                var items = eventArgument.Split(';');
+                if(items.Length == 3)
+                    return items;
+            }
+            throw new ArgumentException("Unexpected event argument");
         }
 
         #endregion
@@ -424,6 +431,7 @@ namespace AjaxControlToolkit {
         string _tag;
         string _callbackResult;
 
+        [Obsolete]
         public RatingEventArgs(string args) {
             if(args == null)
                 throw new ArgumentNullException("args");
@@ -433,6 +441,11 @@ namespace AjaxControlToolkit {
                 _value = tabArgs[0];
                 _tag = tabArgs[1];
             }
+        }
+
+        public RatingEventArgs(string value, string tag) {
+            _value = value;
+            _tag = tag;
         }
 
         public string Value {
