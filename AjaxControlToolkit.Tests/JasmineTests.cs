@@ -40,17 +40,6 @@ namespace AjaxControlToolkit.Tests {
         }
 
         [Test]
-        public void FireFox() {
-            var driverService = FirefoxDriverService.CreateDefaultService(_driverDir, "geckodriver.exe");
-            driverService.FirefoxBinaryPath = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
-            driverService.HideCommandPromptWindow = true;
-            driverService.SuppressInitialDiagnosticInformation = true;
-            var driver = new FirefoxDriver(driverService, new FirefoxOptions(), TimeSpan.FromSeconds(60));
-
-            TestBrowser(driver);
-        }
-
-        [Test]
         public void InternetExplorer() {
             var driver = new InternetExplorerDriver(_driverDir, new InternetExplorerOptions(), TimeSpan.FromMinutes(3));
 
