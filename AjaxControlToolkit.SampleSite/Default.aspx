@@ -22,9 +22,9 @@ The AJAX Control Toolkit contains more than 30 controls that enable you to easil
    </p>
     <br />
     <p>
-To get started, and to install the Ajax Control Toolkit, visit the        
-<a href="http://AjaxControlToolkit.codeplex.com/">AJAX Control Toolkit Project Page</a>
-on CodePlex. 
+To get started, and to install the Ajax Control Toolkit, visit the 
+<a href="https://devexpress.com/act/">AJAX Control Toolkit Project Page</a>
+on DevExpress. 
    </p>
     <br />
     <p>
