@@ -9,7 +9,7 @@ install:
   - ps: Install-Product node 6
   - npm install --depth=0 -g eslint
 # Workaround for Selenium testing: https://github.com/SeleniumHQ/selenium/issues/4406
-  - choco install firefox --version 46.0.1
+  - choco install firefox --version 54.0.1
 
 environment:
   AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
