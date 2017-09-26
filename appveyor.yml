@@ -8,6 +8,8 @@ install:
   - if not exist "nuget.exe" (appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/v3.3.0/nuget.exe)
   - ps: Install-Product node 6
   - npm install --depth=0 -g eslint
+# Workaround for Selenium testing: https://github.com/SeleniumHQ/selenium/issues/4406
+  - choco install firefox --version 54.0.1
 
 environment:
   AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
