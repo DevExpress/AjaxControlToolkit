@@ -724,7 +724,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
             element.value = newText;
         }
 
-        // the latest Chrome and FireFox already generates this event
+        // In Chrome and Firefox, this event is triggered automatically
         if (Sys.Browser.agent === Sys.Browser.InternetExplorer
             || Sys.Browser.agent === null)
         $common.tryFireEvent(element, "change");
