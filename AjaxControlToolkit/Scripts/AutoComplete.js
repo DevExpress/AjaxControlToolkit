@@ -723,6 +723,10 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         } else {
             element.value = newText;
         }
+
+        // In Chrome and Firefox, this event is triggered automatically
+        if (Sys.Browser.agent === Sys.Browser.InternetExplorer
+            || Sys.Browser.agent === null)
         $common.tryFireEvent(element, "change");
 
         this.raise_itemSelected(new Sys.Extended.UI.AutoCompleteItemEventArgs(item, text, item ? item._value : null));
