@@ -34,6 +34,7 @@ namespace AjaxControlToolkit.HtmlEditor {
         ControlDesigner _designer;
         static Lazy<IHtmlSanitizer> _sanitizer = new Lazy<IHtmlSanitizer>(CreateSanitizer, true);
         bool _enableSanitization = true;
+        static Lazy<Dictionary<string, string[]>> _elementWhiteList = new Lazy<Dictionary<string, string[]>>(MakeCombinedElementList, true);
 
         protected EditPanel()
             : base(false, HtmlTextWriterTag.Div) {
@@ -58,6 +59,10 @@ namespace AjaxControlToolkit.HtmlEditor {
         public bool EnableSanitization {
             get { return _enableSanitization; }
             set { _enableSanitization = value; }
+        }
+
+        static Dictionary<string, string[]> ElementWhiteList {
+            get { return _elementWhiteList.Value; }
         }
 
         [Category("Behavior")]
@@ -101,8 +106,8 @@ namespace AjaxControlToolkit.HtmlEditor {
                 if(cont == "<br />")
                     cont = String.Empty;
 
-                if(EnableSanitization && Sanitizer != null)
-                    cont = Sanitizer.GetSafeHtmlFragment(cont, MakeCombinedElementList());
+                if(EnableSanitization)
+                    cont = Sanitizer.GetSafeHtmlFragment(cont, ElementWhiteList);
 
                 _contentChanged = (Content.Replace("\n", String.Empty).Replace("\r", String.Empty) != cont.Replace("\n", String.Empty).Replace("\r", String.Empty));
                 Content = cont;
@@ -502,7 +507,7 @@ namespace AjaxControlToolkit.HtmlEditor {
                 Controls.Add(ModePanels[0]);
         }
 
-        Dictionary<string, string[]> MakeCombinedElementList() {
+        static Dictionary<string, string[]> MakeCombinedElementList() {
             var elementWhiteList = new Dictionary<string, string[]>();
             elementWhiteList.Add("b", new string[] { "style" });
             elementWhiteList.Add("strong", new string[] { "style" });
