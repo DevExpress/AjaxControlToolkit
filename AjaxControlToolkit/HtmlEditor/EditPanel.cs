@@ -50,18 +50,10 @@ namespace AjaxControlToolkit.HtmlEditor {
             return (IHtmlSanitizer)sanitizer;
         }
 
-        IHtmlSanitizer Sanitizer {
-            get { return _sanitizer.Value; }
-        }
-
         [Browsable(false)]
         public bool EnableSanitization {
             get { return _enableSanitization; }
             set { _enableSanitization = value; }
-        }
-
-        static Dictionary<string, string[]> ElementWhiteList {
-            get { return _elementWhiteList.Value; }
         }
 
         [Category("Behavior")]
@@ -106,7 +98,7 @@ namespace AjaxControlToolkit.HtmlEditor {
                     cont = String.Empty;
 
                 if(EnableSanitization)
-                    cont = Sanitizer.GetSafeHtmlFragment(cont, ElementWhiteList);
+                    cont = _sanitizer.Value.GetSafeHtmlFragment(cont, _elementWhiteList.Value);
 
                 _contentChanged = (Content.Replace("\n", String.Empty).Replace("\r", String.Empty) != cont.Replace("\n", String.Empty).Replace("\r", String.Empty));
                 Content = cont;
