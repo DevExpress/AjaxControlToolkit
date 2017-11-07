@@ -1,6 +1,8 @@
 using AjaxControlToolkit.Design;
+using AjaxControlToolkit.HtmlEditor.Sanitizer;
 using AjaxControlToolkit.HtmlEditor.ToolbarButtons;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
@@ -103,6 +105,21 @@ namespace AjaxControlToolkit.HtmlEditor {
 
         public Editor()
             : base(false, HtmlTextWriterTag.Div) {
+        }
+
+        /// <summary>
+        /// Determines whether or not to use HTML-sanitization before data transfer to the server
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(true)]
+        public bool EnableSanitization {
+            get { return EditPanel.EnableSanitization; }
+            set { EditPanel.EnableSanitization = value; }
+        }
+
+        public IHtmlSanitizer Sanitizer {
+            get { return _editPanel.Sanitizer; }
+            set { _editPanel.Sanitizer = value; }
         }
 
         [Category("Behavior")]
@@ -260,8 +277,11 @@ namespace AjaxControlToolkit.HtmlEditor {
 
         internal EditPanel EditPanel {
             get {
-                if(_editPanel == null)
+                if(_editPanel == null) {
                     _editPanel = new EditPanelInstance();
+                    _editPanel.EnableSanitization = this.EnableSanitization;
+                    _editPanel.Sanitizer = this.Sanitizer;
+                }
                 return _editPanel;
             }
         }
@@ -303,6 +323,10 @@ namespace AjaxControlToolkit.HtmlEditor {
 
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
+
+            // Check if EnableSanitization is enabled and sanitizer provider is not configured.
+            if(!DesignMode && EnableSanitization && Sanitizer == null)
+                throw new Exception("The Sanitizer is not configured in the web.config file. Either install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package or set the EnableSanitization property to False (insecure).");
 
             EditPanel.Toolbars.Add(BottomToolbar);
             _changingToolbar = TopToolbar;

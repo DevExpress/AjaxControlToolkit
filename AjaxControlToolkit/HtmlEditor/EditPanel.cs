@@ -1,4 +1,6 @@
+using AjaxControlToolkit.HtmlEditor.Sanitizer;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
@@ -30,9 +32,32 @@ namespace AjaxControlToolkit.HtmlEditor {
         readonly ModePanel[] ModePanels = new ModePanel[] { new DesignPanel(), new HtmlPanel(), new PreviewPanel() };
         Collection<Toolbar> _toolbars;
         ControlDesigner _designer;
+        static Lazy<IHtmlSanitizer> _sanitizer = new Lazy<IHtmlSanitizer>(CreateSanitizer, true);
+        bool _enableSanitization = true;
 
         protected EditPanel()
             : base(false, HtmlTextWriterTag.Div) {
+        }
+
+        static IHtmlSanitizer CreateSanitizer() {
+            if(String.IsNullOrEmpty(ToolkitConfig.HtmlSanitizer))
+                return null;
+
+            var sanitizerType = Type.GetType(ToolkitConfig.HtmlSanitizer);
+            var sanitizer = Activator.CreateInstance(sanitizerType);
+
+            return (IHtmlSanitizer)sanitizer;
+        }
+
+        public IHtmlSanitizer Sanitizer {
+            get { return _sanitizer.Value; }
+            set { _sanitizer = new Lazy<IHtmlSanitizer>(() => value, true); }
+        }
+
+        [Browsable(false)]
+        public bool EnableSanitization {
+            get { return _enableSanitization; }
+            set { _enableSanitization = value; }
         }
 
         [Category("Behavior")]
@@ -75,6 +100,9 @@ namespace AjaxControlToolkit.HtmlEditor {
                 var cont = (String)post.Replace("&lt;", "<").Replace("&gt;", ">").Replace("&quot;", "\"").Replace("&amp;", "&");
                 if(cont == "<br />")
                     cont = String.Empty;
+
+                if(EnableSanitization && Sanitizer != null)
+                    cont = Sanitizer.GetSafeHtmlFragment(cont, MakeCombinedElementList());
 
                 _contentChanged = (Content.Replace("\n", String.Empty).Replace("\r", String.Empty) != cont.Replace("\n", String.Empty).Replace("\r", String.Empty));
                 Content = cont;
@@ -472,6 +500,30 @@ namespace AjaxControlToolkit.HtmlEditor {
                 }
             else
                 Controls.Add(ModePanels[0]);
+        }
+
+        Dictionary<string, string[]> MakeCombinedElementList() {
+            var elementWhiteList = new Dictionary<string, string[]>();
+            elementWhiteList.Add("b", new string[] { "style" });
+            elementWhiteList.Add("strong", new string[] { "style" });
+            elementWhiteList.Add("i", new string[] { "style" });
+            elementWhiteList.Add("em", new string[] { "style" });
+            elementWhiteList.Add("u", new string[] { "style" });
+            elementWhiteList.Add("strike", new string[] { "style" });
+            elementWhiteList.Add("sub", new string[] { });
+            elementWhiteList.Add("sup", new string[] { });
+            elementWhiteList.Add("font", new string[] { "color", "style", "face", "size" });
+            elementWhiteList.Add("span", new string[] { "style" });
+            elementWhiteList.Add("blockquote", new string[] { "style", "dir" });
+            elementWhiteList.Add("p", new string[] { "align" });
+            elementWhiteList.Add("div", new string[] { "style", "align" });
+            elementWhiteList.Add("ol", new string[] { });
+            elementWhiteList.Add("ul", new string[] { });
+            elementWhiteList.Add("li", new string[] { });
+            elementWhiteList.Add("hr", new string[] { "size", "width" });
+            elementWhiteList.Add("a", new string[] { "href" });
+            elementWhiteList.Add("br", new string[] { });
+            return elementWhiteList;
         }
     }
 
