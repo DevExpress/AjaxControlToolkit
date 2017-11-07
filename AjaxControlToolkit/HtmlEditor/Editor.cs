@@ -2,7 +2,6 @@ using AjaxControlToolkit.Design;
 using AjaxControlToolkit.HtmlEditor.Sanitizer;
 using AjaxControlToolkit.HtmlEditor.ToolbarButtons;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Drawing;
