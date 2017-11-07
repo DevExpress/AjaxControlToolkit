@@ -32,9 +32,9 @@ namespace AjaxControlToolkit.HtmlEditor {
         readonly ModePanel[] ModePanels = new ModePanel[] { new DesignPanel(), new HtmlPanel(), new PreviewPanel() };
         Collection<Toolbar> _toolbars;
         ControlDesigner _designer;
-        static Lazy<IHtmlSanitizer> _sanitizer = new Lazy<IHtmlSanitizer>(CreateSanitizer, true);
+        static readonly Lazy<IHtmlSanitizer> _sanitizer = new Lazy<IHtmlSanitizer>(CreateSanitizer, true);
         bool _enableSanitization = true;
-        static Lazy<Dictionary<string, string[]>> _elementWhiteList = new Lazy<Dictionary<string, string[]>>(MakeCombinedElementList, true);
+        static readonly Lazy<Dictionary<string, string[]>> _elementWhiteList = new Lazy<Dictionary<string, string[]>>(MakeCombinedElementList, true);
 
         protected EditPanel()
             : base(false, HtmlTextWriterTag.Div) {
@@ -42,7 +42,7 @@ namespace AjaxControlToolkit.HtmlEditor {
 
         static IHtmlSanitizer CreateSanitizer() {
             if(String.IsNullOrEmpty(ToolkitConfig.HtmlSanitizer))
-                return null;
+                throw new Exception("The Sanitizer is not configured in the web.config file. Either install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package or set the EnableSanitization property to False (insecure).");
 
             var sanitizerType = Type.GetType(ToolkitConfig.HtmlSanitizer);
             var sanitizer = Activator.CreateInstance(sanitizerType);
@@ -50,9 +50,8 @@ namespace AjaxControlToolkit.HtmlEditor {
             return (IHtmlSanitizer)sanitizer;
         }
 
-        public IHtmlSanitizer Sanitizer {
+        IHtmlSanitizer Sanitizer {
             get { return _sanitizer.Value; }
-            set { _sanitizer = new Lazy<IHtmlSanitizer>(() => value, true); }
         }
 
         [Browsable(false)]

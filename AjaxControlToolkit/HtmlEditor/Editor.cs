@@ -116,11 +116,6 @@ namespace AjaxControlToolkit.HtmlEditor {
             set { EditPanel.EnableSanitization = value; }
         }
 
-        public IHtmlSanitizer Sanitizer {
-            get { return _editPanel.Sanitizer; }
-            set { _editPanel.Sanitizer = value; }
-        }
-
         [Category("Behavior")]
         public event ContentChangedEventHandler ContentChanged {
             add {
@@ -278,8 +273,6 @@ namespace AjaxControlToolkit.HtmlEditor {
             get {
                 if(_editPanel == null) {
                     _editPanel = new EditPanelInstance();
-                    _editPanel.EnableSanitization = this.EnableSanitization;
-                    _editPanel.Sanitizer = this.Sanitizer;
                 }
                 return _editPanel;
             }
@@ -322,10 +315,6 @@ namespace AjaxControlToolkit.HtmlEditor {
 
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
-
-            // Check if EnableSanitization is enabled and sanitizer provider is not configured.
-            if(!DesignMode && EnableSanitization && Sanitizer == null)
-                throw new Exception("The Sanitizer is not configured in the web.config file. Either install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package or set the EnableSanitization property to False (insecure).");
 
             EditPanel.Toolbars.Add(BottomToolbar);
             _changingToolbar = TopToolbar;
