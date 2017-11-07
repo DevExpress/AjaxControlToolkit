@@ -49,9 +49,7 @@ namespace AjaxControlToolkit.HtmlEditor {
 
             return (IHtmlSanitizer)sanitizer;
         }
-
-        [Browsable(false)]
-        public bool EnableSanitization {
+        internal bool EnableSanitization {
             get { return _enableSanitization; }
             set { _enableSanitization = value; }
         }
