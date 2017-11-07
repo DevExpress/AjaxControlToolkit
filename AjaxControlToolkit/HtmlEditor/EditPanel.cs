@@ -34,7 +34,7 @@ namespace AjaxControlToolkit.HtmlEditor {
         ControlDesigner _designer;
         static readonly Lazy<IHtmlSanitizer> _sanitizer = new Lazy<IHtmlSanitizer>(CreateSanitizer, true);
         bool _enableSanitization = true;
-        static readonly Lazy<Dictionary<string, string[]>> _elementWhiteList = new Lazy<Dictionary<string, string[]>>(MakeCombinedElementList, true);
+        static readonly Lazy<Dictionary<string, string[]>> _elementWhiteList = new Lazy<Dictionary<string, string[]>>(MakeElementWhiteList, true);
 
         protected EditPanel()
             : base(false, HtmlTextWriterTag.Div) {
@@ -498,7 +498,7 @@ namespace AjaxControlToolkit.HtmlEditor {
                 Controls.Add(ModePanels[0]);
         }
 
-        static Dictionary<string, string[]> MakeCombinedElementList() {
+        static Dictionary<string, string[]> MakeElementWhiteList() {
             var elementWhiteList = new Dictionary<string, string[]>();
             elementWhiteList.Add("b", new string[] { "style" });
             elementWhiteList.Add("strong", new string[] { "style" });
