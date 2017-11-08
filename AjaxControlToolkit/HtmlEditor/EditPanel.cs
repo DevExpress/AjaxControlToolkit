@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.UI;
@@ -42,11 +43,19 @@ namespace AjaxControlToolkit.HtmlEditor {
 
         static IHtmlSanitizer CreateSanitizer() {
             if(String.IsNullOrEmpty(ToolkitConfig.HtmlSanitizer))
-                throw new Exception("The Sanitizer is not configured in the web.config file. Either install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package or set the EnableSanitization property to False (insecure).");
+                return null;
 
             var sanitizerType = Type.GetType(ToolkitConfig.HtmlSanitizer);
-            var sanitizer = Activator.CreateInstance(sanitizerType);
+            
+            if(sanitizerType == null)
+                throw new Exception("Cannot determine the sanitizer type. Please make sure it is spelled correctly in Web.config.");
 
+            if(!sanitizerType
+                .GetInterfaces()
+                .Any(i => i == typeof(IHtmlSanitizer)))
+                throw new Exception("The sanitizer type does not implement the IHtmlSanitizer interface.");
+
+            var sanitizer = Activator.CreateInstance(sanitizerType);
             return (IHtmlSanitizer)sanitizer;
         }
         internal bool EnableSanitization {
@@ -484,6 +493,7 @@ namespace AjaxControlToolkit.HtmlEditor {
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
 
+            ValidateSanitizer();
             Style.Add(HtmlTextWriterStyle.Height, Unit.Percentage(100).ToString());
             Style.Add(HtmlTextWriterStyle.Width, Unit.Percentage(100).ToString());
 
@@ -494,6 +504,11 @@ namespace AjaxControlToolkit.HtmlEditor {
                 }
             else
                 Controls.Add(ModePanels[0]);
+        }
+
+        void ValidateSanitizer() {
+            if(!DesignMode && EnableSanitization && _sanitizer.Value == null)
+                throw new Exception("The Sanitizer is not configured in the web.config file. Either install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package or set the EnableSanitization property to False (insecure).");
         }
 
         static Dictionary<string, string[]> MakeElementWhiteList() {
