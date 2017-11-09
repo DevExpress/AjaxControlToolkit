@@ -33,7 +33,7 @@ namespace AjaxControlToolkit.HtmlEditor {
         readonly ModePanel[] ModePanels = new ModePanel[] { new DesignPanel(), new HtmlPanel(), new PreviewPanel() };
         Collection<Toolbar> _toolbars;
         ControlDesigner _designer;
-        static readonly Lazy<IHtmlSanitizer> _sanitizer = new Lazy<IHtmlSanitizer>(CreateSanitizer, true);
+        IHtmlSanitizer _sanitizer;
         bool _enableSanitization = true;
         static readonly Lazy<Dictionary<string, string[]>> _elementWhiteList = new Lazy<Dictionary<string, string[]>>(MakeElementWhiteList, true);
 
@@ -41,22 +41,19 @@ namespace AjaxControlToolkit.HtmlEditor {
             : base(false, HtmlTextWriterTag.Div) {
         }
 
-        static IHtmlSanitizer CreateSanitizer() {
+        void CreateSanitizer() {
             if(String.IsNullOrEmpty(ToolkitConfig.HtmlSanitizer))
-                return null;
+                throw new Exception("The Sanitizer is not configured in the web.config file. Either install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package or set the EnableSanitization property to False (insecure).");
 
             var sanitizerType = Type.GetType(ToolkitConfig.HtmlSanitizer);
-            
+
             if(sanitizerType == null)
                 throw new Exception("Cannot determine the sanitizer type. Please make sure it is spelled correctly in Web.config.");
 
-            if(!sanitizerType
-                .GetInterfaces()
-                .Any(i => i == typeof(IHtmlSanitizer)))
+            if(!typeof(IHtmlSanitizer).IsAssignableFrom(sanitizerType))
                 throw new Exception("The sanitizer type does not implement the IHtmlSanitizer interface.");
 
-            var sanitizer = Activator.CreateInstance(sanitizerType);
-            return (IHtmlSanitizer)sanitizer;
+            _sanitizer = (IHtmlSanitizer)Activator.CreateInstance(sanitizerType);
         }
         internal bool EnableSanitization {
             get { return _enableSanitization; }
@@ -105,7 +102,7 @@ namespace AjaxControlToolkit.HtmlEditor {
                     cont = String.Empty;
 
                 if(EnableSanitization)
-                    cont = _sanitizer.Value.GetSafeHtmlFragment(cont, _elementWhiteList.Value);
+                    cont = _sanitizer.GetSafeHtmlFragment(cont, _elementWhiteList.Value);
 
                 _contentChanged = (Content.Replace("\n", String.Empty).Replace("\r", String.Empty) != cont.Replace("\n", String.Empty).Replace("\r", String.Empty));
                 Content = cont;
@@ -507,8 +504,8 @@ namespace AjaxControlToolkit.HtmlEditor {
         }
 
         void ValidateSanitizer() {
-            if(!DesignMode && EnableSanitization && _sanitizer.Value == null)
-                throw new Exception("The Sanitizer is not configured in the web.config file. Either install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package or set the EnableSanitization property to False (insecure).");
+            if(!DesignMode && EnableSanitization)
+                CreateSanitizer();
         }
 
         static Dictionary<string, string[]> MakeElementWhiteList() {
