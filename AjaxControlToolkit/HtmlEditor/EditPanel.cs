@@ -41,7 +41,10 @@ namespace AjaxControlToolkit.HtmlEditor {
             : base(false, HtmlTextWriterTag.Div) {
         }
 
-        void CreateSanitizer() {
+        void InitSanitizer() {
+            if(DesignMode || !EnableSanitization)
+                return;
+
             if(String.IsNullOrEmpty(ToolkitConfig.HtmlSanitizer))
                 throw new Exception("The Sanitizer is not configured in the web.config file. Either install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package or set the EnableSanitization property to False (insecure).");
 
@@ -490,7 +493,7 @@ namespace AjaxControlToolkit.HtmlEditor {
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
 
-            ValidateSanitizer();
+            InitSanitizer();
             Style.Add(HtmlTextWriterStyle.Height, Unit.Percentage(100).ToString());
             Style.Add(HtmlTextWriterStyle.Width, Unit.Percentage(100).ToString());
 
@@ -501,11 +504,6 @@ namespace AjaxControlToolkit.HtmlEditor {
                 }
             else
                 Controls.Add(ModePanels[0]);
-        }
-
-        void ValidateSanitizer() {
-            if(!DesignMode && EnableSanitization)
-                CreateSanitizer();
         }
 
         static Dictionary<string, string[]> MakeElementWhiteList() {
