@@ -1,4 +1,6 @@
+using AjaxControlToolkit.HtmlEditor.Sanitizer;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
@@ -30,9 +32,34 @@ namespace AjaxControlToolkit.HtmlEditor {
         readonly ModePanel[] ModePanels = new ModePanel[] { new DesignPanel(), new HtmlPanel(), new PreviewPanel() };
         Collection<Toolbar> _toolbars;
         ControlDesigner _designer;
+        IHtmlSanitizer _sanitizer;
+        bool _enableSanitization = true;
+        static readonly Lazy<Dictionary<string, string[]>> _elementWhiteList = new Lazy<Dictionary<string, string[]>>(MakeElementWhiteList, true);
 
         protected EditPanel()
             : base(false, HtmlTextWriterTag.Div) {
+        }
+
+        void InitSanitizer() {
+            if(DesignMode || !EnableSanitization)
+                return;
+
+            if(String.IsNullOrEmpty(ToolkitConfig.HtmlSanitizer))
+                throw new Exception("The Sanitizer is not configured in the web.config file. Either install the AjaxControlToolkit.HtmlEditor.Sanitizer NuGet package or set the EnableSanitization property to False (insecure).");
+
+            var sanitizerType = Type.GetType(ToolkitConfig.HtmlSanitizer);
+
+            if(sanitizerType == null)
+                throw new Exception("Cannot determine the sanitizer type. Please make sure it is spelled correctly in Web.config.");
+
+            if(!typeof(IHtmlSanitizer).IsAssignableFrom(sanitizerType))
+                throw new Exception("The sanitizer type does not implement the IHtmlSanitizer interface.");
+
+            _sanitizer = (IHtmlSanitizer)Activator.CreateInstance(sanitizerType);
+        }
+        internal bool EnableSanitization {
+            get { return _enableSanitization; }
+            set { _enableSanitization = value; }
         }
 
         [Category("Behavior")]
@@ -75,6 +102,9 @@ namespace AjaxControlToolkit.HtmlEditor {
                 var cont = (String)post.Replace("&lt;", "<").Replace("&gt;", ">").Replace("&quot;", "\"").Replace("&amp;", "&");
                 if(cont == "<br />")
                     cont = String.Empty;
+
+                if(EnableSanitization)
+                    cont = _sanitizer.GetSafeHtmlFragment(cont, _elementWhiteList.Value);
 
                 _contentChanged = (Content.Replace("\n", String.Empty).Replace("\r", String.Empty) != cont.Replace("\n", String.Empty).Replace("\r", String.Empty));
                 Content = cont;
@@ -462,6 +492,7 @@ namespace AjaxControlToolkit.HtmlEditor {
         protected override void OnInit(EventArgs e) {
             base.OnInit(e);
 
+            InitSanitizer();
             Style.Add(HtmlTextWriterStyle.Height, Unit.Percentage(100).ToString());
             Style.Add(HtmlTextWriterStyle.Width, Unit.Percentage(100).ToString());
 
@@ -472,6 +503,30 @@ namespace AjaxControlToolkit.HtmlEditor {
                 }
             else
                 Controls.Add(ModePanels[0]);
+        }
+
+        static Dictionary<string, string[]> MakeElementWhiteList() {
+            var elementWhiteList = new Dictionary<string, string[]>();
+            elementWhiteList.Add("b", new string[] { "style" });
+            elementWhiteList.Add("strong", new string[] { "style" });
+            elementWhiteList.Add("i", new string[] { "style" });
+            elementWhiteList.Add("em", new string[] { "style" });
+            elementWhiteList.Add("u", new string[] { "style" });
+            elementWhiteList.Add("strike", new string[] { "style" });
+            elementWhiteList.Add("sub", new string[] { });
+            elementWhiteList.Add("sup", new string[] { });
+            elementWhiteList.Add("font", new string[] { "color", "style", "face", "size" });
+            elementWhiteList.Add("span", new string[] { "style" });
+            elementWhiteList.Add("blockquote", new string[] { "style", "dir" });
+            elementWhiteList.Add("p", new string[] { "align" });
+            elementWhiteList.Add("div", new string[] { "style", "align" });
+            elementWhiteList.Add("ol", new string[] { });
+            elementWhiteList.Add("ul", new string[] { });
+            elementWhiteList.Add("li", new string[] { });
+            elementWhiteList.Add("hr", new string[] { "size", "width" });
+            elementWhiteList.Add("a", new string[] { "href" });
+            elementWhiteList.Add("br", new string[] { });
+            return elementWhiteList;
         }
     }
 

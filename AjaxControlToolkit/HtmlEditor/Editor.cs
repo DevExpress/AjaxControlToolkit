@@ -1,4 +1,5 @@
 using AjaxControlToolkit.Design;
+using AjaxControlToolkit.HtmlEditor.Sanitizer;
 using AjaxControlToolkit.HtmlEditor.ToolbarButtons;
 using System;
 using System.Collections.ObjectModel;
@@ -103,6 +104,16 @@ namespace AjaxControlToolkit.HtmlEditor {
 
         public Editor()
             : base(false, HtmlTextWriterTag.Div) {
+        }
+
+        /// <summary>
+        /// Determines whether or not to use HTML-sanitization before data transfer to the server
+        /// </summary>
+        [Browsable(true)]
+        [DefaultValue(true)]
+        public bool EnableSanitization {
+            get { return EditPanel.EnableSanitization; }
+            set { EditPanel.EnableSanitization = value; }
         }
 
         [Category("Behavior")]
