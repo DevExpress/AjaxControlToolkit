@@ -271,9 +271,8 @@ namespace AjaxControlToolkit.HtmlEditor {
 
         internal EditPanel EditPanel {
             get {
-                if(_editPanel == null) {
+                if(_editPanel == null)
                     _editPanel = new EditPanelInstance();
-                }
                 return _editPanel;
             }
         }
