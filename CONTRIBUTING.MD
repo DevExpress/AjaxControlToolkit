@@ -1,6 +1,8 @@
 # Contributing to the Repository
 ## Bugs & Feature Requests
 
+> **If you found a security vulnerability, please send info about it to info@devexpress.com**
+
 Please report bugs and feature requests to the project's [issue tracker](https://github.com/DevExpress/AjaxControlToolkit/issues).  
 For bugs, send a sample project which we can debug on our side. Attach it as a ZIP file or provide a GitHub link.
 
