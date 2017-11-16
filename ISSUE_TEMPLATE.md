@@ -1,3 +1,5 @@
+<!-- If you found a security vulnerability, please send info about it to info@devexpress.com -->
+
 <!-- If you submit a bug, please provide the following information -->
 
 ### The AJAX Control Toolkit \<VERSION\>
