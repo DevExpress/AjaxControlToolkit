@@ -491,7 +491,8 @@ Sys.Extended.UI.ComboBox.prototype = {
             x = textBoxBounds.x - (listBounds.width - textBoxBounds.width);
         }
 
-        Sys.UI.DomElement.setLocation(optionListControl, x, y);
+        if($common.getCurrentStyle(this.get_textBoxControl(), "position", "") == "absolute")
+            Sys.UI.DomElement.setLocation(optionListControl, x, y);
 
         // enforce default scroll
         this._ensureHighlightedIndex();

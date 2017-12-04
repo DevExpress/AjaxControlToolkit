@@ -24,7 +24,10 @@ namespace AjaxControlToolkit.Jasmine.Suites {
                 "Delta",
                 "Echo"
             };
+
+            TargetExtendetAbsolute.DataSource = TargetExtender.DataSource;
             TargetExtender.DataBind();
+            TargetExtendetAbsolute.DataBind();
         }
     }
 }

@@ -11,6 +11,20 @@
         DropDownStyle="DropDownList"
         AutoCompleteMode="SuggestAppend" />
 
+    <act:ComboBox runat="server"
+        ID="TargetExtendetAbsolute"
+        DropDownStyle="DropDownList"
+        AutoCompleteMode="SuggestAppend"
+        CssClass="combo" />
+
+    <style>
+        .combo{
+            position: absolute;
+            left: 100px;
+            top: 100px;
+        }
+    </style>
+
     <script>
         function parseStyle(style) {
             var styleObject = {};
@@ -47,6 +61,7 @@
         describe("ComboBox", function() {
 
             var COMBOBOX_CLIENT_ID = "<%= TargetExtender.ClientID %>";
+            var COMBOBOX_ABSOLUTEPOS_CLIENT_ID = "<%= TargetExtendetAbsolute.ClientID %>";
 
             var COMBOBOX_INPUT_CONTAINER_CLASS_NAME = "ajax__combobox_inputcontainer",
                 COMBOBOX_TEXTBOX_CONTAINER_CLASS_NAME = "ajax__combobox_textboxcontainer",
@@ -62,6 +77,10 @@
 
                     this.$element = $(this.extender._element);
                     this.$itemsContainer = $(this.extender._optionListControl);
+
+                    this.extenderAbsolute = $find(COMBOBOX_ABSOLUTEPOS_CLIENT_ID);
+                    this.$elementAbsolute = $(this.extenderAbsolute._element);
+                    this.$itemsContainerAbsolute = $(this.extenderAbsolute._optionListControl);
 
                     this.keyDownEvent = new Sys.UI.DomEvent({
                         keyCode: 40,
@@ -258,6 +277,15 @@
                     this.extender._handleArrowKey(this.keyDownEvent);
                     this.extender._handleEnterKey(this.enterPressEvent);
                     expect(__doPostBack).not.toHaveBeenCalled();
+                });
+
+                it("shows dropdown in correct position when textbox has position: absolute", function() {
+                    this.extenderAbsolute._handleArrowKey(this.keyDownEvent);
+                    var textboxHeight = this.$elementAbsolute.css("height");
+                    var left = this.$itemsContainerAbsolute.css("left");
+                    var top = this.$itemsContainerAbsolute.css("top");
+                    expect(left).toBe("0px");
+                    expect(top).toBe(textboxHeight);
                 });
             });
         });
