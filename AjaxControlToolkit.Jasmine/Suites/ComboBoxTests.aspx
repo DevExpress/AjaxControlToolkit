@@ -281,11 +281,12 @@
 
                 it("shows dropdown in correct position when textbox has position: absolute", function() {
                     this.extenderAbsolute._handleArrowKey(this.keyDownEvent);
-                    var textboxHeight = this.$elementAbsolute.css("height");
-                    var left = this.$itemsContainerAbsolute.css("left");
-                    var top = this.$itemsContainerAbsolute.css("top");
-                    expect(left).toBe("0px");
-                    expect(top).toBe(textboxHeight);
+                    var textboxHeight = this.$elementAbsolute.height();
+                    var textboxOffset = this.$elementAbsolute.offset();
+                    var textboxBottom = textboxOffset.top + textboxHeight;
+                    var itemsContainerOffset = this.$itemsContainerAbsolute.offset();
+                    expect(itemsContainerOffset.left).toBe(textboxOffset.left);
+                    expect(itemsContainerOffset.top - textboxBottom).toBeLessThan(3);
                 });
             });
         });
