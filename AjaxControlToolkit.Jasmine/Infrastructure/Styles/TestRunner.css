@@ -189,13 +189,13 @@ form {
 }
 .control-container {
   position: absolute;
-  right: 0;
+  left: 1200px;
   top: 0;
   border: 1px solid #aaaaaa;
   border-radius: 6px;
   height: calc(100% - 22px);
   margin: 3px;
   padding: 5px;
-  width: calc(100% - 1200px - 30px);
+  width: 1200px;
 }
 /*# sourceMappingURL=TestRunner.css.map */
