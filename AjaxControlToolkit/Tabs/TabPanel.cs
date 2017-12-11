@@ -1,7 +1,6 @@
 using AjaxControlToolkit.Design;
 using System;
 using System.ComponentModel;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -276,7 +275,7 @@ namespace AjaxControlToolkit {
                 _headerControl.RenderControl(writer);
                 _headerControl.Visible = false;
             } else {
-                writer.Write(HttpUtility.HtmlEncode(HeaderText));
+                writer.Write(HeaderText);
             }
             writer.RenderEndTag();
             writer.RenderEndTag();

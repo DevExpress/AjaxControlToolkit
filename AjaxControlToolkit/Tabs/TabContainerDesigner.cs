@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.Text;
-using System.Web;
 using System.Web.UI;
 using System.Web.UI.Design;
 using System.Web.UI.WebControls;
@@ -249,7 +248,7 @@ namespace AjaxControlToolkit.Design {
             if(tab.HeaderTemplate != null)
                 return GetTemplateContent(tab.HeaderTemplate, "_header");
 
-            return HttpUtility.HtmlEncode(tab.HeaderText);
+            return tab.HeaderText;
         }
 
         public override void Initialize(IComponent component) {
