@@ -33,6 +33,8 @@ namespace AjaxControlToolkit {
         /// <summary>
         /// Text to display in the tab
         /// </summary>
+        /// <remarks>This property renders HTML to a page.
+        /// Encode this property value as a plain text if the source of the value is not trusted to avoid XSS attacks</remarks>
         [DefaultValue("")]
         [Category("Appearance")]
         [ClientPropertyName("headerText")]
