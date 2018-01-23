@@ -137,8 +137,8 @@ Sys.Extended.UI.PieChart.prototype = {
         textRadAngle = textRadAngle * (Math.PI / 180);
         endX = parseFloat(Math.sin(radAngle) * radius);
         endY = parseFloat(Math.cos(radAngle) * radius);
-        textX = parseFloat(Math.sin(textRadAngle) * (radius + 10));
-        textY = parseFloat(Math.cos(textRadAngle) * (radius + 10));
+        textX = parseFloat((drawCircle ? 0 : Math.sin(textRadAngle)) * (radius + 10));
+        textY = parseFloat((drawCircle ? -1 : Math.cos(textRadAngle)) * (radius + 10));
 
         textX = (startX + textX) > startX ? startX + textX : (startX + textX) - (me._pieChartClientValues[index].Data.toString().length * this.charLength);
         textY = (startY + (-1 * textY)) < startY ? startY + (-1 * textY) : startY + (-1 * textY) + 10;
@@ -169,10 +169,12 @@ Sys.Extended.UI.PieChart.prototype = {
                 index + 1,
                 me._pieChartClientValues[index].PieChartValueColor,
                 me._pieChartClientValues[index].PieChartValueStrokeColor))
-            + String.format('<text fill="#000000" style="font: 11px Arial,Helvetica,sans-serif" fill-opacity="1" y="{1}" x="{0}">{2}</text></g>',
+            + (me._pieChartClientValues[index].Data || drawCircle ?
+                String.format('<text fill="#000000" style="font: 11px Arial,Helvetica,sans-serif" fill-opacity="1" y="{1}" x="{0}">{2}</text></g>',
                 textX,
-            textY,
+                textY,
                 drawCircle ? totalValue : me._pieChartClientValues[index].Data)
+            : "")
             + '</svg>';
 
         if (drawCircle)
@@ -184,8 +186,8 @@ Sys.Extended.UI.PieChart.prototype = {
 
         if(index < me._pieChartClientValues.length) //  if the counter < series length, call the loop function
             setTimeout(function() {
-                me.drawSegments(me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc);
-            }, 400);
+                me.drawSegments(me, index, drawCircle ? 0 : categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc, drawCircle, color, strokeColor);
+            }, me._pieChartClientValues[index].Data == 0 ? 0 : 400);
     },
 
     isSingleValueEqualsTotal: function (totalValue) {
