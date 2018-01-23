@@ -141,7 +141,31 @@ Sys.Extended.UI.PieChart.prototype = {
         else {
             arc = 0;
         }
-        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<g><path id="Segment{8}" d="M{0} {1} A {2} {2} 0 {3},1 {4} {5} L {6} {7} z" style="stroke:{10};fill:{9};"></path>', lastEndX, lastEndY, radius, arc, startX + endX, startY + (-1 * endY), startX, startY, index + 1, me._pieChartClientValues[index].PieChartValueColor, me._pieChartClientValues[index].PieChartValueStrokeColor) + String.format('<text fill="#000000" style="font: 11px Arial,Helvetica,sans-serif" fill-opacity="1" y="{1}" x="{0}">{2}</text></g>', textX, textY, me._pieChartClientValues[index].Data) + '</svg>';
+        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '')
+            + (me._pieChartClientValues.length > 1 ?
+            String.format('<g><path id="Segment{8}" d="M{0} {1} A {2} {2} 0 {3},1 {4} {5} L {6} {7} z" style="stroke:{10};fill:{9};"></path>',
+                lastEndX,
+                lastEndY,
+                radius,
+                arc,
+                startX + endX,
+                startY + (-1 * endY),
+                startX,
+                startY,
+                index + 1,
+                me._pieChartClientValues[index].PieChartValueColor,
+                me._pieChartClientValues[index].PieChartValueStrokeColor)
+            : String.format('<g><circle cx="{0}" cy="{1}" r="{2}" stroke="{3}" fill="{4}" />',
+                startX,
+                startY,
+                radius,
+                me._pieChartClientValues[index].PieChartValueStrokeColor,
+                me._pieChartClientValues[index].PieChartValueColor))
+            + String.format('<text fill="#000000" style="font: 11px Arial,Helvetica,sans-serif" fill-opacity="1" y="{1}" x="{0}">{2}</text></g>',
+                textX,
+                textY,
+                me._pieChartClientValues[index].Data)
+            + '</svg>';
 
         lastEndX = startX + endX;
         lastEndY = startY + (-1 * endY);
