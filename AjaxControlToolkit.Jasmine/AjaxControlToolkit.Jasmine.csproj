@@ -107,6 +107,7 @@
     <Content Include="Scripts\MicrosoftAjaxWebForms.debug.js" />
     <Content Include="Suites\AutoComplete\AutoCompleteTests.aspx" />
     <Content Include="Suites\AutoComplete\TestWebService.asmx" />
+    <Content Include="Suites\PieChartTests.aspx" />
     <Content Include="Suites\RatingTests.aspx" />
     <Content Include="Suites\AccordionTests.aspx" />
     <Content Include="Suites\AjaxFileUploadTests.aspx" />
@@ -170,6 +171,13 @@
     <Compile Include="Suites\AutoComplete\TestWebService.asmx.cs">
       <DependentUpon>TestWebService.asmx</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Suites\PieChartTests.aspx.cs">
+      <DependentUpon>PieChartTests.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Suites\PieChartTests.aspx.designer.cs">
+      <DependentUpon>PieChartTests.aspx</DependentUpon>
     </Compile>
     <Compile Include="Suites\RatingTests.aspx.cs">
       <DependentUpon>RatingTests.aspx</DependentUpon>
