@@ -117,11 +117,18 @@ Sys.Extended.UI.PieChart.prototype = {
         for(var i = 0; i < this._pieChartClientValues.length; i++)
             totalValue = totalValue + Math.abs(parseFloat(this._pieChartClientValues[i].Data));
 
+        var drawCircle = this.isSingleValueEqualsTotal(totalValue);
+
+        if (drawCircle) {
+            var strokeColor = this.getStrokeColor(totalValue);
+            var color = this.getColor(totalValue);
+        }
+
         this._parentDiv.innerHTML = svgContents;
-        this.drawSegments(this, 0, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc);
+        this.drawSegments(this, 0, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc, drawCircle, color, strokeColor);
     },
 
-    drawSegments: function (me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc) {
+    drawSegments: function (me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc, drawCircle, color, strokeColor) {
         var absClientValues = Math.abs(parseFloat(me._pieChartClientValues[index].Data));
         categoryValue = categoryValue + absClientValues;
         angle = (categoryValue / totalValue) * 360;
@@ -130,8 +137,8 @@ Sys.Extended.UI.PieChart.prototype = {
         textRadAngle = textRadAngle * (Math.PI / 180);
         endX = parseFloat(Math.sin(radAngle) * radius);
         endY = parseFloat(Math.cos(radAngle) * radius);
-        textX = parseFloat(Math.sin(textRadAngle) * (radius + 10));
-        textY = parseFloat(Math.cos(textRadAngle) * (radius + 10));
+        textX = parseFloat((drawCircle ? 0 : Math.sin(textRadAngle)) * (radius + 10));
+        textY = parseFloat((drawCircle ? -1 : Math.cos(textRadAngle)) * (radius + 10));
 
         textX = (startX + textX) > startX ? startX + textX : (startX + textX) - (me._pieChartClientValues[index].Data.toString().length * this.charLength);
         textY = (startY + (-1 * textY)) < startY ? startY + (-1 * textY) : startY + (-1 * textY) + 10;
@@ -141,7 +148,37 @@ Sys.Extended.UI.PieChart.prototype = {
         else {
             arc = 0;
         }
-        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '') + String.format('<g><path id="Segment{8}" d="M{0} {1} A {2} {2} 0 {3},1 {4} {5} L {6} {7} z" style="stroke:{10};fill:{9};"></path>', lastEndX, lastEndY, radius, arc, startX + endX, startY + (-1 * endY), startX, startY, index + 1, me._pieChartClientValues[index].PieChartValueColor, me._pieChartClientValues[index].PieChartValueStrokeColor) + String.format('<text fill="#000000" style="font: 11px Arial,Helvetica,sans-serif" fill-opacity="1" y="{1}" x="{0}">{2}</text></g>', textX, textY, me._pieChartClientValues[index].Data) + '</svg>';
+
+        me._parentDiv.innerHTML = me._parentDiv.innerHTML.replace('</svg>', '')
+            + (drawCircle ?
+            String.format('<g><circle cx="{0}" cy="{1}" r="{2}" stroke="{3}" fill="{4}" />',
+                startX,
+                startY,
+                radius,
+                strokeColor,
+                color)
+            : String.format('<g><path id="Segment{8}" d="M{0} {1} A {2} {2} 0 {3},1 {4} {5} L {6} {7} z" style="stroke:{10};fill:{9};"></path>',
+                lastEndX,
+                lastEndY,
+                radius,
+                arc,
+                startX + endX,
+                startY + (-1 * endY),
+                startX,
+                startY,
+                index + 1,
+                me._pieChartClientValues[index].PieChartValueColor,
+                me._pieChartClientValues[index].PieChartValueStrokeColor))
+            + (me._pieChartClientValues[index].Data || drawCircle ?
+                String.format('<text fill="#000000" style="font: 11px Arial,Helvetica,sans-serif" fill-opacity="1" y="{1}" x="{0}">{2}</text></g>',
+                textX,
+                textY,
+                drawCircle ? totalValue : me._pieChartClientValues[index].Data)
+            : "")
+            + '</svg>';
+
+        if (drawCircle)
+            return;
 
         lastEndX = startX + endX;
         lastEndY = startY + (-1 * endY);
@@ -149,8 +186,31 @@ Sys.Extended.UI.PieChart.prototype = {
 
         if(index < me._pieChartClientValues.length) //  if the counter < series length, call the loop function
             setTimeout(function() {
-                me.drawSegments(me, index, categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc);
-            }, 400);
+                me.drawSegments(me, index, drawCircle ? 0 : categoryValue, totalValue, radius, angle, radAngle, textRadAngle, startX, endX, startY, endY, textX, textY, lastEndX, lastEndY, arc, drawCircle, color, strokeColor);
+            }, me._pieChartClientValues[index].Data == 0 ? 0 : 400);
+    },
+
+    isSingleValueEqualsTotal: function (totalValue) {
+        for (var i = 0; i < this._pieChartClientValues.length; i++) {
+            if (this._pieChartClientValues[i].Data == totalValue)
+                return true;
+        }
+
+        return false;
+    },
+
+    getStrokeColor: function (totalValue) {
+        for (var i = 0; i < this._pieChartClientValues.length; i++) {
+            if (this._pieChartClientValues[i].Data == totalValue)
+                return this._pieChartClientValues[i].PieChartValueStrokeColor;
+        }
+    },
+
+    getColor: function (totalValue) {
+        for (var i = 0; i < this._pieChartClientValues.length; i++) {
+            if (this._pieChartClientValues[i].Data == totalValue)
+                return this._pieChartClientValues[i].PieChartValueColor;
+        }
     },
 
     /// <summary>
