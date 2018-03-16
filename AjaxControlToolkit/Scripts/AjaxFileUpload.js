@@ -960,6 +960,9 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
 
     /// <summary>
     /// How AjaxFileUpload displays a progress bar.
+    /// If set to Auto or Client and browser supports HTML 5, use AJAX requests to send file content.
+    /// If set to Server or browser does not support HTML 5, post a form.
+    /// The default is Auto.
     /// </summary>
     /// <getter>get_mode</getter>
     /// <setter>set_mode</setter>
