@@ -959,7 +959,10 @@ Sys.Extended.UI.AjaxFileUpload.Control = function(element) {
     this._postBackUrl = null;
 
     /// <summary>
-    /// How AjaxFileUpload displays a progress bar.
+    /// Specifies how AjaxFileUpload uploads files.
+    /// If set to Auto or Client and the client browser supports HTML 5, AjaxFileUpload uploads files using AJAX requests.
+    /// If set to Server or the browser does not support HTML 5, AjaxFileUpload uploads files by posting the HTML form.
+    /// The default is Auto.
     /// </summary>
     /// <getter>get_mode</getter>
     /// <setter>set_mode</setter>
