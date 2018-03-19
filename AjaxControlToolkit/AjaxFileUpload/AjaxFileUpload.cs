@@ -146,9 +146,9 @@ namespace AjaxControlToolkit {
         }
 
         ///<summary>
-        /// How AjaxFileUpload uploads files.
-        /// If set to Auto or Client and browser supports HTML 5, use AJAX requests to send file content.
-        /// If set to Server or browser does not support HTML 5, post a form.
+        /// Specifies how AjaxFileUpload uploads files.
+        /// If set to Auto or Client and the client browser supports HTML 5, AjaxFileUpload uploads files using AJAX requests.
+        /// If set to Server or the browser does not support HTML 5, AjaxFileUpload uploads files by posting the HTML form.
         /// The default is Auto.
         /// </summary>
         [ExtenderControlProperty]

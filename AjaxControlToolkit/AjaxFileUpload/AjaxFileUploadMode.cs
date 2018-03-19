@@ -1,14 +1,14 @@
 namespace AjaxControlToolkit {
 
     public enum AjaxFileUploadMode {
-        // If a browser supports HTML 5, then upload a file via AJAX request,
-        // otherwise, post a form to server.
+        // If the client browser supports HTML 5, file uploads are performed via AJAX requests,
+        // otherwise - by posting the HTML form to the server.
         Auto,
 
         // Same as Auto
         Client,
 
-        // Upload a file by posting a form.
+        // Files are uploaded by posting the HTML form.
         Server
     }
 
