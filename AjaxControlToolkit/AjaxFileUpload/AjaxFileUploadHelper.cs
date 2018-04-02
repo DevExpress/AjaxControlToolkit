@@ -44,24 +44,6 @@ namespace AjaxControlToolkit {
             "zip"
         };
 
-        /// <summary>
-        /// Specifies to use advanced HttpRequest.GetBufferlessInputStream() method or classic HttpRequest.InputStream property
-        /// </summary>
-        /// <remarks>
-        /// <para>
-        /// In enviroments where HttpRequest.GetBufferlessInputStream() method throws exception (when entity body has already been loaded and parsed), classic HttpRequest.InputStream property can be used
-        /// </para>
-        /// <para>
-        /// This property might be obsolete after upgrade .NET 4.5 and higher (this behavior can be tested by HttpRequest.ReadEntityBodyMode)
-        /// </para>
-        /// </remarks>
-        public static bool UseBufferlessInputStream { get; set; }
-
-        static AjaxFileUploadHelper()
-        {
-            UseBufferlessInputStream = true;
-        }
-
         public static void Abort(HttpContext context, string fileId) {
             (new AjaxFileUploadStates(context, fileId)).Abort = true;
         }
@@ -80,7 +62,7 @@ namespace AjaxControlToolkit {
             var firstChunk = bool.Parse(request.QueryString["firstChunk"] ?? "false");
             var usePoll = bool.Parse(request.QueryString["usePoll"] ?? "false");
 
-            using(var stream = UseBufferlessInputStream ? request.GetBufferlessInputStream() : request.InputStream) {
+            using(var stream = ToolkitConfig.UseBufferlessInputStream ? request.GetBufferlessInputStream() : request.InputStream) {
                 var success = false;
                 success = ProcessStream(
                     context, stream, fileId, fileName,
