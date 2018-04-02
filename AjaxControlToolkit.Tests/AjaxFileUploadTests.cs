@@ -60,5 +60,15 @@ namespace AjaxControlToolkit.Tests {
             var root = AjaxFileUpload.GetRootTempFolder();
             Assert.Throws<Exception>(() => AjaxFileUpload.CheckTempFilePath(Path.Combine(root, @"extraFolder\E63F2078-D5C7-66FA-5CAD-02C169149BD5\a.tmp")));
         }
+
+        [Test]
+        public void HandleClassicReadEntityBodyMode() {
+            var request = new WorkerRequest("------WebKitFormBoundaryCqenIHPHe1ZTCr0d\r\nContent-Disposition: form-data; name=\"act-file-data\"; filename=\"zero.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n\r\n------WebKitFormBoundaryCqenIHPHe1ZTCr0d--\r\n", "filename=aaa.jpg&fileId=E63F2078-D5C7-66FA-5CAD-02C169149BD5", "multipart/form-data; boundary=----WebKitFormBoundaryCqenIHPHe1ZTCr0d");
+            var context = new HttpContext(request);
+            // read entity via InputStream
+            // https://referencesource.microsoft.com/#System.Web/HttpRequest.cs,3231
+            var a = context.Request.InputStream.Length;
+            AjaxFileUploadHelper.Process(context);
+        }
     }
 }
