@@ -73,7 +73,6 @@ namespace AjaxControlToolkit.Tests {
             Assert.DoesNotThrow(() => AjaxFileUploadHelper.Process(context));
         }
 
-
         [Test]
         public void DoNotUseBufferlessInputStream() {
             var request = new WorkerRequest(testBody, testQuery, testContentType);
