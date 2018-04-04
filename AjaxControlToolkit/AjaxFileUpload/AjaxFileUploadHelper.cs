@@ -63,14 +63,14 @@ namespace AjaxControlToolkit {
             var firstChunk = bool.Parse(request.QueryString["firstChunk"] ?? "false");
             var usePoll = bool.Parse(request.QueryString["usePoll"] ?? "false");
 
-            using (var stream = GetReadEntityBodyMode(request) != 1 ? request.GetBufferlessInputStream() : request.InputStream) {
+            using(var stream = GetReadEntityBodyMode(request) != 1 ? request.GetBufferlessInputStream() : request.InputStream) {
                 var success = false;
 
                 success = ProcessStream(
                     context, stream, fileId, fileName,
                     chunked, firstChunk, usePoll);
 
-                if (!success)
+                if(!success)
                     request.Form.Clear();
 
                 return success;
