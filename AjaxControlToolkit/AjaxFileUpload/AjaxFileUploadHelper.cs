@@ -1,4 +1,6 @@
+using Microsoft.CSharp.RuntimeBinder;
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -62,17 +64,31 @@ namespace AjaxControlToolkit {
             var firstChunk = bool.Parse(request.QueryString["firstChunk"] ?? "false");
             var usePoll = bool.Parse(request.QueryString["usePoll"] ?? "false");
 
-            using(var stream = ToolkitConfig.UseBufferlessInputStream ? request.GetBufferlessInputStream() : request.InputStream) {
-                var success = false;
-                success = ProcessStream(
-                    context, stream, fileId, fileName,
-                    chunked, firstChunk, usePoll);
+            Stream stream = null;
 
-                if(!success)
-                    request.Form.Clear();
+            try {
+                var readEntityBodyMode = Convert.ToInt32((request as dynamic).ReadEntityBodyMode);
 
-                return success;
+                if (readEntityBodyMode == 1)
+                    stream = request.InputStream;
+                else
+                    stream = request.GetBufferlessInputStream();
             }
+            catch (RuntimeBinderException) {
+                stream = request.GetBufferlessInputStream();
+            }
+
+            var success = false;
+            success = ProcessStream(
+                context, stream, fileId, fileName,
+                chunked, firstChunk, usePoll);
+
+            stream.Close();
+
+            if (!success)
+                request.Form.Clear();
+
+            return success;
         }
 
         public static bool ProcessStream(HttpContext context, Stream source, string fileId, string fileName, bool chunked, bool isFirstChunk, bool usePoll) {

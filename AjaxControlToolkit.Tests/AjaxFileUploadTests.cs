@@ -61,26 +61,21 @@ namespace AjaxControlToolkit.Tests {
             Assert.Throws<Exception>(() => AjaxFileUpload.CheckTempFilePath(Path.Combine(root, @"extraFolder\E63F2078-D5C7-66FA-5CAD-02C169149BD5\a.tmp")));
         }
 
-#if DEBUG
         [Test]
         public void DoNotUseBufferlessInputStream() {
             var request = new WorkerRequest("------WebKitFormBoundaryCqenIHPHe1ZTCr0d\r\nContent-Disposition: form-data; name=\"act-file-data\"; filename=\"zero.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n\r\n------WebKitFormBoundaryCqenIHPHe1ZTCr0d--\r\n", "filename=aaa.jpg&fileId=E63F2078-D5C7-66FA-5CAD-02C169149BD5", "multipart/form-data; boundary=----WebKitFormBoundaryCqenIHPHe1ZTCr0d");
             var context = new HttpContext(request);
-
-            lock (typeof(AjaxControlToolkitConfigSection)) {
-                var useBufferlessInputStreamOldValue = ToolkitConfig.UseBufferlessInputStream;
-                try {
-                    ToolkitConfig.UseBufferlessInputStream = false;
-                    // read entity via InputStream
-                    // https://referencesource.microsoft.com/#System.Web/HttpRequest.cs,3231
-                    context.Request.InputStream.ReadByte();
-                    Assert.DoesNotThrow(() => AjaxFileUploadHelper.Process(context)); 
-                }
-                finally {
-                    ToolkitConfig.UseBufferlessInputStream = useBufferlessInputStreamOldValue;
-                }
-            }
+            // read entity via InputStream
+            // https://referencesource.microsoft.com/#System.Web/HttpRequest.cs,3231
+            context.Request.InputStream.ReadByte();
+            Assert.DoesNotThrow(() => AjaxFileUploadHelper.Process(context));
         }
-#endif
+
+        [Test]
+        public void UseBufferlessInputStream() {
+            var request = new WorkerRequest("------WebKitFormBoundaryCqenIHPHe1ZTCr0d\r\nContent-Disposition: form-data; name=\"act-file-data\"; filename=\"zero.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n\r\n------WebKitFormBoundaryCqenIHPHe1ZTCr0d--\r\n", "filename=aaa.jpg&fileId=E63F2078-D5C7-66FA-5CAD-02C169149BD5", "multipart/form-data; boundary=----WebKitFormBoundaryCqenIHPHe1ZTCr0d");
+            var context = new HttpContext(request);
+            Assert.DoesNotThrow(() => AjaxFileUploadHelper.Process(context));
+        }
     }
 }
