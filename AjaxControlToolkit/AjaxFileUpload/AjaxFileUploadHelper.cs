@@ -63,31 +63,27 @@ namespace AjaxControlToolkit {
             var firstChunk = bool.Parse(request.QueryString["firstChunk"] ?? "false");
             var usePoll = bool.Parse(request.QueryString["usePoll"] ?? "false");
 
-            Stream stream = null;
+            using (var stream = GetReadEntityBodyMode(request) != 1 ? request.GetBufferlessInputStream() : request.InputStream) {
+                var success = false;
 
+                success = ProcessStream(
+                    context, stream, fileId, fileName,
+                    chunked, firstChunk, usePoll);
+
+                if (!success)
+                    request.Form.Clear();
+
+                return success;
+            }
+        }
+
+        static int GetReadEntityBodyMode(HttpRequest request) {
             try {
-                var readEntityBodyMode = Convert.ToInt32((request as dynamic).ReadEntityBodyMode);
-
-                if (readEntityBodyMode == 1)
-                    stream = request.InputStream;
-                else
-                    stream = request.GetBufferlessInputStream();
+                return Convert.ToInt32((request as dynamic).ReadEntityBodyMode);
             }
-            catch (RuntimeBinderException) {
-                stream = request.GetBufferlessInputStream();
+            catch{
+                return 0;
             }
-
-            var success = false;
-            success = ProcessStream(
-                context, stream, fileId, fileName,
-                chunked, firstChunk, usePoll);
-
-            stream.Close();
-
-            if (!success)
-                request.Form.Clear();
-
-            return success;
         }
 
         public static bool ProcessStream(HttpContext context, Stream source, string fileId, string fileName, bool chunked, bool isFirstChunk, bool usePoll) {

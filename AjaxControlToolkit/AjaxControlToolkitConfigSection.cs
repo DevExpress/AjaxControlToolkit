@@ -37,12 +37,6 @@ namespace AjaxControlToolkit {
             set { base["additionalUploadFileExtensions"] = value; }
         }
 
-        [ConfigurationProperty("useBufferlessInputStream", DefaultValue = true, IsRequired = false)]
-        public bool UseBufferlessInputStream {
-            get { return (bool)base["useBufferlessInputStream"]; }
-            set { base["useBufferlessInputStream"] = value; }
-        }
-
         [ConfigurationProperty("customControls", IsDefaultCollection = false)]
         [ConfigurationCollection(typeof(CustomControlsCollection))]
         public CustomControlsCollection CustomControls {
