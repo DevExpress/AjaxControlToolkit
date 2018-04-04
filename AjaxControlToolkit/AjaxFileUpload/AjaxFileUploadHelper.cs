@@ -62,7 +62,7 @@ namespace AjaxControlToolkit {
             var firstChunk = bool.Parse(request.QueryString["firstChunk"] ?? "false");
             var usePoll = bool.Parse(request.QueryString["usePoll"] ?? "false");
 
-            using(var stream = ToolkitConfig.UseBufferlessInputStream ? request.GetBufferlessInputStream() : request.InputStream) {
+            using(var stream = request.GetBufferlessInputStream()) {
                 var success = false;
                 success = ProcessStream(
                     context, stream, fileId, fileName,

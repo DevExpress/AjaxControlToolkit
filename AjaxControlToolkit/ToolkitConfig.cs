@@ -43,13 +43,6 @@ namespace AjaxControlToolkit {
             get { return ConfigSection.AdditionalUploadFileExtensions; }
         }
 
-        public static bool UseBufferlessInputStream {
-            get { return ConfigSection.UseBufferlessInputStream; }
-#if DEBUG
-            set { ConfigSection.UseBufferlessInputStream = value; }
-#endif
-        }
-
         public static IEnumerable<Type> CustomControls {
             get {
                 foreach(var control in ConfigSection.CustomControls)
