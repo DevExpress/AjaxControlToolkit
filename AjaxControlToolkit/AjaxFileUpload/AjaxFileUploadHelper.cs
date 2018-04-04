@@ -65,7 +65,6 @@ namespace AjaxControlToolkit {
 
             using(var stream = GetReadEntityBodyMode(request) != 1 ? request.GetBufferlessInputStream() : request.InputStream) {
                 var success = false;
-
                 success = ProcessStream(
                     context, stream, fileId, fileName,
                     chunked, firstChunk, usePoll);
