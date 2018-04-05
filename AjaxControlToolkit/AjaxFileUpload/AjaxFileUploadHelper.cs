@@ -62,7 +62,7 @@ namespace AjaxControlToolkit {
             var firstChunk = bool.Parse(request.QueryString["firstChunk"] ?? "false");
             var usePoll = bool.Parse(request.QueryString["usePoll"] ?? "false");
 
-            using(var stream = request.GetBufferlessInputStream()) {
+            using(var stream = GetReadEntityBodyMode(request) != 1 ? request.GetBufferlessInputStream() : request.InputStream) {
                 var success = false;
                 success = ProcessStream(
                     context, stream, fileId, fileName,
@@ -72,6 +72,15 @@ namespace AjaxControlToolkit {
                     request.Form.Clear();
 
                 return success;
+            }
+        }
+
+        static int GetReadEntityBodyMode(HttpRequest request) {
+            try {
+                return Convert.ToInt32((request as dynamic).ReadEntityBodyMode);
+            }
+            catch {
+                return 0;
             }
         }
 
