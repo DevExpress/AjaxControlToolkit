@@ -1,4 +1,3 @@
-using Microsoft.CSharp.RuntimeBinder;
 using System;
 using System.IO;
 using System.Linq;
@@ -80,7 +79,7 @@ namespace AjaxControlToolkit {
             try {
                 return Convert.ToInt32((request as dynamic).ReadEntityBodyMode);
             }
-            catch{
+            catch {
                 return 0;
             }
         }
