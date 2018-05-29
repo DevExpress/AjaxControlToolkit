@@ -123,6 +123,15 @@ namespace AjaxControlToolkit {
             return scriptManager.EnableScriptLocalization;
         }
 
+        internal static void RegisterLocalization(ClientScriptManager scriptManager, Type type) {
+            var localeKey = new Localization().GetLocaleKey();
+            if (String.IsNullOrEmpty(localeKey))
+                return;
+
+            var script = String.Format(@"Sys.Extended.UI.Localization.SetLocale(""{0}"");", localeKey);
+            scriptManager.RegisterStartupScript(type, "f93b988bab7e44ffbcff635ee599ade2", script, true);
+        }
+
         ScriptReference CreateScriptReference(string localeKey, Assembly scriptAssembly) {
             if(ToolkitAssembly == scriptAssembly)
                 return new ScriptReference(FormatScriptName(localeKey) + Constants.JsPostfix, ToolkitAssembly.FullName);

@@ -98,6 +98,8 @@ namespace AjaxControlToolkit {
             EnsureID();
             EnsureScriptManager();
 
+            Localization.RegisterLocalization(Page.ClientScript, GetType());
+
             if(SupportsClientState) {
                 ScriptManager.RegisterHiddenField(this, ClientStateFieldID, SaveClientState());
 
