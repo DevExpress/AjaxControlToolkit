@@ -48,8 +48,8 @@ Sys.Extended.UI.AjaxFileUpload.Utils = function() {
         if(!file)
             throw 'file must defined or not null';
 
-        if(!file.value && file.name)
-            return file.name.substring(file.name.lastIndexOf('.') + 1);
+        if (!file.value && file.name)
+            return getExtension(file.name);
 
         if(file.value)
             file = file.value;
@@ -57,7 +57,12 @@ Sys.Extended.UI.AjaxFileUpload.Utils = function() {
         if(typeof (file) !== "string")
             throw "can't resolve file type.";
 
-        return file.substring(file.lastIndexOf('.') + 1);
+        return getExtension(file);
+
+        function getExtension(filename) {
+            var extensionStartIndex = filename.lastIndexOf('.') + 1;
+            return extensionStartIndex ? filename.substring(extensionStartIndex) : "";
+        }
     };
 
     this.sizeToString = function(bytes) {

@@ -88,6 +88,52 @@
                 expect(this.disabledAjaxFileUploadExtender._processor.addFilesToQueue).not.toHaveBeenCalled();
             });
 
+            it("gets file extension correctly", function () {
+                var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
+                var file = { "name": "a.a" };
+                var fileType = utils.getFileType(file);
+                expect(fileType).toBe("a");                
+            });
+
+            it("gets empty string for file without extension", function () {
+                var utils = new Sys.Extended.UI.AjaxFileUpload.Utils();
+                var file = { "name": "a" };
+                var fileType = utils.getFileType(file);
+                expect(fileType).toBe("");                
+            });
+
+            it("it accepts file with extension", function () {
+                this.ajaxFileUploadExtender.set_allowedFileTypes("a");
+                var fileTypeValidity = this.ajaxFileUploadExtender.fileTypeIsValid("a");
+                expect(fileTypeValidity).toBe(true);
+            });
+
+
+            it("it accepts file with extension if specified with another extension", function () {
+                this.ajaxFileUploadExtender.set_allowedFileTypes("a,b");
+                var fileTypeValidity = this.ajaxFileUploadExtender.fileTypeIsValid("a");
+                expect(fileTypeValidity).toBe(true);
+            });
+
+            it("it accepts file with extension if specified with no extension", function () {
+                this.ajaxFileUploadExtender.set_allowedFileTypes("a,");
+                var fileTypeValidity = this.ajaxFileUploadExtender.fileTypeIsValid("a");
+                expect(fileTypeValidity).toBe(true);
+            });
+
+            it("it accepts file without extension if specified with another extension", function () {
+                this.ajaxFileUploadExtender.set_allowedFileTypes("a,");
+                var fileTypeValidity = this.ajaxFileUploadExtender.fileTypeIsValid("");
+                expect(fileTypeValidity).toBe(true);
+            });
+
+            it("it accepts file without extension if specified without another extensions", function () {
+                this.ajaxFileUploadExtender.set_allowedFileTypes(",");
+                var fileTypeValidity = this.ajaxFileUploadExtender.fileTypeIsValid("");
+                expect(fileTypeValidity).toBe(true);
+            });
+
+            
         });
     </script>
 </asp:Content>
