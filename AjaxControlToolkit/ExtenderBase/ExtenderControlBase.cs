@@ -277,20 +277,11 @@ namespace AjaxControlToolkit {
         protected override void OnPreRender(EventArgs e) {
             base.OnPreRender(e);
 
-            RegisterLocalization();
+            Localization.RegisterLocalization(Page.ClientScript, GetType());
 
             if(Enabled && TargetControl.Visible) {
                 SaveClientStateValues();
             }
-        }
-
-        void RegisterLocalization() {
-            var localeKey = new Localization().GetLocaleKey();
-            if(String.IsNullOrEmpty(localeKey))
-                return;
-
-            var script = String.Format(@"Sys.Extended.UI.Localization.SetLocale(""{0}"");", localeKey);
-            Page.ClientScript.RegisterStartupScript(GetType(), "f93b988bab7e44ffbcff635ee599ade2", script, true);
         }
 
         protected override void OnLoad(EventArgs e) {
