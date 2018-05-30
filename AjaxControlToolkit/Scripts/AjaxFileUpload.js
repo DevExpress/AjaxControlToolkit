@@ -48,7 +48,7 @@ Sys.Extended.UI.AjaxFileUpload.Utils = function() {
         if(!file)
             throw 'file must defined or not null';
 
-        if (!file.value && file.name)
+        if(!file.value && file.name)
             return getExtension(file.name);
 
         if(file.value)
