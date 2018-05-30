@@ -2,6 +2,11 @@
 
 // Utils
 Sys.Extended.UI.AjaxFileUpload.Utils = function() {
+    
+    function getExtension(filename) {
+        var extensionStartIndex = filename.lastIndexOf('.') + 1;
+        return extensionStartIndex ? filename.substring(extensionStartIndex) : "";
+    }    
 
     this.generateGuid = function() {
         var result, i, j;
@@ -58,11 +63,6 @@ Sys.Extended.UI.AjaxFileUpload.Utils = function() {
             throw "can't resolve file type.";
 
         return getExtension(file);
-
-        function getExtension(filename) {
-            var extensionStartIndex = filename.lastIndexOf('.') + 1;
-            return extensionStartIndex ? filename.substring(extensionStartIndex) : "";
-        }
     };
 
     this.sizeToString = function(bytes) {
