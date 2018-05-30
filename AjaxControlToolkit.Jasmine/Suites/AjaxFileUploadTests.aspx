@@ -102,32 +102,32 @@
                 expect(fileType).toBe("");                
             });
 
-            it("it accepts file with extension", function () {
+            it("accepts file with extension", function () {
                 this.ajaxFileUploadExtender.set_allowedFileTypes("a");
                 var fileTypeValidity = this.ajaxFileUploadExtender.fileTypeIsValid("a");
                 expect(fileTypeValidity).toBe(true);
             });
 
 
-            it("it accepts file with extension if specified with another extension", function () {
+            it("accepts file with extension if specified with another extension", function () {
                 this.ajaxFileUploadExtender.set_allowedFileTypes("a,b");
                 var fileTypeValidity = this.ajaxFileUploadExtender.fileTypeIsValid("a");
                 expect(fileTypeValidity).toBe(true);
             });
 
-            it("it accepts file with extension if specified with no extension", function () {
+            it("accepts file with extension if specified with no extension", function () {
                 this.ajaxFileUploadExtender.set_allowedFileTypes("a,");
                 var fileTypeValidity = this.ajaxFileUploadExtender.fileTypeIsValid("a");
                 expect(fileTypeValidity).toBe(true);
             });
 
-            it("it accepts file without extension if specified with another extension", function () {
+            it("accepts file without extension if specified with another extension", function () {
                 this.ajaxFileUploadExtender.set_allowedFileTypes("a,");
                 var fileTypeValidity = this.ajaxFileUploadExtender.fileTypeIsValid("");
                 expect(fileTypeValidity).toBe(true);
             });
 
-            it("it accepts file without extension if specified without another extensions", function () {
+            it("accepts file without extension if specified without another extensions", function () {
                 this.ajaxFileUploadExtender.set_allowedFileTypes(",");
                 var fileTypeValidity = this.ajaxFileUploadExtender.fileTypeIsValid("");
                 expect(fileTypeValidity).toBe(true);
