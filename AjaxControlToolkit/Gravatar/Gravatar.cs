@@ -88,14 +88,30 @@ namespace AjaxControlToolkit {
             set;
         }
 
+        private bool _secure = false;
+        /// <summary>
+        ///  Url protocal to use that will determine base url for image.
+        ///  Default value is false and uses the http url
+        /// </summary>
+        [Category("Behavior")]
+        [ExtenderControlProperty]
+        [Description("Url protocal, that will be by default.")]
+        [ClientPropertyName("secure")]
+        public bool Secure
+        {
+            get { return _secure; }
+            set { _secure = value; }
+        }
+
         // This method renders 'src' attribute
         protected override void AddAttributesToRender(HtmlTextWriter writer) {
             base.AddAttributesToRender(writer);
-            writer.AddAttribute(HtmlTextWriterAttribute.Src, GetUrl(Email, Size, DefaultImage, Rating));
+            writer.AddAttribute(HtmlTextWriterAttribute.Src, GetUrl(Email, Size, DefaultImage, Rating, Secure));
         }
 
-        string GetUrl(string email, int? size, string defaultImage, GravatarRating rating) {
-            var url = new StringBuilder("http://www.gravatar.com/avatar/");
+        string GetUrl(string email, int? size, string defaultImage, GravatarRating rating, bool secure) {
+            var base_url = (secure) ? "https://secure.gravatar.com/avatar/" : "http://www.gravatar.com/avatar/";
+            var url = new StringBuilder(base_url);
             url.Append(GetHash(Email));
 
             if(size == null) size = 80;
