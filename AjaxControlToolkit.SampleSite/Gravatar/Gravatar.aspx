@@ -27,11 +27,6 @@
     <ajaxToolkit:Gravatar ID="Gravatar6" Email="Sample1@DoesNotExist.com" DefaultImageBehavior="Wavatar" runat="server" />
     <ajaxToolkit:Gravatar ID="Gravatar7" Email="Sample2@DoesNotExist.com" DefaultImageBehavior="Wavatar" runat="server" />
     <ajaxToolkit:Gravatar ID="Gravatar8" Email="Sample3@DoesNotExist.com" DefaultImageBehavior="Wavatar" runat="server" />
-    <br />
-    <hr />
-    Displays gravatar for an email account using secure url:
-    <br />
-    <ajaxToolkit:Gravatar ID="Gravatar9" Email="test@devexpress.com" DefaultImageBehavior="MysteryMan" runat="server" Secure="true" />
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="InfoContent" runat="Server">
