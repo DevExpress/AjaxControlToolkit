@@ -95,7 +95,7 @@ namespace AjaxControlToolkit {
         }
 
         string GetUrl(string email, int? size, string defaultImage, GravatarRating rating) {
-            var url = new StringBuilder("http://www.gravatar.com/avatar/");
+            var url = new StringBuilder("https://secure.gravatar.com/avatar/");
             url.Append(GetHash(Email));
 
             if(size == null) size = 80;
