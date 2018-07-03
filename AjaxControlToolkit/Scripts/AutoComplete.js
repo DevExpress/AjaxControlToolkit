@@ -739,7 +739,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
 
     _isAppleBrowser: function () {
         var ios = /iphone|ipad/i.test(navigator.userAgent);
-        var desktopSafari = /Safari/.test(window.safari && window.safari.pushNotification);
+        var desktopSafari = window.safari && /Safari/.test(safari.pushNotification);
         return ios || desktopSafari;
     },
 
