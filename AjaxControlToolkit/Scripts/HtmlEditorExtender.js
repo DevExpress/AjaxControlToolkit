@@ -820,7 +820,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
     _rgbToHex: function(s) {
         var a = /rgb\s?\(\s?(\d+)\s?,\s?(\d+)\s?,\s?(\d+)\s?\)/.exec(s);
 
-        return '#' + (parseInt(a[3], 10) | (parseInt(a[2], 10) << 8) | (parseInt(a[1], 10) << 16)).toString(16);
+        return '#' + ("000000" + (parseInt(a[3], 10) | (parseInt(a[2], 10) << 8) | (parseInt(a[1], 10) << 16)).toString(16)).substr(-6);
     },
 
     _encodeHtml: function() {
