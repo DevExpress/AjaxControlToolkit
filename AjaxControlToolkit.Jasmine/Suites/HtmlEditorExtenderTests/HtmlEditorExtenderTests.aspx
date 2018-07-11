@@ -904,8 +904,8 @@
 
             it("encodes color to hex properly", function() {
                 var wrapper = new HtmlEditorWrapper(this.extender);
-                wrapper.setContent("<span style=\"color: rgb(0, 0, 204);\"></span>", "source").switchTab("content");
-                var expectedText = "&lt;span style=&quot;color: #0000cc;&quot;&gt;&lt;/span&gt;";
+                wrapper.setContent("<span style=\"color: rgb(0, 0, 204);\">a</span>", "source").switchTab("content");
+                var expectedText = "&lt;span style=&quot;color: #0000cc;&quot;&gt;a&lt;/span&gt;";
                 expect(this.extender._encodeHtml()).toBe(expectedText);
             });
         });
