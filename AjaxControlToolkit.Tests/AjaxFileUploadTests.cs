@@ -10,6 +10,7 @@ namespace AjaxControlToolkit.Tests {
         string _tempFolder;
         const string testBody = "------WebKitFormBoundaryCqenIHPHe1ZTCr0d\r\nContent-Disposition: form-data; name=\"act-file-data\"; filename=\"zero.jpg\"\r\nContent-Type: image/jpeg\r\n\r\n\r\n------WebKitFormBoundaryCqenIHPHe1ZTCr0d--\r\n";
         const string testQuery = "filename=aaa.jpg&fileId=E63F2078-D5C7-66FA-5CAD-02C169149BD5";
+        const string testQueryFilenameInvalidChars = "filename=a:a*a.jpg&fileId=E63F2078-D5C7-66FA-5CAD-02C169149BD5"; 
         const string testQueryNoExtension = "filename=aaa&fileId=E63F2078-D5C7-66FA-5CAD-02C169149BD5";
         const string testContentType = "multipart/form-data; boundary=----WebKitFormBoundaryCqenIHPHe1ZTCr0d";
 
@@ -85,6 +86,13 @@ namespace AjaxControlToolkit.Tests {
         [Test]
         public void DoNotUseBufferlessInputStream() {
             var request = new WorkerRequest(testBody, testQuery, testContentType);
+            var context = new HttpContext(request);
+            Assert.DoesNotThrow(() => AjaxFileUploadHelper.Process(context));
+        }
+
+        [Test]
+        public void InvalidFilenameChars() {
+            var request = new WorkerRequest(testBody, testQueryFilenameInvalidChars, testContentType);
             var context = new HttpContext(request);
             Assert.DoesNotThrow(() => AjaxFileUploadHelper.Process(context));
         }
