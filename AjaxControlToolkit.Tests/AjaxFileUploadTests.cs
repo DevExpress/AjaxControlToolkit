@@ -94,7 +94,8 @@ namespace AjaxControlToolkit.Tests {
         public void InvalidFilenameChars() {
             var request = new WorkerRequest(testBody, testQueryFilenameInvalidChars, testContentType);
             var context = new HttpContext(request);
-            Assert.DoesNotThrow(() => AjaxFileUploadHelper.Process(context));
+            AjaxFileUploadHelper.Process(context);
+            Assert.True(File.Exists(Path.Combine(_tempFolder, "E63F2078-D5C7-66FA-5CAD-02C169149BD5", "a-a-a.jpg.tmp")));
         }
     }
 }
