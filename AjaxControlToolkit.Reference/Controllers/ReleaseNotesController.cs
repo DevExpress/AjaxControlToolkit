@@ -25,6 +25,8 @@ namespace AjaxControlToolkit.Reference.Controllers {
         public ContentResult Milestone(string id) {
             var milestone = id;
             var closedIssues = new List<GitHubIssue>();
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             WebResponse response = GetResponse("https://api.github.com/repos/DevExpress/AjaxControlToolkit/issues?state=closed");
 
             while(HasNextPage(response))
