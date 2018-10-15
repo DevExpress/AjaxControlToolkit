@@ -725,11 +725,8 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
 
         // In Chrome and Firefox, this event is triggered automatically
-        if (Sys.Browser.agent === Sys.Browser.InternetExplorer
-            || Sys.Browser.agent === null
-            || this._isAppleBrowser()
-        )
-        $common.tryFireEvent(element, "change");
+        if (this._isIEBrowser || this._isAppleBrowser())
+            $common.tryFireEvent(element, "change");
 
         this.raise_itemSelected(new Sys.Extended.UI.AutoCompleteItemEventArgs(item, text, item ? item._value : null));
 
@@ -737,6 +734,12 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         this._hideCompletionList();
     },
 
+    _isIEBrowser: function () {
+        var edge = /edge/i.test(navigator.userAgent);
+        return Sys.Browser.agent === Sys.Browser.InternetExplorer
+            || Sys.Browser.agent === null
+            || edge;
+    },
     _isAppleBrowser: function () {
         var ios = /iphone|ipad/i.test(navigator.userAgent);
         var desktopSafari = window.safari && /Safari/.test(safari.pushNotification);
