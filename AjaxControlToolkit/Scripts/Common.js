@@ -1008,7 +1008,29 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
             element.innerText = text;
         else
             element.textContent = text;
-    }
+    },
+
+    isMsBrowser: function () {
+        var edge = /edge/i.test(navigator.userAgent);
+        return Sys.Browser.agent === Sys.Browser.InternetExplorer
+            || Sys.Browser.agent === null
+            || edge;
+    },
+
+    isAppleBrowser: function () {
+        var ios = /iphone|ipad/i.test(navigator.userAgent);
+        var desktopSafari = window.safari && /Safari/.test(safari.pushNotification);
+        return ios || desktopSafari;
+    },
+
+    isInternetExplorer: function () {
+        if (Sys.Browser.agent == Sys.Browser.InternetExplorer //pre IE 11
+            ||
+            (Sys.Browser.agent == null && Sys.Browser.name == "Netscape" && Sys.Browser.version == 5)) // IE 11
+            return true;
+
+        return false;
+    },
 }
 
 // Create the singleton instance of the CommonToolkitScripts
