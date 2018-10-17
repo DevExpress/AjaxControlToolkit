@@ -223,7 +223,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     remove_mouseOver: function(handler) {
         this.get_events().removeHandler("mouseOver", handler);
     },
-    raise_mouseOver: function(ratingTmp) {
+    raise_mouseOver: function(rating_tmp) {
         var handler = this.get_events().getHandler("mouseOver");
 
         if(handler)
