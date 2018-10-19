@@ -239,7 +239,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
         this.remove_mouseOver(handler);
     },
     raiseMouseOver: function(rating_tmp) {
-        Sys.Extended.Deprecated("raiseMouseOver(rating_tmp)", "raise_mouseOver(ratingTmp)");
+        Sys.Extended.Deprecated("raiseMouseOver(rating_tmp)", "raise_mouseOver(rating_tmp)");
         this.raise_mouseOver(rating_tmp);
     },
 
