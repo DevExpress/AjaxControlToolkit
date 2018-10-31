@@ -223,7 +223,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
     remove_mouseOver: function(handler) {
         this.get_events().removeHandler("mouseOver", handler);
     },
-    raise_mouseOver: function(ratingTmp) {
+    raise_mouseOver: function(rating_tmp) {
         var handler = this.get_events().getHandler("mouseOver");
 
         if(handler)
@@ -239,7 +239,7 @@ Sys.Extended.UI.RatingBehavior.prototype = {
         this.remove_mouseOver(handler);
     },
     raiseMouseOver: function(rating_tmp) {
-        Sys.Extended.Deprecated("raiseMouseOver(rating_tmp)", "raise_mouseOver(ratingTmp)");
+        Sys.Extended.Deprecated("raiseMouseOver(rating_tmp)", "raise_mouseOver(rating_tmp)");
         this.raise_mouseOver(rating_tmp);
     },
 
