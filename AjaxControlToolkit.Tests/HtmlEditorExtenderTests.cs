@@ -63,5 +63,20 @@ namespace AjaxControlToolkit.Tests {
 
             Assert.AreEqual("", actual);
         }
+
+        [Test]
+        public void Issue467() {
+            using(var html = new HtmlEditorExtender()) {
+                html.Sanitizer = new DefaultHtmlSanitizer();
+
+                var decodedText = html.Decode(@"
+                    <img src=""data:text/javascript,alert(1)"">
+                    <img src=""data:image/png;base64,iVBOReprst"">
+                ");
+
+                Assert.True(decodedText.Contains("data:image/png"));
+                Assert.False(decodedText.Contains("data:text/javascript"));
+            }
+        }
     }
 }
