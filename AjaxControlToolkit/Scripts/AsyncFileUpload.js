@@ -373,7 +373,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         var mainForm = document.getElementById(this._formName);
         this._removeTimer();
         this.setThrobber(false);
-        mainForm.target = "_top";
+        this._restoreFormTarget(mainForm);
         mainForm.action = this._postBackUrl;
         var length;
         var contentType = "";
@@ -422,7 +422,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
                     var url = this._postBackUrl;
                     url += url.indexOf("?") === -1 ? "?" : "&";
                     mainForm.action = url + 'AsyncFileUploadID=' + this.get_element().id + '&rnd=' + Math.random().toString().replace(/\./g, "");
-                    mainForm.target = this._iframeName;
+                    this._changeFormTarget(mainForm);
                     cleanup = false;
                     this.setThrobber(true);
                     setTimeout(function() {
@@ -485,7 +485,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
                 }
 
                 this._removeTimer();
-                mainForm.target = "_top";
+                this._restoreFormTarget(mainForm);
                 mainForm.action = this._postBackUrl;
                 if(this.get_completeBackColor() != "") {
                     if(this._innerTB != null) {
@@ -500,7 +500,7 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
         }
         catch(ex) {
             this._removeTimer();
-            mainForm.target = "_top";
+            this._restoreFormTarget(mainForm);
             mainForm.action = this._postBackUrl;
             this._onError(ex.message);
         }
@@ -526,6 +526,16 @@ Sys.Extended.UI.AsyncFileUpload.prototype = {
             setTimeout(function() { uploader._onError(Sys.Extended.UI.Resources.AsyncFileUpload_UploadingProblem); }, 0);
             this._waitTimer = null;
         }
+    },
+
+    _changeFormTarget: function(form) {
+        this._mainFormOldTarget = form.target;
+        form.target = this._iframeName;
+    },
+
+    _restoreFormTarget: function(form) {
+        form.target = this._mainFormOldTarget;
+        this._mainFormOldTarget = undefined;
     }
 }
 
