@@ -1,16 +1,16 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Suites/Suite.Master"  %>
 
 <asp:Content ContentPlaceHolderID="TestSuite" runat="server">
-    <iframe src="Frame.aspx" id="TestFrame"></iframe>
+    <iframe src="Issue466_Frame.aspx" id="TestFrame"></iframe>
 
     <script>
-        describe("Issue466", function() {
+        describe("AsyncFileUpload", function() {
 
             function findInnerForm() {
                 return document.getElementById("TestFrame").contentWindow.document.getElementsByTagName("form")[0];
             }
 
-            it("is fixed", function(done) {
+            it("issue 466 is fixed", function(done) {
                 waitFor(
                     function() {
                         return !!window["Issue466_UploadStarted"];
