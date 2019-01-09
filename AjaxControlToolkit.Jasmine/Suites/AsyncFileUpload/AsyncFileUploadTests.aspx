@@ -6,11 +6,11 @@
     <script>
         describe("AsyncFileUpload", function() {
 
-            function findInnerForm() {
-                return document.getElementById("TestFrame").contentWindow.document.getElementsByTagName("form")[0];
-            }
-
             it("issue 466 is fixed", function(done) {
+                function findInnerForm() {
+                    return document.getElementById("TestFrame").contentWindow.document.getElementsByTagName("form")[0];
+                }
+
                 waitFor(
                     function() {
                         return !!window["Issue466_UploadStarted"];
