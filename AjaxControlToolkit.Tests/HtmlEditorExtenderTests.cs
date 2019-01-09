@@ -65,7 +65,7 @@ namespace AjaxControlToolkit.Tests {
         }
 
         [Test]
-        public void Issue467() {
+        public void DoNotStripDataEncodedImage() {
             using(var html = new HtmlEditorExtender()) {
                 html.Sanitizer = new DefaultHtmlSanitizer();
 
