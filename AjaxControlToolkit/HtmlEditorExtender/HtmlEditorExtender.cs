@@ -174,7 +174,17 @@ namespace AjaxControlToolkit {
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "[^<]<[^>]*expression[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            result = Regex.Replace(result, "[^<]<[^>]*data\\:[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+
+            result = Regex.Replace(result, "[^<]<([^>]*)(data\\:[^>]*)>", m => {
+                var tagGroup = m.Groups[1].Value.ToLower();
+                var urlGroup = m.Groups[2].Value.ToLower();
+
+                if(tagGroup.StartsWith("img") && urlGroup.StartsWith("data:image/"))
+                    return m.Value;
+
+                return "";
+            }, RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
+
             result = Regex.Replace(result, "[^<]<[^>]*script(?!\\w)[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "[^<]<[^>]*filter[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
             result = Regex.Replace(result, "[^<]<[^>]*behavior[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
@@ -190,6 +200,9 @@ namespace AjaxControlToolkit {
 
                 if(!elementWhiteList.ContainsKey("br"))
                     elementWhiteList.Add("br", new string[0]);
+
+                if(!elementWhiteList.ContainsKey("img"))
+                    elementWhiteList.Add("img", new[] { "src" });
 
                 result = Sanitizer.GetSafeHtmlFragment(result, elementWhiteList);
             }
