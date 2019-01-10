@@ -107,6 +107,8 @@
     <Content Include="Scripts\MicrosoftAjaxWebForms.debug.js" />
     <Content Include="Suites\AutoComplete\AutoCompleteTests.aspx" />
     <Content Include="Suites\AutoComplete\TestWebService.asmx" />
+    <Content Include="Suites\AsyncFileUpload\Issue466_Frame.aspx" />
+    <Content Include="Suites\AsyncFileUpload\AsyncFileUploadTests.aspx" />
     <Content Include="Suites\PieChartTests.aspx" />
     <Content Include="Suites\RatingTests.aspx" />
     <Content Include="Suites\AccordionTests.aspx" />
