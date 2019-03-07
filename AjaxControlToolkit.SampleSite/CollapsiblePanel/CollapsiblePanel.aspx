@@ -45,13 +45,13 @@
     <samples:InfoBlock runat="server" Collapsed="false">
         <Header>CollapsiblePanel Description</Header>
         <Content>
-            <div runat="server" ControlType="CollapsiblePanelExtender" ContentType="description" />
+            <div runat="server" data-control-type="CollapsiblePanelExtender" data-content-type="description" />
         </Content>
     </samples:InfoBlock>
     <samples:InfoBlock runat="server">
         <Header>CollapsiblePanel Properties</Header>
         <Content>
-            <div runat="server" ControlType="CollapsiblePanelExtender" ContentType="members" />
+            <div runat="server" data-control-type="CollapsiblePanelExtender" data-content-type="members" />
         </Content>
     </samples:InfoBlock>
 </asp:Content>
