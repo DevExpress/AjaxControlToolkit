@@ -300,10 +300,7 @@
 
                     actualSourceText = wrapper.currentState.editorContent("source");
 
-                    if(this.ua.browser.family == "Chrome")
-                        expect(actualSourceText).toBe("<ol><li>a<br /></li></ol>");
-                    else
-                        expect(actualSourceText).toBe("<ol><li>a</li></ol>");
+                    expect(actualSourceText).toBe("<ol><li>a</li></ol>");
                 });
 
                 it("renders unordered list", function() {
@@ -312,10 +309,7 @@
 
                     actualSourceText = wrapper.currentState.editorContent("source");
 
-                    if(this.ua.browser.family == "Chrome")
-                        expect(actualSourceText).toBe("<ul><li>a<br /></li></ul>");
-                    else
-                        expect(actualSourceText).toBe("<ul><li>a</li></ul>");
+                    expect(actualSourceText).toBe("<ul><li>a</li></ul>");
                 });
 
                 it("defines font size via style", function() {
