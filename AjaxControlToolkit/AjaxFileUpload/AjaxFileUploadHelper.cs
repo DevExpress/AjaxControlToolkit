@@ -201,7 +201,13 @@ namespace AjaxControlToolkit {
 
         private static string GetTempFilePath(string fileId, string fileName) {
             var tempFolder = AjaxFileUpload.GetTempFolder(fileId);
-            foreach (var invalidChar in Path.GetInvalidFileNameChars()) {
+
+            var invalidChars = Path.GetInvalidFileNameChars()
+                .Concat(new[] { '<', '>', '&', '"' })
+                .Distinct()
+                .ToArray();
+
+            foreach (var invalidChar in invalidChars) {
                 fileName = fileName.Replace(invalidChar, '-');
             }
             return Path.Combine(tempFolder, fileName) + Constants.UploadTempFileExtension;
