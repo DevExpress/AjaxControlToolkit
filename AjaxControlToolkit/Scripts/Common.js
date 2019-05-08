@@ -1264,3 +1264,12 @@ Sys.Extended.UI.zIndex.PasswordStrengthTextDisplay = 10001;
 Sys.Extended.UI.zIndex.Popup = 1000;
 Sys.Extended.UI.zIndex.SeadragonContainer = 99999999;
 Sys.Extended.UI.zIndex.SliderDragHandle = 999;
+
+Sys.Extended.UI.htmlEncode = function(text) {
+    return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+};

@@ -161,16 +161,18 @@ Sys.Extended.UI.AjaxFileUpload.Item.prototype = {
 
         this._fileName = utils.getFileName(file);
 
+        var htmlEncode = Sys.Extended.UI.htmlEncode;
+
         if(isHtml5Support) {
             this._fileSize = file.size;
-            var fType = file.type ? '<span class="filetype">(' + file.type + ')</span>' : '';
-            fileInfoText.innerHTML = '<span class="filename">' + this._fileName + '</span> '
+            var fType = file.type ? '<span class="filetype">(' + htmlEncode(file.type) + ')</span>' : '';
+            fileInfoText.innerHTML = '<span class="filename">' + htmlEncode(this._fileName) + '</span> '
                 + fType
                 + ' - <span class="filesize">' + utils.sizeToString(file.size) + '</span> ';
             this._fileType = file.type;
         } else {
 
-            fileInfoText.innerHTML = '<span class="filename">' + this._fileName + '</span>';
+            fileInfoText.innerHTML = '<span class="filename">' + htmlEncode(this._fileName) + '</span>';
             this._fileType = utils.getFileType(file);
         }
 
@@ -829,7 +831,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
             // set statuses as uploaded
             fileItem.setStatus('uploaded', Sys.Extended.UI.Resources.AjaxFileUpload_Uploaded);
             control.setStatusMessage(String.format(Sys.Extended.UI.Resources.AjaxFileUpload_UploadingHtml5File,
-                file.name, utils.sizeToString(file.size)));
+                Sys.Extended.UI.htmlEncode(file.name), utils.sizeToString(file.size)));
 
             // finalizing and upload next file
             control.doneAndUploadNextFile(fileItem);
