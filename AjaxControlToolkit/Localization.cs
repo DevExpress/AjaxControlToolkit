@@ -112,7 +112,7 @@ namespace AjaxControlToolkit {
         }
 
         public virtual bool IsLocalizationEnabled() {
-            var page = HttpContext.Current.Handler as Page;
+            var page = HttpContext.Current?.Handler as Page;
             if(page == null)
                 return true;
 
