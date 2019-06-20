@@ -4,7 +4,7 @@ using System.Resources;
 // WARNING this file is shared accross multiple projects
 
 [assembly: AssemblyProduct("ASP.NET AJAX Control Toolkit")]
-[assembly: AssemblyCopyright("Copyright © CodePlex Foundation 2012-2018")]
+[assembly: AssemblyCopyright("Copyright (c) 2012-2019, CodePlex Foundation")]
 [assembly: AssemblyCompany("CodePlex Foundation")]
 
 [assembly: AssemblyVersion("19.1.0.0")]
