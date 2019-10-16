@@ -9,11 +9,6 @@ install:
 environment:
   AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
 
-cache:
-  - packages -> **\packages.config
-  - nuget.exe
-  - '%APPDATA%\npm-cache' 
-
 services: iis
   
 before_build:
