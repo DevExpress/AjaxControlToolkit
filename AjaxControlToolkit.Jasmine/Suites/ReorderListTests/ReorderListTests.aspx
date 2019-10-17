@@ -152,7 +152,7 @@
 
                     expect(top1 < top2 && top2 < top0).toBe(true);
 
-                    expect(liNodes[0].get(0).style.zIndex).toBe("123");
+                    expect(String(liNodes[0].get(0).style.zIndex)).toBe("123");
                     expect(liNodes[0].get(0).style.opacity).toBe("0.123");
 
                     expect(liNodes[2].get(0).style.zIndex).toBe("");
