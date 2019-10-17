@@ -32,12 +32,12 @@ Sys.Extended.UI.MaskedEditBehavior = function(element) {
     this._onFocusCssNegative = "MaskedEditFocusNegative";
     this._onBlurCssNegative = "MaskedEditBlurNegative";
 
-    // globalization
+    // globalization 
     this._cultureName = Sys.CultureInfo.CurrentCulture.name; // "en-US"
     this._userDateFormat = Sys.Extended.UI.MaskedEditUserDateFormat.None;
     this._userTimeFormat = Sys.Extended.UI.MaskedEditUserTimeFormat.None;
 
-    // globalization Hidden
+    // globalization Hidden 
     this._cultureDatePlaceholder = Sys.CultureInfo.CurrentCulture.dateTimeFormat.DateSeparator; // "/"
     this._cultureTimePlaceholder = Sys.CultureInfo.CurrentCulture.dateTimeFormat.TimeSeparator; // ":"
     this._cultureDecimalPlaceholder = Sys.CultureInfo.CurrentCulture.numberFormat.NumberDecimalSeparator; // "."
@@ -77,7 +77,7 @@ Sys.Extended.UI.MaskedEditBehavior = function(element) {
     //  , = Thousands placeholder
     this._CharsSpecialMask = "/:.,";
 
-    // local converted mask
+    // local converted mask 
     // i.e.: 9{2} => 99 , 9{2}/9{2}/9{2} = 99/99/99
     this._maskConv = "";
 
@@ -95,7 +95,7 @@ Sys.Extended.UI.MaskedEditBehavior = function(element) {
     this._LogicLastPos = -1; // Last valid position
     this._LogicLastInt = -1; // Last valid position RTL Integer with decimal
     this._LogicDateTimeSepPos = -1; // valid position seperating date & time
-    this._QtdValidInput = 0; // Qtd Valid input Position
+    this._QtdValidInput = 0; // Qtd Valid input Position 
     this._InLostfocus = false; // Flag to validate in lost focus not duplicate clearMask execute
     this._ExternalMessageError = ""; // Save local MessageError from Controls Validator
     this._CurrentMessageError = ""; // Save local Current MessageError
@@ -128,7 +128,7 @@ Sys.Extended.UI.MaskedEditBehavior = function(element) {
     this._SaveSymb = ""; // Symb Saved immediate perform Action
     this._SaveText = ""; // Text Saved immediate perform Action
     this._SavePosi = -1; // Cursor pos Saved immediate perform Action
-    this._SaveMask = ""; // Mask with text Saved
+    this._SaveMask = ""; // Mask with text Saved 
     this._SaveKeyDown = 0; // save scancode at keydown
 }
 
@@ -364,7 +364,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         if(ClearText == "" && this._maskType == Sys.Extended.UI.MaskedEditType.Number && this._LogicSymbol == "-")
             this.insertSignal("+");
 
-        // auto format
+        // auto format 
         if(ClearText != "" && this._autoComplete && this._maskType == Sys.Extended.UI.MaskedEditType.Date)
             this.AutoFormatDate();
         else if(ClearText != "" && this._autoComplete && this._maskType == Sys.Extended.UI.MaskedEditType.Time)
@@ -566,7 +566,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         if(scancode == 9) //tab default action
             return true;
 
-        if(scancode == 13)  //enter
+        if(scancode == 13)  //enter 
             return true;
 
         if(!this._isNormalChar(evt, scancode)) {
@@ -686,7 +686,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     _ExecuteNav: function(evt, scanCode) {
         if(evt.type == "keydown") {
             if($common.isInternetExplorer()) {
-                // ctrl v
+                // ctrl v 
                 if((scanCode == 86 || scanCode == 118) && !evt.shiftKey && evt.ctrlKey && !evt.altKey) {
                     this._SetCancelEvent(evt);
                     this._PasteFromClipBoard();
@@ -694,7 +694,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                     return;
                 }
 
-                // Shift Ins
+                // Shift Ins 
                 if(evt.shiftKey && !evt.ctrlKey && !evt.altKey && evt.keyCode == 45) {
                     this._SetCancelEvent(evt);
                     this._PasteFromClipBoard();
@@ -705,7 +705,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         }
 
         if (!$common.isInternetExplorer() || evt.type == "keypress") {
-            // Shift Ins
+            // Shift Ins 
             if(evt.rawEvent.shiftKey && !evt.rawEvent.ctrlKey && !evt.rawEvent.altKey && evt.rawEvent.keyCode == 45) {
                 // at opera assume Ins = "-" not execute Shift-Ins
                 this._SetCancelEvent(evt);
@@ -713,7 +713,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
 
                 return;
             }
-            // ctrl v
+            // ctrl v 
             if(evt.type == "keydown" && (scanCode == 86 || scanCode == 118) && !evt.shiftKey && evt.ctrlKey && !evt.altKey) {
                 this._SetCancelEvent(evt);
                 this._PasteFromClipBoard();
@@ -1072,7 +1072,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         if ($common.isInternetExplorer()) {
             value = window.clipboardData.getData("Text");
         } else {
-            // save current values because lost focus
+            // save current values because lost focus 
             var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()),
                 oldvalue = wrapper.get_Value(),
                 BoundSel = this._GetBoundSelection(),
@@ -1359,7 +1359,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         this.setSelectionRange(posdec, posdec);
     },
 
-    // adjust Time Format
+    // adjust Time Format 
     _AdjustTime: function(value, ValueDefault) {
         var emp = true;
         var i;
@@ -1380,7 +1380,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         return value;
     },
 
-    // adjust Element Time Format
+    // adjust Element Time Format 
     _AdjustElementTime: function() {
         var e = this.get_element(),
             wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(e),
@@ -1501,7 +1501,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         return m_arrTime[2];
     },
 
-    // adjust Date Format
+    // adjust Date Format 
     _AdjustElementDateTime: function(c) {
         if(c == this.get_cultureDatePlaceholder())
             this._AdjustElementDate();
@@ -1619,7 +1619,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         this.setSelectionRange(newcur, newcur);
     },
 
-    // Get Element Date
+    // Get Element Date 
     _GetDateElementText: function(Type) {
         var aux,
             m_arrDate;
@@ -1757,19 +1757,19 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             ret = false;
         } else if(Sys.Browser.agent != Sys.Browser.InternetExplorer || evt.type == "keydown") {
             switch(scanCode) {
-                case 33: //pg up or !
+                case 33: //pg up or ! 
                     if(typeof (evt.rawEvent.which) != "undefined" && evt.rawEvent.which != null)
                         if(evt.rawEvent.which == 0)
                             //pg up
                             ret = false;
                     break;
-                case 34: //pg down  or "
+                case 34: //pg down  or " 
                     if(typeof (evt.rawEvent.which) != "undefined" && evt.rawEvent.which != null)
                         if(evt.rawEvent.which == 0)
                             //pg down
                             ret = false;
                     break;
-                case 35: //end
+                case 35: //end   
                     if(Sys.Browser.agent == Sys.Browser.Opera && evt.type == "keypress") {
                         //at opera keydown = 51 keypress = 35 = #
                         if(this._SaveKeyDown == 35)
@@ -1789,7 +1789,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                         ret = false;
                     }
                     break;
-                case 37: //left  or %
+                case 37: //left  or % 
                     if(typeof (evt.rawEvent.which) != "undefined" && evt.rawEvent.which != null)
                         if(evt.rawEvent.which == 0)
                             //left
@@ -1825,7 +1825,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                         ret = false;
                     }
                     break;
-                case 86: // V
+                case 86: // V   
                 case 118: // v
                     //ctrl press
                     if(!evt.rawEvent.shiftKey && evt.rawEvent.ctrlKey && !evt.rawEvent.altKey)
@@ -2408,7 +2408,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
             LcPM = this.get_cultureAMPMPlaceholder().split(this._AMPMPlaceholderSeparator)[1];
         }
 
-        //perform convert for loading of a page
+        //perform convert for loading of a page 
         if(loadFirst) {
             var LDLcAM = "",
                 LDLcPM = "";
@@ -2777,7 +2777,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         wrapper.set_Value(masktext);
     },
 
-    // Insert Content at last right position
+    // Insert Content at last right position 
     _insertContentRight: function(value) {
         var wrapper = Sys.Extended.UI.TextBoxWrapper.get_Wrapper(this.get_element()),
             masktext = wrapper.get_Value(),
@@ -3182,7 +3182,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
         return char == this._LogicEscape || char == this._LogicPrompt;
     },
 
-    // return text without mask but with placeholders
+    // return text without mask but with placeholders 
     _getClearMask: function(masktext) {
         var i = 0,
             clearmask = "",
@@ -3334,7 +3334,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
     },
 
     // Convert mask with escape to mask not escape
-    // length is equal to real position
+    // length is equal to real position 
     _convertMaskNotEscape: function() {
         this._LogicMaskConv = "";
 
@@ -4217,7 +4217,7 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
 }
 Sys.Extended.UI.MaskedEditBehavior.registerClass('Sys.Extended.UI.MaskedEditBehavior', Sys.Extended.UI.DynamicPopulateBehaviorBase);
 
-// Register enumerations
+// Register enumerations  
 Sys.Extended.UI.MaskedEditType = function() {
     throw Error.invalidOperation();
 }
