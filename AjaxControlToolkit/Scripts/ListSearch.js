@@ -301,7 +301,7 @@ Sys.Extended.UI.ListSearchBehavior.prototype = {
         // Returns true if the specified charCode is a key rather than a normal (displayable) character
 
         // Walking through Sys.UI.Keys won't work -- Ampersand is code 38 which matches 
-        if(Sys.Browser.agent == Sys.Browser.Firefox && e.rawEvent.keyCode)
+        if(Sys.Browser.agent == Sys.Browser.Firefox && Sys.Browser.version < 66 && e.rawEvent.keyCode)
             return false;
 
         if(Sys.Browser.agent == Sys.Browser.Opera && e.rawEvent.which == 0)
