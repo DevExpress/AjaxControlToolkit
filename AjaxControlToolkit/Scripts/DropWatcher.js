@@ -34,6 +34,7 @@ Sys.Extended.UI.DragDropList = function(associatedElement) {
     this._originalParent = null;
     this._originalNextSibling = null;
     this._originalZIndex = null;
+    this._originalOpacity = null;
 
     this._currentContext = null;
     this._data = null;
@@ -93,6 +94,7 @@ Sys.Extended.UI.DragDropList.prototype = {
         this._dragVisual.style.width = dragObject.offsetWidth + "px";
         this._dragVisual.style.height = dragObject.offsetHeight + "px";
 
+        this._originalOpacity = this._dragVisual.style.opacity;
         this._dragVisual.style.opacity = "0.4";
         this._dragVisual.style.filter = "progid:DXImageTransform.Microsoft.BasicImage(opacity=0.4);";
         this._originalZIndex = this._dragVisual.style.zIndex;
@@ -161,13 +163,19 @@ Sys.Extended.UI.DragDropList.prototype = {
             if(this._dragMode === Sys.Extended.UI.DragMode.Copy) {
                 this._floatContainerInstance.removeChild(this._dragVisual);
             } else {
-                // NOTE: There seems to be a cursor issue in Mozilla when setting the opacity to 1. We 
-                // can work around this by setting the opacity to anything lower than 1 instead.
-                this._dragVisual.style.opacity = "0.999";
-                //_dragVisual.style.opacity = "1";
                 this._dragVisual.style.filter = "";
 
-                this._dragVisual.style.zIndex = this._originalZIndex ? this._originalZIndex : 0;
+                if(this._originalOpacity === "") {
+                    this._dragVisual.style.removeProperty("opacity");
+                } else {
+                    this._dragVisual.style.opacity = this._originalOpacity;
+                }
+
+                if(this._originalZIndex === "") {
+                    this._dragVisual.style.removeProperty("z-index");
+                } else {
+                    this._dragVisual.style.zIndex = this._originalZIndex;
+                }
 
                 // restore the height/width of the drag visual.
                 //
