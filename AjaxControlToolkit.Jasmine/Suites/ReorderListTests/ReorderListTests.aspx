@@ -125,6 +125,47 @@
                     expect(this.$listElementTable.css("border-spacing")).toBeAnyOf(["0 0", "0px 0px"]);
                 });
             });
+
+            describe("Drag-drop", function() {
+                it("github.com/DevExpress/AjaxControlToolkit/issues/503", function(done) {
+                    var liNodes = [],
+                        handleNodes = [];
+
+                    var ul = $("#" + REORDER_LIST_CLIENT_ID + "__rbl");
+
+                    for(var i = 0; i < 3; i++) {
+                        liNodes[i] = ul.find("li").eq(i);
+                        handleNodes[i] = liNodes[i].find("td").eq(0);
+                    }
+
+                    liNodes[0].css({
+                        zIndex: 123,
+                        opacity: .123
+                    });
+
+                    handleNodes[0].simulate("drag", { dx: 0, dy: 24 });
+                    handleNodes[2].simulate("drag", { dx: 0, dy: -24 });
+
+                    var top0 = liNodes[0].position().top;
+                    var top1 = liNodes[1].position().top;
+                    var top2 = liNodes[2].position().top;
+
+                    expect(top1 < top2 && top2 < top0).toBe(true);
+
+                    expect(String(liNodes[0].get(0).style.zIndex)).toBe("123");
+                    expect(liNodes[0].get(0).style.opacity).toBe("0.123");
+
+                    expect(liNodes[2].get(0).style.zIndex).toBe("");
+                    expect(liNodes[2].get(0).style.opacity).toBe("");
+
+                    liNodes[0].css({
+                        zIndex: "",
+                        opacity: ""
+                    });
+
+                    done();
+                });
+            })
         });
     </script>
 
