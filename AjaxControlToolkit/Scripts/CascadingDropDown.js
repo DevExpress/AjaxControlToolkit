@@ -337,7 +337,7 @@ Sys.Extended.UI.CascadingDropDownBehavior.prototype = {
             }
         }
         else {
-            if(list && (Sys.Browser.agent !== Sys.Browser.Safari) && (Sys.Browser.agent !== Sys.Browser.Opera)) {
+            if(list && (Sys.Browser.agent !== Sys.Browser.Firefox) && (Sys.Browser.agent !== Sys.Browser.Safari) && (Sys.Browser.agent !== Sys.Browser.Opera)) {
                 // Fire the onchange event for the control to notify any listeners of the change
                 if(document.createEvent) {
                     var onchangeEvent = document.createEvent('HTMLEvents');
