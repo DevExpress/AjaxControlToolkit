@@ -191,5 +191,23 @@ namespace AjaxControlToolkit.Jasmine.Suites {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.MaskedEditExtender ShortTimeTargetExtender;
+        
+        /// <summary>
+        /// gh493_box control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox gh493_box;
+        
+        /// <summary>
+        /// gh493_extender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender gh493_extender;
     }
 }

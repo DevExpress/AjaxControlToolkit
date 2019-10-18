@@ -484,7 +484,7 @@ namespace AjaxControlToolkit {
 
         string ResolveUploadHandlerPath(string uploadHandlerPath) {
             if(String.IsNullOrWhiteSpace(uploadHandlerPath))
-                return CombineUrl(Page.Request.ApplicationPath, "AjaxFileUploadHandler.axd");
+                return CombineUrl(Page.Response.ApplyAppPathModifier(Page.Request.ApplicationPath), "AjaxFileUploadHandler.axd");
 
             return uploadHandlerPath;
         }
