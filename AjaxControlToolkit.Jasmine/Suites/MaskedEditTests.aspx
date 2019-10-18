@@ -108,6 +108,12 @@
         MaskType="Time"
         AcceptAMPM="True" />
 
+    <asp:TextBox runat="server" ID="gh493_box" />
+    <act:MaskedEditExtender ID="gh493_extender" runat="server"
+        TargetControlID="gh493_box"
+        Mask="09"
+        ClearMaskOnLostFocus="false" />
+
     <script>
 
         describe("MaskedEdit", function() {
@@ -132,7 +138,8 @@
                 RIGHT_TO_LEFT_NUMBER_CLEARMASK_TARGET_CLIENT_ID = "<%= RightToLeftNumberClearMaskTarget.ClientID %>",
                 RIGHT_TO_LEFT_NUMBER_CLEARMASK_CLIENT_ID = "<%= RightToLeftNumberClearMaskTargetExtender.ClientID %>",
                 PHONE_NUMBER_EXTENDER_CLIENT_ID = "<%= PhoneNumberTargetExtender.ClientID%>",
-                PHONE_NUMBER_TARGET_CLIENT_ID = "<%= PhoneNumberTarget.ClientID %>";
+                PHONE_NUMBER_TARGET_CLIENT_ID = "<%= PhoneNumberTarget.ClientID %>",
+                GH_493_TARGET_CLIENT_ID = "<%= gh493_box.ClientID %>";
 
             beforeEach(function() {
                 originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
@@ -402,6 +409,12 @@
                     }, 500);
                 }, 500);
 
+            });
+
+            it("github.com/DevExpress/AjaxControlToolkit/issues/493", function() {
+                var textBox = $(GH_493_TARGET_CLIENT_ID.toIdSelector());
+                textBox.focus();
+                expect(textBox.val()).toBe("0_");
             });
         });
 

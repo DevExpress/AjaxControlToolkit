@@ -1916,6 +1916,10 @@ Sys.Extended.UI.MaskedEditBehavior.prototype = {
                 this.loadValue(value, this._LogicLastPos);
                 this._inputDirection = Sys.Extended.UI.MaskedEditInputDirections.LeftToRight;
             } else {
+                if(!this.get_clearMaskOnLostFocus() && this._LogicFirstPos > 0) {
+                    // https://github.com/DevExpress/AjaxControlToolkit/issues/493
+                    value = value.substr(this._LogicFirstPos);
+                }
                 this.loadValue(value, this._LogicFirstPos);
             }
         } else if(this._inputDirection == Sys.Extended.UI.MaskedEditInputDirections.RightToLeft && value != "") {
