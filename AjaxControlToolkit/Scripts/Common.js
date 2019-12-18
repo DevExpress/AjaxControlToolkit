@@ -1030,7 +1030,7 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
             return true;
 
         return false;
-    },
+    }
 }
 
 // Create the singleton instance of the CommonToolkitScripts
