@@ -61,7 +61,7 @@ namespace AjaxControlToolkit.Tests {
             var text = @" <script>";
             var actual = extender.Decode(text);
 
-            Assert.AreEqual("", actual);
+            Assert.AreEqual(" ", actual);
         }
 
         [Test]
@@ -76,6 +76,40 @@ namespace AjaxControlToolkit.Tests {
 
                 Assert.True(decodedText.Contains("data:image/png"));
                 Assert.False(decodedText.Contains("data:text/javascript"));
+            }
+        }
+
+        [Test]
+        public void RemoveInsecureHtml() {
+            using(var html = new HtmlEditorExtender()) {
+                html.EnableSanitization = false;
+
+                // was "Z"
+                Assert.AreEqual("A", html.Decode("A<script>Z"));
+
+                // was "<script>Z"
+                Assert.AreEqual("", html.Decode("<script>Z"));
+
+                Assert.AreEqual("AZ", html.Decode("A<script attr>...</script attr>Z"));
+
+                // was "Hello world!alert()" - see https://github.com/DevExpress/AjaxControlToolkit/issues/525
+                Assert.AreEqual(
+                    "Hello world! ",
+                    html.Decode("Hello world! <script>alert();</script>")
+                );
+
+                // was "<style</style>" - see https://github.com/DevExpress/AjaxControlToolkit/issues/513
+                var issue513html = "<style><!-- body { font-family: Script; } --></style>";
+                Assert.AreEqual(issue513html, html.Decode(issue513html));
+
+                // was "<pClick me</a></p>"
+                Assert.AreEqual(
+                    "<p><a>Click me</a></p>",
+                    html.Decode("<p><a href='javascript:alert()'>Click me</a></p>")
+                );
+
+                var comment = "<!-- behavior of expression filter data:text/plain -->";
+                Assert.AreEqual(comment, html.Decode(comment));
             }
         }
     }
