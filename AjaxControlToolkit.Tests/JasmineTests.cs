@@ -41,8 +41,12 @@ namespace AjaxControlToolkit.Tests {
 
         [Test]
         public void FireFox() {
+            var firefoxBinPath = @"C:\Program Files\Mozilla Firefox\firefox.exe";
+            if(!File.Exists(firefoxBinPath))
+                firefoxBinPath = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
+
             var driverService = FirefoxDriverService.CreateDefaultService(_driverDir, "geckodriver.exe");
-            driverService.FirefoxBinaryPath = @"C:\Program Files (x86)\Mozilla Firefox\firefox.exe";
+            driverService.FirefoxBinaryPath = firefoxBinPath;
             driverService.HideCommandPromptWindow = true;
             driverService.SuppressInitialDiagnosticInformation = true;
             var driver = new FirefoxDriver(driverService, new FirefoxOptions(), TimeSpan.FromSeconds(60));
