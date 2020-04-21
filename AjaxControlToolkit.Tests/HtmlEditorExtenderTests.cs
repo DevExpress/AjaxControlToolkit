@@ -110,6 +110,16 @@ namespace AjaxControlToolkit.Tests {
 
                 var comment = "<!-- behavior of expression filter data:text/plain -->";
                 Assert.AreEqual(comment, html.Decode(comment));
+
+                Assert.AreEqual(
+                    "<p><p><p><p>",
+                    html.Decode(
+                        "<p style='width: expression(1)'>" +
+                        "<p style='position: absolute'>" +
+                        "<p style='filter: inherit'>" +
+                        "<p style='behavior: url(something.htc)>"
+                    )
+                );
             }
         }
     }

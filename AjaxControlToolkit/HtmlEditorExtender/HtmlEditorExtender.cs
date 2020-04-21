@@ -216,7 +216,8 @@ namespace AjaxControlToolkit {
                 dropAttrs = dropAttrs || Regex.IsMatch(attrs, @"\bdata:(?!image/)", reFlags);
 
                 // Insecure/harmful CSS props
-                dropAttrs = dropAttrs || Regex.IsMatch(attrs, @"\b(expression|filter|behavior|position)\s*:", reFlags);
+                dropAttrs = dropAttrs || Regex.IsMatch(attrs, @"\b(filter|behavior|position)\s*:", reFlags);
+                dropAttrs = dropAttrs || Regex.IsMatch(attrs, @":\s*expression\b", reFlags);
 
                 // JavaScript URLs
                 dropAttrs = dropAttrs || Regex.IsMatch(attrs, @"\bjavascript:", reFlags);
