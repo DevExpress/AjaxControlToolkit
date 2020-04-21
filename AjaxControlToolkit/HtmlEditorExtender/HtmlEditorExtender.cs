@@ -201,9 +201,9 @@ namespace AjaxControlToolkit {
         static string RemoveInsecureHtml(string html) {
             var reFlags = RegexOptions.IgnoreCase | RegexOptions.Singleline;
 
-            html = Regex.Replace(html, @"(?<!<)<script[^>]*>.*?(</script[^>]*>|$)", "", reFlags);
+            html = Regex.Replace(html, @"<script[^>]*>.*?(</script[^>]*>|$)", "", reFlags);
 
-            html = Regex.Replace(html, @"(?<!<)<(/?[^\s>]+)([^>]*)>", m => {
+            html = Regex.Replace(html, @"<(/?[^\s>]+)([^>]*)>", m => {
                 var tag = m.Groups[1].Value;
 
                 if(tag.StartsWith("!--"))
