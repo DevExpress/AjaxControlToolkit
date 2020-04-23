@@ -725,7 +725,7 @@ Sys.Extended.UI.AutoCompleteBehavior.prototype = {
         }
 
         // In Chrome and Firefox, this event is triggered automatically
-        if ($common.isMsBrowser || $common.isAppleBrowser())
+        if ($common.isMsBrowser() || $common.isAppleBrowser())
             $common.tryFireEvent(element, "change");
 
         this.raise_itemSelected(new Sys.Extended.UI.AutoCompleteItemEventArgs(item, text, item ? item._value : null));
