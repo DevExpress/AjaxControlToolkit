@@ -306,13 +306,22 @@ Sys.Extended.UI.ControlBase = function(element) {
     this._onerror$delegate = Function.createDelegate(this, this._onerror);
 }
 
-Sys.Extended.UI.ControlBase.__doPostBack = function(eventTarget, eventArgument) {
+Sys.Extended.UI.ControlBase._execOnSubmitCollection = function() {
     if (!Sys.WebForms.PageRequestManager.getInstance().get_isInAsyncPostBack()) {
         for (var i = 0; i < Sys.Extended.UI.ControlBase.onsubmitCollection.length; i++) {
             Sys.Extended.UI.ControlBase.onsubmitCollection[i]();
         }
     }
+}
+
+Sys.Extended.UI.ControlBase.__doPostBack = function(eventTarget, eventArgument) {
+    Sys.Extended.UI.ControlBase._execOnSubmitCollection();
     Function.createDelegate(window, Sys.Extended.UI.ControlBase.__doPostBackSaved)(eventTarget, eventArgument);
+}
+
+Sys.Extended.UI.ControlBase.__doPostBackWithOptions = function(options) {
+    Sys.Extended.UI.ControlBase._execOnSubmitCollection();
+    Sys.Extended.UI.ControlBase.__doPostBackWithOptionsSaved(options);
 }
 
 Sys.Extended.UI.ControlBase.prototype = {
@@ -327,6 +336,10 @@ Sys.Extended.UI.ControlBase.prototype = {
                 Sys.Extended.UI.ControlBase.__doPostBackSaved = window.__doPostBack;
                 window.__doPostBack = Sys.Extended.UI.ControlBase.__doPostBack;
                 Sys.Extended.UI.ControlBase.onsubmitCollection = new Array();
+            }
+            if (!Sys.Extended.UI.ControlBase.__doPostBackWithOptionsSaved) {
+                Sys.Extended.UI.ControlBase.__doPostBackWithOptionsSaved = window.WebForm_DoPostBackWithOptions;
+                window.WebForm_DoPostBackWithOptions = Sys.Extended.UI.ControlBase.__doPostBackWithOptions;
             }
             Array.add(Sys.Extended.UI.ControlBase.onsubmitCollection, this._onsubmit$delegate);
         } else {
