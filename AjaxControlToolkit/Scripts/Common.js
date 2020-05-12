@@ -110,7 +110,7 @@ Sys.Extended.UI._CommonToolkitScripts.prototype = {
         // "element" - DOM element
         // "point" - Point object (of the form {x,y})
 
-        Sys.UI.DomElement.setLocation(element, point.x, point.y);
+        Sys.UI.DomElement.setLocation(element, Math.round(point.x), Math.round(point.y));
     },
 
     getContentSize: function(element) {
