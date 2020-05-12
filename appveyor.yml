@@ -4,7 +4,7 @@ init:
   - git config --global core.autocrlf true
 
 install:
-  - npm install --depth=0 -g eslint
+  - npm install --depth=0 -g eslint@6
 
 environment:
   AjaxControlToolkitTestSiteUrl: http://localhost/TestRunner.aspx
