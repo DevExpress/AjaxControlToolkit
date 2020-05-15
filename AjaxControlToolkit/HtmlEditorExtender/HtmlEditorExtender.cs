@@ -173,23 +173,6 @@ namespace AjaxControlToolkit {
 
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
-            result = Regex.Replace(result, "[^<]<[^>]*expression[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-
-            result = Regex.Replace(result, "[^<]<([^>]*)(data\\:[^>]*)>", m => {
-                var tagGroup = m.Groups[1].Value.ToLower();
-                var urlGroup = m.Groups[2].Value.ToLower();
-
-                if(tagGroup.StartsWith("img") && urlGroup.StartsWith("data:image/"))
-                    return m.Value;
-
-                return "";
-            }, RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-
-            result = Regex.Replace(result, "[^<]<[^>]*script(?!\\w)[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            result = Regex.Replace(result, "[^<]<[^>]*filter[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            result = Regex.Replace(result, "[^<]<[^>]*behavior[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            result = Regex.Replace(result, "[^<]<[^>]*javascript\\:[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
-            result = Regex.Replace(result, "[^<]<[^>]*position\\:[^>]*>", "", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
             // Check Whether EnableSanitization is disabled or not.
             if(EnableSanitization && Sanitizer != null) {
@@ -205,12 +188,47 @@ namespace AjaxControlToolkit {
                     elementWhiteList.Add("img", new[] { "src" });
 
                 result = Sanitizer.GetSafeHtmlFragment(result, elementWhiteList);
+            } else {
+                result = RemoveInsecureHtml(result);
             }
 
             // HtmlAgilityPack vanishes self-closing <hr /> tag, so replace it after sanitization
             result = result.Replace("<hr>", "<hr />");
 
             return result;
+        }
+
+        static string RemoveInsecureHtml(string html) {
+            var reFlags = RegexOptions.IgnoreCase | RegexOptions.Singleline;
+
+            html = Regex.Replace(html, @"<script[^>]*>.*?(</script[^>]*>|$)", "", reFlags);
+
+            html = Regex.Replace(html, @"<(/?[^\s>]+)([^>]*)>", m => {
+                var tag = m.Groups[1].Value;
+
+                if(tag.StartsWith("!--"))
+                    return m.Value;
+
+                var attrs = m.Groups[2].Value;
+                var dropAttrs = false;
+
+                // Non-image data URLs
+                dropAttrs = dropAttrs || Regex.IsMatch(attrs, @"\bdata:(?!image/)", reFlags);
+
+                // Insecure/harmful CSS props
+                dropAttrs = dropAttrs || Regex.IsMatch(attrs, @"\b(filter|behavior|position)\s*:", reFlags);
+                dropAttrs = dropAttrs || Regex.IsMatch(attrs, @":\s*expression\b", reFlags);
+
+                // JavaScript URLs
+                dropAttrs = dropAttrs || Regex.IsMatch(attrs, @"\bjavascript:", reFlags);
+
+                if(dropAttrs)
+                    return "<" + tag + ">";
+
+                return m.Value;
+            }, reFlags);
+
+            return html;
         }
 
         // On Init add popup div and ajaxfileupload control to support Add image
