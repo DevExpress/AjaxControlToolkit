@@ -868,7 +868,7 @@ Sys.Extended.UI.HtmlEditorExtenderBehavior.prototype = {
         html = html.replace(/\<(\/?)strong\>/gi, '<$1b>').replace(/\<(\/?)em\>/gi, '<$1i>');
 
         //encode for safe transport
-        html = html.replace(/&(?!g|lt;)/ig, '&amp;').replace(/\xA0/ig, '&nbsp;');
+        html = html.replace(/&/ig, '&amp;').replace(/\xA0/ig, '&nbsp;');
         html = html.replace(/</ig, '&lt;').replace(/>/ig, '&gt;').replace(/\'/ig, '&apos;').replace(/\"/ig, '&quot;');
 
         return html;

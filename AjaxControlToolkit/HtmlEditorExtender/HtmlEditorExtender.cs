@@ -168,8 +168,8 @@ namespace AjaxControlToolkit {
             var hrefCharacters = "^\\\"\\>\\<\\\\";
             result = Regex.Replace(result, "(?:\\&lt\\;|\\<)(\\/?)(a(?:(?:\\shref\\=\\\"[" + hrefCharacters + "]*\\\")|(?:\\sstyle\\=\\\"[" + attributeCharacters + "]*\\\"))*)(?:\\&gt\\;|\\>)", "<$1$2>", RegexOptions.IgnoreCase | RegexOptions.ECMAScript);
 
-            result = Regex.Replace(result, "&?lt;", "<");
-            result = Regex.Replace(result, "&?gt;", ">");
+            result = Regex.Replace(result, "&lt;", "<");
+            result = Regex.Replace(result, "&gt;", ">");
 
             result = Regex.Replace(result, "&amp;", "&", RegexOptions.IgnoreCase);
             result = Regex.Replace(result, "&nbsp;", "\xA0", RegexOptions.IgnoreCase);
