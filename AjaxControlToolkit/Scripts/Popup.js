@@ -69,10 +69,6 @@ Sys.Extended.UI.PopupBehavior.prototype = {
     },
 
     show: function() {
-        // Ignore requests to hide multiple times
-        if(this._visible)
-            return;
-
         var eventArgs = new Sys.CancelEventArgs();
         this.raise_showing(eventArgs);
 
