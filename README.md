@@ -5,7 +5,6 @@
 
 The ASP.NET AJAX Control Toolkit is an open source library for web development maintained by DevExpress. This library contains over 40 controls, including AutoComplete, CollapsiblePanel, ColorPicker, MaskedEdit, Calendar, Accordion, and Watermark.
 
-![logo](https://github.com/DevExpress/AjaxControlToolkit/raw/wiki-static-resources/readme-banner.png)
 
 Use the following link to download AJAX Control Toolkit:  
 [Download the Installer from DevExpress.com](https://go.devexpress.com/AjaxControlToolkit_GitHub_DevExpressPage.aspx)
