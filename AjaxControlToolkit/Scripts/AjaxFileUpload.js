@@ -388,7 +388,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
         // only add 1 file input element to be uploaded
         form.appendChild(inputElement);
         form.setAttribute("action", control.get_uploadHandlerPath()
-            + '?contextKey=' + control.get_contextKey()
+            + '?contextKey=' + encodeURIComponent(control.get_contextKey())
             + '&controlID=' + control.get_id()
             + '&fileId=' + control._currentFileId
             + '&fileName=' + encodeURIComponent(fileItem._fileName)
@@ -408,7 +408,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
             xhrPoll.abort();
 
         xhr.open("POST",
-            '?contextKey=' + control.get_contextKey()
+            '?contextKey=' + encodeURIComponent(control.get_contextKey())
             + '&controlID=' + control.get_id()
             + '&cancel=1&guid=' + control._currentFileId
             + self.getQueryString(), true);
@@ -514,7 +514,7 @@ Sys.Extended.UI.AjaxFileUpload.Processor = function(control, elements) {
             return;
 
         xhrPoll.open("GET",
-            '?contextKey=' + control.get_contextKey()
+            '?contextKey=' + encodeURIComponent(control.get_contextKey())
             + '&controlID=' + control.get_id()
             + '&poll=1&guid=' + control._currentFileId, true);
         xhrPoll.send(null);
@@ -765,7 +765,7 @@ Sys.Extended.UI.AjaxFileUpload.ProcessorHtml5 = function(control, elements) {
         xhrReq.addEventListener("abort", xhrDelegate(this.onUploadCanceledHandler), false);
         xhrReq.open("POST",
             control.get_uploadHandlerPath()
-            + '?contextKey=' + control.get_contextKey()
+            + '?contextKey=' + encodeURIComponent(control.get_contextKey())
             + '&controlID=' + control.get_id()
             + '&fileId=' + id
             + '&fileName=' + encodeURIComponent(fileItem._fileName)
@@ -1198,7 +1198,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
                 self = this;
 
             xhr.open("POST",
-                '?contextKey=' + this.get_contextKey()
+                '?contextKey=' + encodeURIComponent(this.get_contextKey())
                 + '&controlID=' + this.get_id()
                 + '&start=1&queue=' + this._filesInQueue.length
                 + this.getQueryString());
@@ -1290,7 +1290,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             currentFile = this._filesInQueue[this._currentQueueIndex - 1];
 
         xhr.open("POST",
-            '?contextKey=' + this.get_contextKey()
+            '?contextKey=' + encodeURIComponent(this.get_contextKey())
             + '&controlID=' + this.get_id()
             + '&complete=1&queue=' + this._filesInQueue.length
             + '&uploaded=' + (this._currentQueueIndex - (currentFile._isUploaded ? 0 : 1))
@@ -1466,7 +1466,7 @@ Sys.Extended.UI.AjaxFileUpload.Control.prototype = {
             self = this;
 
         xhr.open("POST",
-            '?contextKey=' + this.get_contextKey()
+            '?contextKey=' + encodeURIComponent(this.get_contextKey())
             + '&controlID=' + this.get_id()
             + '&done=1&guid=' + fileItem._id
             + this.getQueryString(), true);
