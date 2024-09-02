@@ -14,7 +14,7 @@ After careful consideration, we have decided to archive the AJAX Control Toolkit
 
 * We will archive this repository on October 1, 2024.
 * During this period, we welcome feedback and will be monitoring the repository to answer any final questions or concerns.
-* 
+  
 We appreciate your understanding and thank you for your support of the AJAX Control Toolkit over the years.
 
 Best regards,
