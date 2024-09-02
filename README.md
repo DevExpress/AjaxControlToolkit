@@ -1,6 +1,7 @@
 # AJAX Control Toolkit – Notice of Intent to Archive
 
 Dear Community,
+
 After careful consideration, we have decided to archive the AJAX Control Toolkit repository in 30 days. This decision comes as part of our commitment to focusing on modern web development technologies and ensuring that our resources are aligned with the future direction of the ASP.NET platform.
 
 ## What This Means:
