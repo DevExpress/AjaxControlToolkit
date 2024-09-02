@@ -17,6 +17,5 @@ After careful consideration, we have decided to archive the AJAX Control Toolkit
   
 We appreciate your understanding and thank you for your support of the AJAX Control Toolkit over the years.
 
-Best regards,
-
+Best regards,  
 The DevExpress Team
