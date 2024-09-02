@@ -1,26 +1,21 @@
-# ASP.NET AJAX Control Toolkit (for ASP.NET 4.x)
+# AJAX Control Toolkit – Notice of Intent to Archive
 
-[![Build status](https://ci.appveyor.com/api/projects/status/7ad3rsrupu40mx1r/branch/master?svg=true)](https://ci.appveyor.com/project/dxrobot/ajaxcontroltoolkit/branch/master)
-[![Installer](https://img.shields.io/badge/get%20installer-20.1.0-orange.svg)](https://go.devexpress.com/AjaxControlToolkit_Website_Download.aspx)
+Dear Community,
 
-The ASP.NET AJAX Control Toolkit is an open-source library for web development maintained by DevExpress. This library contains over 40 controls, including AutoComplete, CollapsiblePanel, ColorPicker, MaskedEdit, Calendar, Accordion, and Watermark.
+After careful consideration, we have decided to archive the AJAX Control Toolkit repository in 30 days. This decision comes as part of our commitment to focusing on modern web development technologies and ensuring that our resources are aligned with the future direction of the ASP.NET platform.
 
+## What This Means:
 
-Use the following link to download AJAX Control Toolkit:  
-[Download the Installer from DevExpress.com](https://go.devexpress.com/AjaxControlToolkit_GitHub_DevExpressPage.aspx)
+* **No Further Development:** After the repository is archived, it will be in a read-only state. No new issues or pull requests will be accepted.
+* **Community Support:** The existing content will remain available for reference, but there will be no official support or updates from DevExpress.
+* **Future Guidance:** We encourage developers to explore modern alternatives within the ASP.NET ecosystem that provide up-to-date functionality and support.
 
-## Get Started
+## Next Steps:
 
-Watch the following Get Started video:
+* We will archive this repository on October 1, 2024.
+* During this period, we welcome feedback and will be monitoring the repository to answer any final questions or concerns.
+  
+We appreciate your understanding and thank you for your support of the AJAX Control Toolkit over the years.
 
-[![video](https://github.com/DevExpress/AjaxControlToolkit/raw/wiki-static-resources/youtube-getting-started.png)](https://youtu.be/24hIhS2itUU)
-
-## Documentation
-
-* [Step-by-Step Installation Guide](https://github.com/DevExpress/AjaxControlToolkit/wiki/Step-by-Step-Installation-Guide)
-* [Upgrading from v7.x and below](https://github.com/DevExpress/AjaxControlToolkit/wiki/Upgrading-from-v7.x-and-below)
-* [How to use bundling and CDN](https://github.com/DevExpress/AjaxControlToolkit/wiki/How-to-use-bundling-and-CDN)
-
-## Demos
-
-* [Online demos](http://ajaxcontroltoolkit.devexpress.com/)
+Best regards,  
+The DevExpress Team
