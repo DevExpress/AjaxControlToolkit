@@ -1,21 +1,14 @@
-# AJAX Control Toolkit – Notice of Intent to Archive
+# AJAX Control Toolkit – Repository Archived
 
 Dear Community,
 
-After careful consideration, we have decided to archive the AJAX Control Toolkit repository in 30 days. This decision comes as part of our commitment to focusing on modern web development technologies and ensuring that our resources are aligned with the future direction of the ASP.NET platform.
+As previously announced, the AJAX Control Toolkit repository has been archived as of today. This repository is now in a read-only state, meaning no new issues or pull requests will be accepted.
 
-## What This Means:
+## Resources:
 
-* **No Further Development:** After the repository is archived, it will be in a read-only state. No new issues or pull requests will be accepted.
-* **Community Support:** The existing content will remain available for reference, but there will be no official support or updates from DevExpress.
-* **Future Guidance:** We encourage developers to explore modern alternatives within the ASP.NET ecosystem that provide up-to-date functionality and support.
+* The archived repository will remain accessible for reference purposes at [https://github.com/DevExpress/AjaxControlToolkit/](https://github.com/DevExpress/AjaxControlToolkit/).
+* For those looking to transition to modern technologies, we recommend exploring the [ASP.NET Core framework](https://dotnet.microsoft.com/apps/aspnet) and its associated libraries, which offer enhanced performance, security, and modern features.
+* Developers who are considering modern frontend technologies can explore JavaScript frameworks, such as React, Angular, or Vue, which pair well with [.NET for backend services](https://dotnet.microsoft.com/apps/aspnet/apis) to build performant and scalable applications.
+* You can also add beautiful UI and extended functionality to your .NET applications by leveraging tools from vendors in the [.NET ecosystem](https://dotnet.microsoft.com/platform/community), such as the DevExpress suite ([https://www.devexpress.com/](https://www.devexpress.com/)), which continues to provide valuable components for enhancing your app’s appearance and capabilities.
 
-## Next Steps:
-
-* We will archive this repository on October 1, 2024.
-* During this period, we welcome feedback and will be monitoring the repository to answer any final questions or concerns.
-  
-We appreciate your understanding and thank you for your support of the AJAX Control Toolkit over the years.
-
-Best regards,  
-The DevExpress Team
+Thank you once again for being a part of the AJAX Control Toolkit journey. We appreciate your support and contributions over the years.
