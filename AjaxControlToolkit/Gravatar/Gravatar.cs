@@ -127,10 +127,12 @@ namespace AjaxControlToolkit {
 
         string GetHash(string Email) {
             Email = Email.ToLower();
-            var Md5 = new MD5CryptoServiceProvider();
+           // var Md5 = new MD5CryptoServiceProvider();
+			var hashAlgoritym = new SHA1CryptoServiceProvider();
 
             var bytesToHash = System.Text.Encoding.ASCII.GetBytes(Email);
-            bytesToHash = Md5.ComputeHash(bytesToHash);
+           // bytesToHash = Md5.ComputeHash(bytesToHash);
+			bytesToHash = hashAlgoritym.ComputeHash(bytesToHash);
 
             var result = String.Empty;
             foreach(var b in bytesToHash) {
